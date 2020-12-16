@@ -20,13 +20,22 @@ screen minimap:
         frame:
             xpos i.x
             ypos i.y
-            add i.image at sizeRoom
+            imagebutton:
+                idle i.image
+                at sizeRoom
+                action [Hide ("minimap"),Hide ("Blackscreen"),Hide ("minimapHide"),Show ("minimapShow"), Jump (i.name)]
+        frame:
+            xpos i.x+20
+            ypos i.y+77
+            text i.name
 
 
-image Salle1:
+
+
+image ISalle1:
     "images/Salle1.png"
 
-image Salle2:
+image ISalle2:
     "images/Salle2.png"
 
 image BlackScreen:
