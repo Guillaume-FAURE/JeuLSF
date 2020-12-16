@@ -1,26 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 3, in script
-    $ salle1 = Room("Salle1","Salle1.png", 60, 60, 1)
-  File "game/script.rpy", line 3, in <module>
-    $ salle1 = Room("Salle1","Salle1.png", 60, 60, 1)
-TypeError: __init__() takes exactly 5 arguments (6 given)
+  File "game/script.rpy", line 38, in script
+    m "après ce message ce sera la salle 2"
+ScriptError: could not find label 'Arrive foret fees'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 3, in script
-    $ salle1 = Room("Salle1","Salle1.png", 60, 60, 1)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/script.rpy", line 3, in <module>
-    $ salle1 = Room("Salle1","Salle1.png", 60, 60, 1)
-TypeError: __init__() takes exactly 5 arguments (6 given)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\bootstrap.py", line 316, in bootstrap
+    renpy.main.main()
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\main.py", line 578, in main
+    run(restart)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\main.py", line 143, in run
+    renpy.execution.run_context(True)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\execution.py", line 908, in run_context
+    context.run()
+  File "game/script.rpy", line 38, in script
+    m "après ce message ce sera la salle 2"
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'Arrive foret fees'.
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
 JeuLSFv1 1.0
-Wed Dec 16 15:00:55 2020
+Wed Dec 16 16:34:59 2020

@@ -2,9 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/MyScreens-Images.rpy", line 30: u'show' is not a keyword argument or valid child for the frame statement.
-    show i.name
-        ^
+File "game/script.rpy", line 17: can't assign to function call
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Dec 16 15:44:09 2020
+Wed Dec 16 16:31:32 2020
