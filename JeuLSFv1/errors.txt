@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/MyScreens-Images.rpy", line 26: u's' is not a keyword argument or valid child for the for statement.
-    s = i.suite
-     ^
+File "game/MyScreens-Images.rpy", line 30: u'show' is not a keyword argument or valid child for the frame statement.
+    show i.name
+        ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Dec 09 15:44:20 2020
+Wed Dec 16 15:44:09 2020
