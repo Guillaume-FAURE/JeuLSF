@@ -7,6 +7,7 @@ label start:
     scene Salle1
     show screen minimapShow
 
+    m "Test Atom"
     m "VScode pas forcément pratique mais comme ça on peut test tous ensemble"
     m "je m'appele michel"
     m "après ce message ce sera la salle 2"
