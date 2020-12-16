@@ -2,7 +2,7 @@ screen minimapShow:
     imagebutton:
         idle "minimapShow.png"
         at sizeButton
-        action [Show("Blackscreen"),Show ("minimap"),Show("minimapHide"),Hide ("minimapShow")]
+        action [Show("Blackscreen") ,Show ("minimap"),Show("minimapHide"),Hide ("minimapShow")]
 
 screen Blackscreen:
     imagebutton:
@@ -21,9 +21,6 @@ screen minimap:
             xpos i.x
             ypos i.y
             add i.image at sizeRoom
-        if (i.suite-s==0):
-            add i.image at sizeRoom
-        $ s=i.suite
 
 
 image Salle1:
