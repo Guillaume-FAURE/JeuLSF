@@ -18,8 +18,8 @@ screen minimap:
     $ s = -1
     for i in minimap:
         frame:
-            xpos i.x
-            ypos i.y
+            xpos i.x*100
+            ypos i.y*100
             imagebutton:
                 idle i.image
                 at sizeRoom
