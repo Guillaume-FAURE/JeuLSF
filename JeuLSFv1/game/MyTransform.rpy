@@ -7,3 +7,5 @@ transform sizeBackground:
 transform position(x,y):
     xpos x
     ypos y
+transform zoom4:
+    zoom 4.0
