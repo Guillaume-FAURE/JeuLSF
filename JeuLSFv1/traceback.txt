@@ -1,65 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 42, in script
-    "pause"
-  File "game/MyScreens-Images.rpy", line 11, in execute
-    screen Whitescreen:
-  File "game/MyScreens-Images.rpy", line 11, in execute
-    screen Whitescreen:
-  File "game/MyScreens-Images.rpy", line 12, in execute
-    imagebutton:
-  File "game/MyScreens-Images.rpy", line 12, in keywords
-    imagebutton:
-NameError: name 'zomm4' is not defined
+  File "game/Characters.rpy", line 1, in script
+    define o = Character (Oliveau)
+  File "game/Characters.rpy", line 1, in <module>
+    define o = Character (Oliveau)
+NameError: name 'Oliveau' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 42, in script
-    "pause"
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 708, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\exports.py", line 1345, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 1142, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, **display_args)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 842, in do_display
-    **display_args)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 591, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ui.py", line 297, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
-    callback(self)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
-    self.update()
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
-    self.screen.function(**self.scope)
-  File "game/MyScreens-Images.rpy", line 11, in execute
-    screen Whitescreen:
-  File "game/MyScreens-Images.rpy", line 11, in execute
-    screen Whitescreen:
-  File "game/MyScreens-Images.rpy", line 12, in execute
-    imagebutton:
-  File "game/MyScreens-Images.rpy", line 12, in keywords
-    imagebutton:
-  File "<screen language>", line 13, in <module>
-NameError: name 'zomm4' is not defined
+  File "game/Characters.rpy", line 1, in script
+    define o = Character (Oliveau)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 2108, in execute
+    value = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2052, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/Characters.rpy", line 1, in <module>
+    define o = Character (Oliveau)
+NameError: name 'Oliveau' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
-JeuLSFv1 1.0
-Mon Dec 21 16:00:40 2020
+ 
+Sun Jan 03 16:42:37 2021

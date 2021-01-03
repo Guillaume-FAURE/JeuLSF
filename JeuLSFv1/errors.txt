@@ -2,10 +2,53 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 13: invalid syntax
-    PorteDuRoyaumeDesFees = Room("Porte du royaume des fees","Salle2.png", 5 4)
-                                                                              ^
-    
+File "game/script.rpy", line 49: expected statement.
+    Jump TransitionNiveau3
+                          ^
+
+File "game/script.rpy", line 51: expected statement.
+    Jump OliveauLSFL
+                    ^
+
+File "game/script.rpy", line 53: expected statement.
+    Jump OliveauLSFL
+                    ^
+
+File "game/script.rpy", line 55: expected statement.
+    Jump OliveauLSFL
+                    ^
+
+File "game/script.rpy", line 61: expected statement.
+    Jump Niveau3
+                ^
+
+File "game/script.rpy", line 63: expected statement.
+    Jump OliveauLSFL
+                    ^
+
+File "game/script.rpy", line 70: expected statement.
+    Jump TransitionNiveau2
+                          ^
+
+File "game/script.rpy", line 72: expected statement.
+    Jump OliveauSeau
+                    ^
+
+File "game/script.rpy", line 74: expected statement.
+    Jump OliveauSeau
+                    ^
+
+File "game/script.rpy", line 76: expected statement.
+    Jump OliveauSeau
+                    ^
+
+File "game/script.rpy", line 82: expected statement.
+    Jump Niveau2
+                ^
+
+File "game/script.rpy", line 84: expected statement.
+    Jump OliveauSeau
+                    ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Dec 21 16:04:30 2020
+Sun Jan 03 16:41:25 2021
