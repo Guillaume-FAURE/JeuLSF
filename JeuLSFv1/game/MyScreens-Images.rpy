@@ -29,7 +29,7 @@ screen minimap:
             imagebutton:
                 idle i.image
                 at sizeRoom
-                action [Hide ("minimap"),Hide ("Blackscreen"),Hide ("minimapHide"),Show ("minimapShow"), Jump (i.name)]
+                action [Hide ("minimap"),Hide ("Blackscreen"),Hide ("minimapHide"),Show ("minimapShow"), Jump (i.label)]
         frame:
             xalign i.x*10
             yalign i.y*10

@@ -1,26 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/Characters.rpy", line 1, in script
-    define o = Character (Oliveau)
-  File "game/Characters.rpy", line 1, in <module>
-    define o = Character (Oliveau)
-NameError: name 'Oliveau' is not defined
+  File "game/script.rpy", line 156, in script
+    jump ClairiereDOliveau2
+ScriptError: could not find label 'ClairiereDOliveau2'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/Characters.rpy", line 1, in script
-    define o = Character (Oliveau)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 2108, in execute
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2052, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/Characters.rpy", line 1, in <module>
-    define o = Character (Oliveau)
-NameError: name 'Oliveau' is not defined
+  File "game/script.rpy", line 156, in script
+    jump ClairiereDOliveau2
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 1697, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'ClairiereDOliveau2'.
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
- 
-Sun Jan 03 16:42:37 2021
+JeuLSFv1 1.0
+Sun Jan 03 17:13:25 2021
