@@ -1,28 +1,65 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 38, in script
-    m "après ce message ce sera la salle 2"
-ScriptError: could not find label 'Arrive foret fees'.
+  File "game/script.rpy", line 42, in script
+    "pause"
+  File "game/MyScreens-Images.rpy", line 11, in execute
+    screen Whitescreen:
+  File "game/MyScreens-Images.rpy", line 11, in execute
+    screen Whitescreen:
+  File "game/MyScreens-Images.rpy", line 12, in execute
+    imagebutton:
+  File "game/MyScreens-Images.rpy", line 12, in keywords
+    imagebutton:
+NameError: name 'zomm4' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\bootstrap.py", line 316, in bootstrap
-    renpy.main.main()
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\main.py", line 578, in main
-    run(restart)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\main.py", line 143, in run
-    renpy.execution.run_context(True)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\execution.py", line 908, in run_context
-    context.run()
-  File "game/script.rpy", line 38, in script
-    m "après ce message ce sera la salle 2"
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'Arrive foret fees'.
+  File "game/script.rpy", line 42, in script
+    "pause"
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 708, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\exports.py", line 1345, in say
+    who(what, *args, **kwargs)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 1142, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 842, in do_display
+    **display_args)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\character.py", line 591, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ui.py", line 297, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
+    callback(self)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
+    self.update()
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "game/MyScreens-Images.rpy", line 11, in execute
+    screen Whitescreen:
+  File "game/MyScreens-Images.rpy", line 11, in execute
+    screen Whitescreen:
+  File "game/MyScreens-Images.rpy", line 12, in execute
+    imagebutton:
+  File "game/MyScreens-Images.rpy", line 12, in keywords
+    imagebutton:
+  File "<screen language>", line 13, in <module>
+NameError: name 'zomm4' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
 JeuLSFv1 1.0
-Wed Dec 16 16:34:59 2020
+Mon Dec 21 16:00:40 2020
