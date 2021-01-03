@@ -17,6 +17,8 @@ label start:
     $ PiegeDeLAlchimiste = Room("Piege de l'alchimiste","Salle2.png", 400, 230)
     show screen minimapShow
 
+    label Didacticiel:
+
     label Salle1:
     $ minimap.append(ArriveForetFees)
     $ minimap.append(TransitionKabeGouffre)
@@ -35,7 +37,6 @@ label start:
     $ minimap.append(PiegeDeLAlchimiste)
     scene ISalle1
 
-    m "après ce message ce sera la salle 2"
     label Salle2:
     scene ISalle2
 
