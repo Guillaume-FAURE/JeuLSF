@@ -1,20 +1,4 @@
 label start:
-    $ minimap = []
-    $ ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","Salle2.png", 50, 60)
-    $ TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 1, 2)
-    $ ArbreABonbons = Room("Arbre a bonbons","ArbreABonbons","Salle2.png", 1, 3)
-    $ PassageObstrue = Room("Passage obstrue","PassageObstrue","Salle2.png", 1, 4)
-    $ Bibliotheque = Room("Bibliotheque","Bibliotheque","Salle2.png", 1, 5)
-    $ Labyrinthe = Room("Labyrinthe","Labyrinthe","Salle2.png", 1, 6)
-    $ ClairiereDOliveau = Room("Clairiere d Oliveau","ClairiereDOliveau","Salle2.png", 2, 1)
-    $ Lac = Room("Lac","Lac","Salle2.png", 3, 1)
-    $ Cuisine = Room("Cuisine","Cuisine","Salle2.png", 4, 1)
-    $ NidDeLOiseau = Room("Nid de l oiseau","NidDeLOiseau","Salle2.png", 5, 1)
-    $ PorteDuRoyaumeDesFees = Room("Porte du royaume des fees","PorteDuRoyaumeDesFees","Salle2.png", 6, 1)
-    $ LieuDuVol = Room("Lieu du vol","LieuDuVol","Salle2.png", 7, 1)
-    $ PseudoLabyrinthe = Room("Pseudo labyrinthe","PseudoLabyrinthe","Salle2.png", 8, 1)
-    $ FalaiseAvecLierre = Room("Falaise avec lierre","FalaiseAvecLierre","Salle2.png", 3, 3)
-    $ PiegeDeLAlchimiste = Room("Piege de l'alchimiste","PiegeDeLAlchimiste","Salle2.png", 20, 10)
     show screen minimapShow
 
     label Didacticiel:
@@ -83,6 +67,14 @@ label start:
         nom = nom.strip() or "Anonyme"
     o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
     #Video Oliveau O-L-I-V-E-A-U LSF "O-L-I-V-E-A-U; O-L-I-V-E-A-U O L I V E A U"
+    python:
+        dico.append(O)
+        dico.append(L)
+        dico.append(I)
+        dico.append(V)
+        dico.append(E)
+        dico.append(A)
+        dico.append(U)
     #Succes Oliveau debloque
     label Question1:
     menu:
@@ -127,20 +119,30 @@ label start:
     pp "Où est-elle?"
     #Oliveau t'indique la direction
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
+    $ avancement[0] = "ConnaisDirectionRoyaumeFees"
     jump Question2
     label Reponse24LSF:
     o "Laquelle?"
     python:
         lettre = renpy.input("Laquelle?")
-        lettre = nom.strip() or "?"
-    #Voir pour code dictionnaire et suite de ce dialogue
+        lettre = lettre.strip() or "?"
+    $ i=0
+    while i<= (len(dico)-1):
+        if [lettre] == dico[i].name:
+            "Tu connais cette lettre"
+            jump Question2
+        $ i=i+1
+    "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
     jump Question2
     label Reponse25:
-    #Si le joueur ne sait pas où est la reine: il ne peut rien faire, rien ne change. Il peut toujours parler à Oliveau.
-    #Si le joueur sait ou est la reine, il peut continuer:
+    if avancement[0] == "ConnaisDirectionRoyaumeFees":
+        jump PorteDuRoyaumeDesFees
+    else:
+        pp "Qu'est ce que je fais maintenant... Je ferais mieux de retourner parler à Oliveau pour en apprendre plus..."
+        jump Question2
     label PorteDuRoyaumeDesFees:
-    #(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!
-    jump ClairiereDOliveau:
+    "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
+    jump ClairiereDOliveau
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
     pp "On m’a renvoyé une fois à la porte, que faire? "
