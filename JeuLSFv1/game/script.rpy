@@ -128,7 +128,7 @@ label start:
         lettre = lettre.strip() or "?"
     $ i=0
     while i<= (len(dico)-1):
-        if [lettre] == dico[i].name:
+        if lettre == dico[i].name:
             "Tu connais cette lettre"
             jump Question2
         $ i=i+1
