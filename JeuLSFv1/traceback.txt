@@ -3,9 +3,9 @@
 While running game code:
   File "game/Python.rpy", line 2, in script
     init python:
-  File "game/Python.rpy", line 37, in <module>
-    A = Mot(A)
-NameError: name 'A' is not defined
+  File "game/Python.rpy", line 65, in <module>
+    avancement[i]=0
+IndexError: list assignment index out of range
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -16,11 +16,13 @@ Full traceback:
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
     exec bytecode in globals, locals
-  File "game/Python.rpy", line 37, in <module>
-    A = Mot(A)
-NameError: name 'A' is not defined
+  File "game/Python.rpy", line 65, in <module>
+    avancement[i]=0
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 731, in do_mutation
+    return method(self, *args, **kwargs)
+IndexError: list assignment index out of range
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
  
-Mon Jan 04 08:59:13 2021
+Mon Jan 04 16:55:50 2021

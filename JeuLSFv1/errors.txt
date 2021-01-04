@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 130: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation.
-    if [lettre] == i.name:
-    ^
+File "game/Python.rpy", line 64: invalid syntax
+    $ i=0
+     ^
+    
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jan 04 08:50:01 2021
+Mon Jan 04 16:59:39 2021
