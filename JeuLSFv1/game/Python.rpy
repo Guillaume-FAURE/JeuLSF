@@ -13,10 +13,17 @@ init python:
         def __init__(self, name):
             self.name = name
 
+#Classe Objet pour les objets qui sont dans l'inventaire
+    class Objet:
+        def __init__(self, name, image):
+            self.name = name
+            self.image = image
+
 #Initialisation Tableau
     dico = []
     avancement = [50]
     minimap = []
+    inventaire = []
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","Salle2.png", 50, 60)
     TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 1, 2)
@@ -60,4 +67,10 @@ init python:
     X = Mot("X")
     Y = Mot("Y")
     Z = Mot("Z")
-
+#Initialisation tableau d'avancement
+    i=0
+    while i<len(avancement):
+        avancement[i]="null"
+        i=i+1
+#Initialisation inventaire
+    Sifflet = Objet("Sifflet", "Salle2.png")
