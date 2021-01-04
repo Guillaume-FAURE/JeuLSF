@@ -1,22 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 156, in script
-    jump ClairiereDOliveau2
-ScriptError: could not find label 'ClairiereDOliveau2'.
+  File "game/Python.rpy", line 2, in script
+    init python:
+  File "game/Python.rpy", line 37, in <module>
+    A = Mot(A)
+NameError: name 'A' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 156, in script
-    jump ClairiereDOliveau2
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 1697, in execute
-    rv = renpy.game.script.lookup(target)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'ClairiereDOliveau2'.
+  File "game/Python.rpy", line 2, in script
+    init python:
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/Python.rpy", line 37, in <module>
+    A = Mot(A)
+NameError: name 'A' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
-JeuLSFv1 1.0
-Sun Jan 03 17:13:25 2021
+ 
+Mon Jan 04 08:59:13 2021
