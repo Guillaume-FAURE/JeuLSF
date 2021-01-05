@@ -1,28 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/Python.rpy", line 2, in script
-    init python:
-  File "game/Python.rpy", line 65, in <module>
-    avancement[i]=0
-IndexError: list assignment index out of range
+  File "game/script.rpy", line 161, in script
+    jump Question2
+ScriptError: could not find label 'Question2'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/Python.rpy", line 2, in script
-    init python:
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/Python.rpy", line 65, in <module>
-    avancement[i]=0
-  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\python.py", line 731, in do_mutation
-    return method(self, *args, **kwargs)
-IndexError: list assignment index out of range
+  File "game/script.rpy", line 161, in script
+    jump Question2
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\ast.py", line 1697, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\guill\Downloads\Application\Ren'py\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'Question2'.
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
- 
-Mon Jan 04 16:55:50 2021
+JeuLSFv1 1.0
+Tue Jan 05 09:16:38 2021
