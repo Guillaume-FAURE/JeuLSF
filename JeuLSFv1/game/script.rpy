@@ -368,6 +368,7 @@ label start:
 #############################################################################################################################
     label TransitionKabeGouffre:
     #Possibilite d'utiliser KAME.
+    "On est dans un gouffre"
     "Fin de jeu"
 
     return
