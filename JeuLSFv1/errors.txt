@@ -2,10 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/Python.rpy", line 64: invalid syntax
-    $ i=0
-     ^
-    
+The label R26 is defined twice, at
+  File "game/script.rpy", line 110 and
+  File "game/script.rpy", line 177.
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jan 04 16:59:39 2021
+Tue Jan 05 09:01:08 2021

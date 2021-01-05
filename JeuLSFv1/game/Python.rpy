@@ -18,12 +18,18 @@ init python:
         def __init__(self, name, image):
             self.name = name
             self.image = image
+#Classe Magie pour les sorts appris
+    class Magie:
+        def __init__(self, name, image):
+            self.name = name
+            self.image = image
 
 #Initialisation Tableau
     dico = []
-    avancement = [50]
+    avancement = ["null"]*50
     minimap = []
     inventaire = []
+    magie = []
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","Salle2.png", 50, 60)
     TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 1, 2)
@@ -67,10 +73,7 @@ init python:
     X = Mot("X")
     Y = Mot("Y")
     Z = Mot("Z")
-#Initialisation tableau d'avancement
-    i=0
-    while i<len(avancement):
-        avancement[i]="null"
-        i=i+1
 #Initialisation inventaire
     Sifflet = Objet("Sifflet", "Salle2.png")
+#Initialisation magie
+    DOY = Magie("DOY", "Salle2.png")

@@ -9,3 +9,4 @@ transform position(x,y):
     ypos y
 transform zoom4:
     zoom 4.0
+define slowDissolve = Dissolve(1)
