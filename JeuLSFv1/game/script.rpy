@@ -107,9 +107,11 @@ label start:
     elif avancement[0]== "RenvoyeParGarde":
         jump RenvoyeParGarde
     elif avancement[0]== "AVuLOiseau":
-        jump AVuLoiseau
+        jump AVuLOiseau
     elif avancement[0]== "FioleObtenu":
         jump FioleObtenu
+    elif avancement[0]== "ApprisSort":
+        jump ApprisSort
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -193,9 +195,15 @@ label start:
     label FioleObtenu:
     $ avancement[3]="PossibiliteApprendreKAME"
     pp "J’ai rencontré une fée alchimiste et j’ai récupéré une potion. Que faire maintenant?"
-    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. 
+    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
     o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+    jump DansLesAirs
+
+    label ApprisSort:
+    pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
+    o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
+    jump TransitionKabeGouffre
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -294,7 +302,7 @@ label start:
     #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
     $ avancement[0]="AVuLOiseau"
     jump ClairiereDOliveau
-    #############################################################################################################################
+#############################################################################################################################
     label Falaise:
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
@@ -309,10 +317,10 @@ label start:
         python:
             dico.append(M)
             dico.append(N)
-        avancement[2]=="FioleObtenu"
+        $ avancement[2]="FioleObtenu"
         jump DessusDeLaFalaise
     elif avancement[2]=="FioleObtenu":
-        $avancement[0]="FioleObtenu"
+        $ avancement[0]="FioleObtenu"
         menu:
             "Donner la fiole à la fée":#+2 points de gentillesse
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
@@ -321,7 +329,7 @@ label start:
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
                 jump ClairiereDOliveau
-
+#############################################################################################################################
     label DansLesAirs:
         b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     if avancement[3]=="null":
@@ -337,10 +345,29 @@ label start:
                 b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
                 b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
                 jump ApprentissageKAME
-            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort"#-1 point de gentillesse
+            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":#-1 point de gentillesse
                 b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
                 b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
-
+                jump ApprentissageKAME
+            "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
+                b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
+                jump ApprentissageKAME
+    
+    label ApprentissageKAME:
+        b "Le sort que je vais t’apprendre se dit KAME"
+        #Video de l'oiseau signant KAME
+        python:
+            dico.append(K)
+        #L'oiseau vole sans battre des ailes
+        b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
+        #L'oiseau part
+        $ magie.append(KAME)
+        "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
+        #Possibilité de se téléporter
+        $ avancement[0]="ApprisSort"
+#############################################################################################################################
+    label TransitionKabeGouffre:
+    #Possibilite d'utiliser KAME.
     "Fin de jeu"
 
     return
