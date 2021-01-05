@@ -107,7 +107,7 @@ label start:
     elif avancement[0]== "RenvoyeParGarde":
         jump RenvoyeParGarde
     elif avancement[0]== "AVuLOiseau":
-        jump AVuLoiseau
+        jump AVuLOiseau
     elif avancement[0]== "FioleObtenu":
         jump FioleObtenu
     elif avancement[0]== "ApprisSort":
@@ -195,13 +195,15 @@ label start:
     label FioleObtenu:
     $ avancement[3]="PossibiliteApprendreKAME"
     pp "J’ai rencontré une fée alchimiste et j’ai récupéré une potion. Que faire maintenant?"
-    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. 
+    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
     o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+    jump DansLesAirs
 
     label ApprisSort:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
     o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
+    jump TransitionKabeGouffre
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -300,7 +302,7 @@ label start:
     #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
     $ avancement[0]="AVuLOiseau"
     jump ClairiereDOliveau
-    #############################################################################################################################
+#############################################################################################################################
     label Falaise:
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
@@ -315,10 +317,10 @@ label start:
         python:
             dico.append(M)
             dico.append(N)
-        avancement[2]=="FioleObtenu"
+        $ avancement[2]="FioleObtenu"
         jump DessusDeLaFalaise
     elif avancement[2]=="FioleObtenu":
-        $avancement[0]="FioleObtenu"
+        $ avancement[0]="FioleObtenu"
         menu:
             "Donner la fiole à la fée":#+2 points de gentillesse
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
@@ -327,7 +329,7 @@ label start:
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
                 jump ClairiereDOliveau
-
+#############################################################################################################################
     label DansLesAirs:
         b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     if avancement[3]=="null":
@@ -363,7 +365,9 @@ label start:
         "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
         #Possibilité de se téléporter
         $ avancement[0]="ApprisSort"
-
+#############################################################################################################################
+    label TransitionKabeGouffre:
+    #Possibilite d'utiliser KAME.
     "Fin de jeu"
 
     return

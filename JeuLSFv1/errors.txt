@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-The label R26 is defined twice, at
-  File "game/script.rpy", line 110 and
-  File "game/script.rpy", line 177.
+File "game/script.rpy", line 319: expected statement.
+    avancement[2]=="FioleObtenu"
+                 ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Tue Jan 05 09:01:08 2021
+Tue Jan 05 10:07:13 2021
