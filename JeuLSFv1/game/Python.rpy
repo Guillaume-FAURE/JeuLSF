@@ -77,3 +77,4 @@ init python:
     Sifflet = Objet("Sifflet", "Salle2.png")
 #Initialisation magie
     DOY = Magie("DOY", "Salle2.png")
+    KAME = Magie("KAME", "Salle2.png")

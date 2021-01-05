@@ -110,6 +110,8 @@ label start:
         jump AVuLoiseau
     elif avancement[0]== "FioleObtenu":
         jump FioleObtenu
+    elif avancement[0]== "ApprisSort":
+        jump ApprisSort
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -196,6 +198,10 @@ label start:
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. 
     o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+
+    label ApprisSort:
+    pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
+    o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -337,9 +343,26 @@ label start:
                 b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
                 b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
                 jump ApprentissageKAME
-            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort"#-1 point de gentillesse
+            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":#-1 point de gentillesse
                 b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
                 b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
+                jump ApprentissageKAME
+            "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
+                b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
+                jump ApprentissageKAME
+    
+    label ApprentissageKAME:
+        b "Le sort que je vais t’apprendre se dit KAME"
+        #Video de l'oiseau signant KAME
+        python:
+            dico.append(K)
+        #L'oiseau vole sans battre des ailes
+        b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
+        #L'oiseau part
+        $ magie.append(KAME)
+        "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
+        #Possibilité de se téléporter
+        $ avancement[0]="ApprisSort"
 
     "Fin de jeu"
 
