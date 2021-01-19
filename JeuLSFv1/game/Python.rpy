@@ -75,6 +75,8 @@ init python:
     Z = Mot("Z")
 #Initialisation inventaire
     Sifflet = Objet("Sifflet", "Salle2.png")
+    Sucette = Objet("Sucette", "Salle2.png")
 #Initialisation magie
     DOY = Magie("DOY", "Salle2.png")
     KAME = Magie("KAME", "Salle2.png")
+    PIF = Magie("PIF", "Salle2.png")
