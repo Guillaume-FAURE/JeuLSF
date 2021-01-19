@@ -114,6 +114,8 @@ label start:
         jump ApprisSort
     elif avancement[0]== "EnfantBonbon":
         jump EnfantBonbon
+    elif avancement[0]== "ObtenuBouleDeCristal":
+        jump ObtenuBouleDeCristal
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -210,6 +212,13 @@ label start:
     label EnfantBonbon:
     $ avancement[3]="PossibiliteApprendrePIF"
     pp "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?"
+    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    #Utilisation du sifflet
+    jump DansLesAirs
+
+    label ObtenuBouleDeCristal:
+    $ avancement[3]="PossibiliteApprendreJUNQ"
+    pp "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?"
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
     jump DansLesAirs
@@ -348,6 +357,8 @@ label start:
         jump PossibiliteApprendreKAME
     elif avancement[3]=="PossibiliteApprendrePIF":
         jump PossibiliteApprendrePIF
+    elif avancement[3]=="PossibiliteApprendreJUNQ":
+        jump PossibiliteApprendreJUNQ
 
 
     label PossibiliteApprendreKAME:
@@ -386,6 +397,16 @@ label start:
     $ magie.append(PIF)
     $ avancement[0]= "ApprisSort"
     jump ClairiereDOliveau
+
+    label PossibiliteApprendreJUNQ:
+    b "Le sort que je vais t’apprendre se dit JUNQ"
+    $ dico.append(J)
+    b " Ce sort, comme tu le vois, permet de respirer dans l’eau." 
+    b "Il te servira à traverser de longues étendues d’eau ou bien à aller chercher les trésors des fonds marins."
+    b "Enfin, ceux dont je n’ai pas voulu. Bon courage, humain."
+    $ magie.append(JUNQ)
+    jump ClairiereDOliveau
+    
 #############################################################################################################################
     label TransitionKabeGouffre:
     #Possibilite d'utiliser KAME.
@@ -457,6 +478,7 @@ label start:
     #Bibliothécaire: Merci, B-I-B-L-I-O-T-H-È-Q-U-E
     $ dico.append(T)
     $ dico.append(Q)
+    $ avancement[0]="ObtenuBouleDeCristal"
     menu:
         "Lui rendre ses livres": #+1 point de gentillesse
             #+1 boule de cristal

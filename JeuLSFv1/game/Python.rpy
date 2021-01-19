@@ -80,3 +80,4 @@ init python:
     DOY = Magie("DOY", "Salle2.png")
     KAME = Magie("KAME", "Salle2.png")
     PIF = Magie("PIF", "Salle2.png")
+    JUNQ = Magie("JUNQ", "Salle2.png")
