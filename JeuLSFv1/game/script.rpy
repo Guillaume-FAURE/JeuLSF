@@ -112,6 +112,10 @@ label start:
         jump FioleObtenu
     elif avancement[0]== "ApprisSort":
         jump ApprisSort
+    elif avancement[0]== "EnfantBonbon":
+        jump EnfantBonbon
+    elif avancement[0]== "ObtenuBouleDeCristal":
+        jump ObtenuBouleDeCristal
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -204,6 +208,20 @@ label start:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
     o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
     jump TransitionKabeGouffre
+
+    label EnfantBonbon:
+    $ avancement[3]="PossibiliteApprendrePIF"
+    pp "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?"
+    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    #Utilisation du sifflet
+    jump DansLesAirs
+
+    label ObtenuBouleDeCristal:
+    $ avancement[3]="PossibiliteApprendreJUNQ"
+    pp "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?"
+    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    #Utilisation du sifflet
+    jump DansLesAirs
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -337,6 +355,10 @@ label start:
         jump ClairiereDOliveau
     elif avancement[3]=="PossibiliteApprendreKAME":
         jump PossibiliteApprendreKAME
+    elif avancement[3]=="PossibiliteApprendrePIF":
+        jump PossibiliteApprendrePIF
+    elif avancement[3]=="PossibiliteApprendreJUNQ":
+        jump PossibiliteApprendreJUNQ
 
 
     label PossibiliteApprendreKAME:
@@ -365,10 +387,106 @@ label start:
         "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
         #Possibilité de se téléporter
         $ avancement[0]="ApprisSort"
+
+    label PossibiliteApprendrePIF:
+    b "Le sort que je vais t’apprendre se dit PIF" #oiseau signe PIF
+    #l'oiseau casse le rocher
+    b "Ce sort, comme tu le vois, permet de casser ce que l’on souhaite. C’est de lui que la plupart des fées tirent leur force."
+    b "Pas moi, évidemment.Tu devrais en avoir besoin bientôt. Bon courage, humain."
+    #l'oiseau part
+    $ magie.append(PIF)
+    $ avancement[0]= "ApprisSort"
+    jump ClairiereDOliveau
+
+    label PossibiliteApprendreJUNQ:
+    b "Le sort que je vais t’apprendre se dit JUNQ"
+    $ dico.append(J)
+    b " Ce sort, comme tu le vois, permet de respirer dans l’eau." 
+    b "Il te servira à traverser de longues étendues d’eau ou bien à aller chercher les trésors des fonds marins."
+    b "Enfin, ceux dont je n’ai pas voulu. Bon courage, humain."
+    $ magie.append(JUNQ)
+    jump ClairiereDOliveau
+    
 #############################################################################################################################
     label TransitionKabeGouffre:
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
+    "Vous avez traversé le gouffre en volant"
+#############################################################################################################################
+    label ArbreABonbons:
+    $ minimap.append(ArbreABonbons)
+    
+    if avancement[4]=="null":
+        jump EnfantQuiPleure
+    elif avancement[4]=="ObtenuBonbons":
+        jump ObtenuBonbons
+    
+    label EnfantQuiPleure:
+    #un enfant qui pleure
+    menu:
+        "Que se passe t-il jeune fée ?":#+1 point de gentillesse
+            jump bonbon
+        "Hey, viens, ne pleure pas, fais moi plutôt un câlin, shhh, tout va bien. Raconte-moi tes tourments.": #+3 points de gentillesse
+            jump bonbon
+        "Rooh, même les enfants-fées pleurent tout le temps?":
+            jump bonbon
+    label bonbon:
+    #enfant dit bonbon en LSF
+    pp "..."
+    #enfant dit B-O-N-B-O-N
+    $ dico.append(B)
+    #L’enfant pointe le doigt vers l’arbre et tend un sac de bonbons vides
+    #Le joueur peut monter dans l’arbre
+    jump MinijeuBonbons
+
+    label ObtenuBonbons:
+    menu:
+        "Rendre les bonbons":#+3 points de gentillesse
+            $inventaire.append(Sucette)
+            #enfant dit merci
+            jump ClairiereDOliveau
+        "Garder les bonbons":#-1 point de gentillesse
+            #enfant pleure
+            jump ClairiereDOliveau
+
+    label MinijeuBonbons:
+    #retrouver bonbons dans l'arbre
+    $ avancement[4]="ObtenuBonbons"
+    jump ArbreABonbons
+############################################################################################################################
+    label FondDuGouffre:
+    #Utilisation du sort PIF, porte se découvre
+    jump Bibliotheque
+############################################################################################################################
+    label Bibliotheque:
+    $ minimap.append(Bibliotheque)
+    if avancement[5]=="null":
+        #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
+        #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
+        #Si le joueur reparle au bibliothécaire: -A-M-È-N-E s’il te plait
+        jump MinijeuBibliotheque
+    elif avancement[5]=="ObtenuReference":
+        jump ObtenuReference
+    
+    label MinijeuBibliotheque:
+    #Les étagères sont remplies de boules de cristal 
+    #Les références sont composées de 3 lettres chacune. 
+    #Chaque boule fait 3 lettres (il y en a autant que possible, rangées dans l’ordre alphabétique). 
+    
+    label ObtenuReference:
+    #Le joueur doit retrouver les trois boules correspondant à ses références et les ramène au bibliothécaire pour les valider.
+    #Bibliothécaire: Merci, B-I-B-L-I-O-T-H-È-Q-U-E
+    $ dico.append(T)
+    $ dico.append(Q)
+    $ avancement[0]="ObtenuBouleDeCristal"
+    menu:
+        "Lui rendre ses livres": #+1 point de gentillesse
+            #+1 boule de cristal
+            jump ClairiereDOliveau
+        "Partir avec ses livres": #-1 point de gentillesse
+            "Vous avez fait tomber 2 boules de cristal dans la précipitation"
+            jump ClairiereDOliveau
+
     "Fin de jeu"
 
     return
