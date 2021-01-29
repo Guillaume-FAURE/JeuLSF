@@ -30,6 +30,8 @@ init python:
     minimap = []
     inventaire = []
     magie = []
+    gentillesse = 0
+    achievement = []
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","Salle2.png", 50, 60)
     TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 1, 2)
@@ -73,9 +75,20 @@ init python:
     X = Mot("X")
     Y = Mot("Y")
     Z = Mot("Z")
+    Zero = Mot("0")
+    Un = Mot("1")
+    Deux = Mot("2")
+    Trois = Mot("3")
+    Quatre = Mot("4")
+    Cinq = Mot("5")
+    Six = Mot("6")
+    Sept = Mot("7")
+    Huit = Mot("8")
+    Neuf = Mot("9")
 #Initialisation inventaire
     Sifflet = Objet("Sifflet", "Salle2.png")
     Sucette = Objet("Sucette", "Salle2.png")
+    BouleDeCristal = Objet("Boule de cristal", "Salle2.png")
 #Initialisation magie
     DOY = Magie("DOY", "Salle2.png")
     KAME = Magie("KAME", "Salle2.png")

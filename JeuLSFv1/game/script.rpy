@@ -116,6 +116,9 @@ label start:
         jump EnfantBonbon
     elif avancement[0]== "ObtenuBouleDeCristal":
         jump ObtenuBouleDeCristal
+    elif avancement[0]== "BesoinApprendreCompter":
+        jump BesoinApprendreCompter
+    
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -222,6 +225,30 @@ label start:
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
     jump DansLesAirs
+
+    label BesoinApprendreCompter:
+    pp "Peux-tu m’apprendre à compter?"
+    #Oliveau fait les chiffres un à un en français et en LSF
+    python:
+        dico.append(Zero)
+        dico.append(Un)
+        dico.append(Deux)
+        dico.append(Trois)
+        dico.append(Quatre)
+        dico.append(Cinq)
+        dico.append(Six)
+        dico.append(Sept)
+        dico.append(Huit)
+        dico.append(Neuf)
+    o "Y a-t-il un chiffre que tu n’as pas compris?"
+    python:
+        chiffre = renpy.input("Laquelle?")
+        chiffre = chiffre.strip() or "?"
+    $ i=0
+    while i < (len(dico)):
+        if lettre == dico[i].name:
+            #oliveau refait le chiffre
+            jump PlanDeTravail
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -340,10 +367,12 @@ label start:
     elif avancement[2]=="FioleObtenu":
         $ avancement[0]="FioleObtenu"
         menu:
-            "Donner la fiole à la fée":#+2 points de gentillesse
+            "Donner la fiole à la fée":
+                $ gentillesse += 2
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
                 jump ClairiereDOliveau 
-            "Partir avec la fiole":#-3 points de gentillesse
+            "Partir avec la fiole":
+                $ gentillesse -= 3
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
                 jump ClairiereDOliveau
@@ -359,15 +388,19 @@ label start:
         jump PossibiliteApprendrePIF
     elif avancement[3]=="PossibiliteApprendreJUNQ":
         jump PossibiliteApprendreJUNQ
+    elif avancement[3]=="PossibiliteApprendreGREX":
+        jump PossibiliteApprendreGREX
 
 
     label PossibiliteApprendreKAME:
         menu:
-            "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":#-2 points de gentillesse
+            "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":
+                $ gentillesse -= 2
                 b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
                 b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
                 jump ApprentissageKAME
-            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":#-1 point de gentillesse
+            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":
+                $ gentillesse -= 1
                 b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
                 b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
                 jump ApprentissageKAME
@@ -405,8 +438,17 @@ label start:
     b "Il te servira à traverser de longues étendues d’eau ou bien à aller chercher les trésors des fonds marins."
     b "Enfin, ceux dont je n’ai pas voulu. Bon courage, humain."
     $ magie.append(JUNQ)
-    jump ClairiereDOliveau
+    $ avancement[0]= "ApprisSort"
+    jump Lac
     
+    label PossibiliteApprendreGREX:
+    b "Le sort que je vais t'apprendre se dit GREX"
+    $ dico.append(X)
+    b "Ce sort, comme tu le vois, permet de creuser. Il te servira à retrouver des animaux de ton ordre comme les mulots et autres taupes." 
+    b "Il y a sûrement des galeries que tu aimeras explorer là-bas. Bon courage, humain."
+    $ magie.append(GREX)
+    $ avancement[0]= "ApprisSort"
+    jump Labyrinthe
 #############################################################################################################################
     label TransitionKabeGouffre:
     #Possibilite d'utiliser KAME.
@@ -424,9 +466,11 @@ label start:
     label EnfantQuiPleure:
     #un enfant qui pleure
     menu:
-        "Que se passe t-il jeune fée ?":#+1 point de gentillesse
+        "Que se passe t-il jeune fée ?":
+            $ gentillesse += 1
             jump bonbon
-        "Hey, viens, ne pleure pas, fais moi plutôt un câlin, shhh, tout va bien. Raconte-moi tes tourments.": #+3 points de gentillesse
+        "Hey, viens, ne pleure pas, fais moi plutôt un câlin, shhh, tout va bien. Raconte-moi tes tourments.": 
+            $ gentillesse += 3
             jump bonbon
         "Rooh, même les enfants-fées pleurent tout le temps?":
             jump bonbon
@@ -441,11 +485,13 @@ label start:
 
     label ObtenuBonbons:
     menu:
-        "Rendre les bonbons":#+3 points de gentillesse
+        "Rendre les bonbons":
+            $ gentillesse += 3
             $inventaire.append(Sucette)
             #enfant dit merci
             jump ClairiereDOliveau
-        "Garder les bonbons":#-1 point de gentillesse
+        "Garder les bonbons":
+            $ gentillesse -= 1
             #enfant pleure
             jump ClairiereDOliveau
 
@@ -480,12 +526,52 @@ label start:
     $ dico.append(Q)
     $ avancement[0]="ObtenuBouleDeCristal"
     menu:
-        "Lui rendre ses livres": #+1 point de gentillesse
-            #+1 boule de cristal
+        "Lui rendre ses livres": 
+            $ gentillesse += 1
+            $ inventaire.append(BouleDeCristal)
             jump ClairiereDOliveau
-        "Partir avec ses livres": #-1 point de gentillesse
+        "Partir avec ses livres": 
+            $ gentillesse -= 1
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
             jump ClairiereDOliveau
+#############################################################################################################################
+    label Lac:
+    #Utilisation JUNQ
+    jump FondDuLac
+#############################################################################################################################
+    label FondDuLac:
+    #on trouve une porte sculptée dans le corail.
+    jump Cuisine
+#############################################################################################################################
+    label Cuisine:
+    #Cuisinière: 2 tomates
+    #Le joueur peut donner les tomates à la cuisinière (en choisissant le nombre)
+    #Cuisinière: 12 carottes
+    #Le joueur peut donner les carottes à la cuisinière (en choisissant le nombre)
+    #Cuisinière: 10 asperges
+    #Le joueur peut donner les asperges à la cuisinière (en choisissant le nombre)
+    #Cuisinière: 16 poivrons
+    #Le joueur peut donner les poivrons à la cuisinière (en choisissant le nombre)
+
+    #Si le joueur rate, à quelconque moment:
+     #   La fée fait non de la tête.
+    #Une photo d’Oliveau est affichée au fond de la cuisine, la fée le désigne 
+    #Cuisinière: O-L-I-V-E-A-U
+    #Si le joueur réussit le tout: on lance le mini-jeu
+    $ avancement[0]="BesoinApprendreCompter"
+    jump ClairiereDOliveau
+#############################################################################################################################
+    label PlanDeTravail:
+    #mini-jeu
+    #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
+    $ dico.append(G)
+    #le joueur repart avec une part de gateau
+    $ avancement[3]="PossibiliteApprendreGREX"
+#############################################################################################################################
+    label Labyrinthe:
+    
+
+    
 
     "Fin de jeu"
 
