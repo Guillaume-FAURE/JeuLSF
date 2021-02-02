@@ -27,7 +27,6 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
-/JeuLSFv1/game/images
 
 # Thumbnails
 ._*
@@ -63,4 +62,4 @@ Temporary Items
 *.docx
 *.jpg
 *.png
-Test1LSF/
+Test1LSF/**
