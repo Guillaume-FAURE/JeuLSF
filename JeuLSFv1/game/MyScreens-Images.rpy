@@ -20,6 +20,13 @@ screen minimapHide:
         at sizeButton
         action [Show ("minimapShow"),Hide ("minimap"),Hide ("Whitescreen"),Hide ("minimapHide")]
 
+screen LinkArriveForetFees:
+    imagebutton:
+        idle "link.png"
+        at sizeButton
+        action [Hide ("doorRight"), Jump (i.right)]
+
+
 screen minimap:
     $ s = -1
     for i in minimap:
