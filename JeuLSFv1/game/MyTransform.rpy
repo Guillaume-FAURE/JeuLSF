@@ -10,3 +10,7 @@ transform position(x,y):
 transform zoom4:
     zoom 4.0
 define slowDissolve = Dissolve(1)
+
+transform goRight:
+    xalign 0.1
+    yalign 0.4

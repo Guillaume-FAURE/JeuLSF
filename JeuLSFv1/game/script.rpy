@@ -8,8 +8,25 @@ label start:
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
 #############################################################################################################################
     label ArriveForetFees:
-    $ minimap.append(ArriveForetFees)
     scene ISalle1 with slowDissolve
+    show screen ArriveForetFeesToTransitionKabeGouffre
+    show screen ArriveForetFeesToClairiereDOliveau
+    $ minimap.append(ArriveForetFees)
+    $ minimap.append(TransitionKabeGouffre)
+    $ minimap.append(ArbreABonbons)
+    $ minimap.append(PassageObstrue)
+    $ minimap.append(Bibliotheque)
+    $ minimap.append(Labyrinthe)
+    $ minimap.append(ClairiereDOliveau)
+    $ minimap.append(Lac)
+    $ minimap.append(Cuisine)
+    $ minimap.append(NidDeLOiseau)
+    $ minimap.append(PorteDuRoyaumeDesFees)
+    $ minimap.append(LieuDuVol)
+    $ minimap.append(PseudoLabyrinthe)
+    $ minimap.append(FalaiseAvecLierre)
+    $ minimap.append(PiegeDeLAlchimiste)
+    
     #inclure des imagemap pour aller dans le gouffre ou dans la foret avec oliveau comme daprès le script
 #############################################################################################################################
     label ClairiereDOliveauIntro:
