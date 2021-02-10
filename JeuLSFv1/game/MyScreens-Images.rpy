@@ -48,7 +48,8 @@ image ISalle2:
 
 image BlackScreen:
     "black.png"
-
+######Links
+###Links ArriveForetFees
 screen ArriveForetFeesToTransitionKabeGouffre:
     imagebutton:
         idle "link.png"
@@ -63,15 +64,16 @@ screen ArriveForetFeesToClairiereDOliveau:
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Jump ("ClairiereDOliveau"), Hide ("ArriveForetFeesToClairiereDOliveau")]
-
+        action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
+###Links TransitionKabeGouffre
 screen TransitionKabeGouffreToArbreABonbons:
     imagebutton:
         idle "link.png"
+        hover "minimapHide.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
-        action [Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("ArbreABonbons"), Hide ("TransitionKabeGouffreToArbreABonbons")]
+        action [Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Hide ("TransitionKabeGouffreToArbreABonbons"), Jump ("ArbreABonbons")]
 
 screen TransitionKabeGouffreToArriveForetFees:
     imagebutton:
@@ -79,7 +81,7 @@ screen TransitionKabeGouffreToArriveForetFees:
         at sizeButton
         xalign 0.96
         yalign 0.6
-        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("ArriveForetFees"), Hide ("TransitionKabeGouffreToArriveForetFees")]
+        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToPassageObstrue"), Hide ("TransitionKabeGouffreToArriveForetFees"), Jump ("ArriveForetFees")]
 
 screen TransitionKabeGouffreToPassageObstrue:
     imagebutton:
@@ -87,8 +89,8 @@ screen TransitionKabeGouffreToPassageObstrue:
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToArriveForetFees"), Jump ("PassageObstrue"), Hide ("TransitionKabeGouffreToPassageObstrue")]
-
+        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("PassageObstrue")]
+###Links PassageObstrue
 screen LinkPassageObstrue:
     imagebutton:
         idle "link.png"
