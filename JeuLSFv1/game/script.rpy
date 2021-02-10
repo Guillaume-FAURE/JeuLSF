@@ -26,7 +26,7 @@ label start:
     $ minimap.append(PseudoLabyrinthe)
     $ minimap.append(FalaiseAvecLierre)
     $ minimap.append(PiegeDeLAlchimiste)
-    
+    "pause."
     #inclure des imagemap pour aller dans le gouffre ou dans la foret avec oliveau comme daprès le script
 #############################################################################################################################
     label ClairiereDOliveauIntro:
@@ -468,6 +468,9 @@ label start:
     jump Labyrinthe
 #############################################################################################################################
     label TransitionKabeGouffre:
+    show screen TransitionKabeGouffreToArbreABonbons
+    show screen TransitionKabeGouffreToArriveForetFees
+    show screen TransitionKabeGouffreToPassageObstrue
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
