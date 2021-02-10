@@ -49,14 +49,6 @@ image ISalle2:
 image BlackScreen:
     "black.png"
 
-screen LinkArriveForetFees:
-    imagebutton:
-        idle "link.png"
-        at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("LinkArriveForetFees"), Jump ("ArriveForetFees")]
-
 screen ArriveForetFeesToTransitionKabeGouffre:
     imagebutton:
         idle "link.png"
@@ -65,13 +57,37 @@ screen ArriveForetFeesToTransitionKabeGouffre:
         yalign 0.4
         action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("TransitionKabeGouffre")]
 
-screen LinkArbreABonbons:
+screen ArriveForetFeesToClairiereDOliveau:
     imagebutton:
         idle "link.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("LinkArbreABonbons"), Jump ("ArbreABonbons")]
+        action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Jump ("ClairiereDOliveau"), Hide ("ArriveForetFeesToClairiereDOliveau")]
+
+screen TransitionKabeGouffreToArbreABonbons:
+    imagebutton:
+        idle "link.png"
+        at sizeButton
+        xalign 0.04
+        yalign 0.4
+        action [Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("ArbreABonbons"), Hide ("TransitionKabeGouffreToArbreABonbons")]
+
+screen TransitionKabeGouffreToArriveForetFees:
+    imagebutton:
+        idle "link.png"
+        at sizeButton
+        xalign 0.96
+        yalign 0.6
+        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("ArriveForetFees"), Hide ("TransitionKabeGouffreToArriveForetFees")]
+
+screen TransitionKabeGouffreToPassageObstrue:
+    imagebutton:
+        idle "link.png"
+        at sizeButton
+        xalign 0.5
+        yalign 0.1
+        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToArriveForetFees"), Jump ("PassageObstrue"), Hide ("TransitionKabeGouffreToPassageObstrue")]
 
 screen LinkPassageObstrue:
     imagebutton:
@@ -96,14 +112,6 @@ screen LinkLabyrinthe:
         xalign 0.5
         yalign 0.1
         action [Hide ("LinkLabyrinthe"), Jump ("Labyrinthe")]
-
-screen ArriveForetFeesToClairiereDOliveau:
-    imagebutton:
-        idle "link.png"
-        at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("ArriveForetFeesToClairiereDOliveau"), Hide ("ArriveForetFeesToTransitionKabeGouffre"), Jump ("ClairiereDOliveau")]
 
 screen LinkLac:
     imagebutton:
