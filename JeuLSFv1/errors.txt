@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/MyScreens-Images.rpy", line 73: keyword argument u'at' appears more than once in a imagebutton statement.
-    at sizeButton
-      ^
+File "game/script.rpy", line 65: end of line expected.
+    o "Eau":
+           ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Feb 10 14:07:58 2021
+Sun Feb 14 16:36:32 2021

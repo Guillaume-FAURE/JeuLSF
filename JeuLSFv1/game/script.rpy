@@ -2,15 +2,40 @@ label start:
     show screen minimapShow
 #############################################################################################################################
 #############################################################################################################################    
-    label Didacticiel:
+    label Didacticiel:  
     label Blackscreen1:
-    scene BlackScreen
+    show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
+    
+    label Perdu1:
+    show Perdu1 at sizeBackground with slowDissolve
+    play music "audio/Mushishi.mp3"
+    show screen Perdu1ToPerdu2
+    jump WaitingScreen
+    
+    label Perdu2:
+    scene Perdu2 at sizeBackground with slowDissolve
+    show screen Perdu2ToPerdu3
+    jump WaitingScreen
+    
+    label Perdu3:
+    scene Perdu3 at sizeBackground with slowDissolve
+    show screen Perdu3ToPerdu4
+    jump WaitingScreen
+    
+    label Perdu4:
+    scene Perdu4 at sizeBackground with slowDissolve
+    show screen Perdu4ToArriveForetFees
+    jump WaitingScreen
+#############################################################################################################################
+    label WaitingScreen:
+        window hide
+        $ renpy.pause(1.0)
+        jump WaitingScreen
 #############################################################################################################################
     label ArriveForetFees:
-    scene ISalle1 with slowDissolve
-    show screen ArriveForetFeesToTransitionKabeGouffre
-    show screen ArriveForetFeesToClairiereDOliveau
+    scene ArriveForetFees at sizeBackground with slowDissolve
+
     $ minimap.append(ArriveForetFees)
     $ minimap.append(TransitionKabeGouffre)
     $ minimap.append(ArbreABonbons)
@@ -26,8 +51,9 @@ label start:
     $ minimap.append(PseudoLabyrinthe)
     $ minimap.append(FalaiseAvecLierre)
     $ minimap.append(PiegeDeLAlchimiste)
-    "pause."
-    #inclure des imagemap pour aller dans le gouffre ou dans la foret avec oliveau comme daprès le script
+    show screen ArriveForetFeesToTransitionKabeGouffre
+    show screen ArriveForetFeesToClairiereDOliveau
+    jump WaitingScreen
 #############################################################################################################################
     label ClairiereDOliveauIntro:
     #Possibilité d’aller à différents endroits en vain.
