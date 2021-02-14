@@ -62,5 +62,6 @@ Temporary Items
 *.docx
 *.jpg
 *.png
+*.mp3
 !Wiki_Projet/Logo_JeuLSF.png
 Ignored/**

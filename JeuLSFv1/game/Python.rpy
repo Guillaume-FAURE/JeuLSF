@@ -33,7 +33,7 @@ init python:
     gentillesse = 0
     achievement = []
 #Initialisation Variables de la minimap
-    ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","Salle2.png", 55, 55)
+    ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)
     TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 30, 52)
     ArbreABonbons = Room("Arbre a bonbons","ArbreABonbons","Salle2.png", 5, 50)
     PassageObstrue = Room("Passage obstrue","PassageObstrue","Salle2.png", 32, 37)

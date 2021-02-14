@@ -37,22 +37,94 @@ screen minimap:
             ypos i.y*10+75
             text i.name
 
-
-
-
-image ISalle1:
-    "images/Salle1.png"
-
-image ISalle2:
-    "images/Salle2.png"
-
+#####Background
 image BlackScreen:
     "black.png"
+image Perdu1:
+    "Perdu1.jpg" 
+image Perdu2:
+    "Perdu2.jpg" 
+image Perdu3:
+    "Perdu3.jpg"
+image Perdu4:
+    "Perdu4.jpg"
+image ArriveForetFees:
+    "images/ArriveForetFees.jpg"
+image TransitionKabeGouffre:
+    "iamges/TransitionKabeGouffre.jpg"
+image ArbreABonbons:
+    "images/ArbreABonbons.jpg"
+image PassageObstrue:
+    "images/PassageObstrue.jpg"
+image Bibliotheque:
+    "images/Bibliotheque.png"
+image Labyrinthe:
+    "images/Labyrinthe.png"
+image ClairiereDOliveau:
+    "images/ClairiereDOliveau.png"
+image Lac:
+    "images/Lac.png"
+image Cuisine:
+    "images/Cuisine.png"
+image NidDeLOiseau:
+    "images/NidDeLOiseau.png"
+image Cuisine:
+    "images/Cuisine.png"
+image PorteDuRoyaumeDesFees:
+    "images/PorteDuRoyaumeDesFees.png"
+image LieuDuVol:
+    "images/LieuDuVol.png"
+image Cuisine:
+    "images/PseudoLabyrinthe.png"
+image FalaiseAvecLierre:
+    "images/FalaiseAvecLierre.png"
+image PiegeDeLAlchimiste:
+    "images/PiegeDeLAlchimiste.png"
+
+
 ######Links
+###Links Perdu
+screen Perdu1ToPerdu2:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+
+screen Perdu2ToPerdu3:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.87
+        yalign 0.08
+        action [Hide ("Perdu2ToPerdu3"), Jump ("Perdu3")]
+
+screen Perdu3ToPerdu4:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.37
+        yalign 0.26
+        action [Hide ("Perdu3ToPerdu4"), Jump ("Perdu4")]
+
+screen Perdu4ToArriveForetFees:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.6
+        yalign 0.35
+        action [Hide ("Perdu4ToArriveForetFees"), Jump ("ArriveForetFees")]
+
 ###Links ArriveForetFees
 screen ArriveForetFeesToTransitionKabeGouffre:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
@@ -60,7 +132,8 @@ screen ArriveForetFeesToTransitionKabeGouffre:
 
 screen ArriveForetFeesToClairiereDOliveau:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -68,8 +141,8 @@ screen ArriveForetFeesToClairiereDOliveau:
 ###Links TransitionKabeGouffre
 screen TransitionKabeGouffreToArbreABonbons:
     imagebutton:
-        idle "link.png"
-        hover "minimapHide.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
@@ -77,7 +150,8 @@ screen TransitionKabeGouffreToArbreABonbons:
 
 screen TransitionKabeGouffreToArriveForetFees:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.96
         yalign 0.6
@@ -85,7 +159,8 @@ screen TransitionKabeGouffreToArriveForetFees:
 
 screen TransitionKabeGouffreToPassageObstrue:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -93,7 +168,8 @@ screen TransitionKabeGouffreToPassageObstrue:
 ###Links PassageObstrue
 screen LinkPassageObstrue:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -101,7 +177,8 @@ screen LinkPassageObstrue:
 
 screen LinkBibliotheque:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -109,7 +186,8 @@ screen LinkBibliotheque:
 
 screen LinkLabyrinthe:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -117,7 +195,8 @@ screen LinkLabyrinthe:
 
 screen LinkLac:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -125,7 +204,8 @@ screen LinkLac:
 
 screen LinkNidDeLOiseau:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -133,7 +213,8 @@ screen LinkNidDeLOiseau:
 
 screen LinkPorteDuRoyaumeDesFees:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -141,7 +222,8 @@ screen LinkPorteDuRoyaumeDesFees:
 
 screen LinkLieuDuVol:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -149,7 +231,8 @@ screen LinkLieuDuVol:
 
 screen LinkPseudoLabyrinthe:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -157,7 +240,8 @@ screen LinkPseudoLabyrinthe:
 
 screen LinkFalaiseAvecLierre:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
@@ -165,7 +249,8 @@ screen LinkFalaiseAvecLierre:
 
 screen LinkPiegeDeLAlchimiste:
     imagebutton:
-        idle "link.png"
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1

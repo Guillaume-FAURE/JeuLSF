@@ -3,7 +3,7 @@ transform sizeRoom:
 transform sizeButton:
     size(72,72)
 transform sizeBackground:
-    size(1080,720)
+    size(1280,720)
 transform position(x,y):
     xpos x
     ypos y
