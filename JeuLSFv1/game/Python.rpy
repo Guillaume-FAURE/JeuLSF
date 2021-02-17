@@ -34,9 +34,9 @@ init python:
     achievement = []
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)
-    TransitionKabeGouffre = Room("Transition Kabe gouffre","TransitionKabeGouffre","Salle2.png", 30, 52)
+    Gouffre = Room("Gouffre","Gouffre","Gouffre.jpg", 30, 52)
     ArbreABonbons = Room("Arbre a bonbons","ArbreABonbons","Salle2.png", 5, 50)
-    PassageObstrue = Room("Passage obstrue","PassageObstrue","Salle2.png", 32, 37)
+    FondDuGouffre = Room("FondDuGouffre","FondDuGouffre","FondDuGouffre.jpg", 32, 37)
     Bibliotheque = Room("Bibliotheque","Bibliotheque","Salle2.png", 6, 35)
     Labyrinthe = Room("Labyrinthe","Labyrinthe","Salle2.png", 12, 20)
     ClairiereDOliveau = Room("Clairiere d Oliveau","ClairiereDOliveau","Salle2.png", 55, 40)

@@ -50,12 +50,12 @@ image Perdu4:
     "Perdu4.jpg"
 image ArriveForetFees:
     "images/ArriveForetFees.jpg"
-image TransitionKabeGouffre:
-    "iamges/TransitionKabeGouffre.jpg"
+image Gouffre:
+    "images/Gouffre.jpg"
 image ArbreABonbons:
     "images/ArbreABonbons.jpg"
-image PassageObstrue:
-    "images/PassageObstrue.jpg"
+image FondDuGouffre:
+    "images/FondDuGouffre.jpg"
 image Bibliotheque:
     "images/Bibliotheque.png"
 image Labyrinthe:
@@ -83,6 +83,7 @@ image PiegeDeLAlchimiste:
 
 
 ######Links
+
 ###Links Perdu
 screen Perdu1ToPerdu2:
     imagebutton:
@@ -92,7 +93,6 @@ screen Perdu1ToPerdu2:
         xalign 0.45
         yalign 0.39
         action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
-
 screen Perdu2ToPerdu3:
     imagebutton:
         idle "LinkIdle.png"
@@ -101,7 +101,6 @@ screen Perdu2ToPerdu3:
         xalign 0.87
         yalign 0.08
         action [Hide ("Perdu2ToPerdu3"), Jump ("Perdu3")]
-
 screen Perdu3ToPerdu4:
     imagebutton:
         idle "LinkIdle.png"
@@ -110,7 +109,6 @@ screen Perdu3ToPerdu4:
         xalign 0.37
         yalign 0.26
         action [Hide ("Perdu3ToPerdu4"), Jump ("Perdu4")]
-
 screen Perdu4ToArriveForetFees:
     imagebutton:
         idle "LinkIdle.png"
@@ -121,15 +119,14 @@ screen Perdu4ToArriveForetFees:
         action [Hide ("Perdu4ToArriveForetFees"), Jump ("ArriveForetFees")]
 
 ###Links ArriveForetFees
-screen ArriveForetFeesToTransitionKabeGouffre:
+screen ArriveForetFeesToGouffre:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
-        action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("TransitionKabeGouffre")]
-
+        action [Hide ("ArriveForetFeesToGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("Gouffre")]
 screen ArriveForetFeesToClairiereDOliveau:
     imagebutton:
         idle "LinkIdle.png"
@@ -137,62 +134,81 @@ screen ArriveForetFeesToClairiereDOliveau:
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("ArriveForetFeesToTransitionKabeGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
-###Links TransitionKabeGouffre
-screen TransitionKabeGouffreToArbreABonbons:
+        action [Hide ("ArriveForetFeesToGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
+
+###Links Gouffre
+screen GouffreToArbreABonbons:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
-        action [Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Hide ("TransitionKabeGouffreToArbreABonbons"), Jump ("ArbreABonbons")]
-
-screen TransitionKabeGouffreToArriveForetFees:
+        action [Hide ("GouffreToArriveForetFees"), Hide ("GouffreToFondDuGouffre"), Hide ("GouffreToArbreABonbons"), Jump ("ArbreABonbons")]
+screen GouffreToArriveForetFees:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.96
         yalign 0.6
-        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToPassageObstrue"), Hide ("TransitionKabeGouffreToArriveForetFees"), Jump ("ArriveForetFees")]
-
-screen TransitionKabeGouffreToPassageObstrue:
+        action [Hide ("GouffreToArbreABonbons"), Hide ("GouffreToFondDuGouffre"), Hide ("GouffreToArriveForetFees"), Jump ("ArriveForetFees")]
+screen GouffreToFondDuGouffre:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("TransitionKabeGouffreToArbreABonbons"), Hide ("TransitionKabeGouffreToArriveForetFees"), Hide ("TransitionKabeGouffreToPassageObstrue"), Jump ("PassageObstrue")]
-###Links PassageObstrue
-screen LinkPassageObstrue:
+        action [Hide ("GouffreToArbreABonbons"), Hide ("GouffreToArriveForetFees"), Hide ("GouffreToFondDuGouffre"), Jump ("FondDuGouffre")]
+
+###Links FondDuGouffre
+screen FondDuGouffreToGouffre:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.8
+        yalign 0.8
+        action [Hide ("FondDuGouffreToGouffre"),Hide ("FondDuGouffreToBibliotheque"),Hide ("FondDuGouffreToLabyrinthe"), Jump ("Gouffre")]    
+screen FondDuGouffreToBibliotheque:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.04
+        yalign 0.4
+        action [Hide ("FondDuGouffreToGouffre"),Hide ("FondDuGouffreToBibliotheque"),Hide ("FondDuGouffreToLabyrinthe"), Jump ("Bibliotheque")]
+screen FondDuGouffreToLabyrinthe:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.3
+        yalign 0.1
+        action [Hide ("FondDuGouffreToGouffre"),Hide ("FondDuGouffreToBibliotheque"),Hide ("FondDuGouffreToLabyrinthe"), Jump ("Labyrinthe")]
+
+###Link Bibliotheque
+screen BibliothequeToFondDuGouffre:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("LinkPassageObstrue"), Jump ("PassageObstrue")]
+        action [Hide ("BibliothequeToFondDuGouffre"), Jump ("FondDuGouffre")]
 
-screen LinkBibliotheque:
+###Link Labyrinthe
+screen LabyrintheToFondDuGouffre:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("LinkBibliotheque"), Jump ("Bibliotheque")]
+        action [Hide ("LabyrintheToFondDuGouffre"), Jump ("FondDuGouffre")]
 
-screen LinkLabyrinthe:
-    imagebutton:
-        idle "LinkIdle.png"
-        hover "LinkHover.png"
-        at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("LinkLabyrinthe"), Jump ("Labyrinthe")]
-
+###Link Lac
 screen LinkLac:
     imagebutton:
         idle "LinkIdle.png"
