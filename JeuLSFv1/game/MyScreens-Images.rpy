@@ -1,27 +1,43 @@
+screen menuShow:
+    imagebutton:
+        idle "LinkHover.png"
+        hover "LinkIdle.png"
+        at sizeButton
+        xalign 0.98
+        yalign 0.02
+        action [Show("menuHide") ,Show ("minimapShow"),Show ("gentillesse"), Hide ("menuShow")]
+screen menuHide:
+    imagebutton:
+        idle "LinkHover.png"
+        hover "LinkIdle.png"
+        at sizeButton
+        xalign 0.98
+        yalign 0.02
+        action [Hide("menuHide") ,Hide ("minimapShow"),Hide ("gentillesse"), Show ("menuShow")]
+
 screen minimapShow:
     imagebutton:
         idle "minimapShow.png"
         at sizeButton
+        xalign 0.98
+        yalign 0.12
         action [Show("Whitescreen") ,Show ("minimap"),Show("minimapHide"),Hide ("minimapShow")]
-
+screen minimapHide:
+    imagebutton:
+        idle "minimapHide.png"
+        at sizeButton
+        xalign 0.98
+        yalign 0.12
+        action [Show ("minimapShow"),Hide ("minimap"),Hide ("Whitescreen"),Hide ("minimapHide")]
 screen Blackscreen:
     imagebutton:
         idle "black.png"
-
 screen Whitescreen:
     imagebutton:
         idle "white.png"
         at zoom4
         xpos 0
         ypos 0
-
-screen minimapHide:
-    imagebutton:
-        idle "minimapHide.png"
-        at sizeButton
-        action [Show ("minimapShow"),Hide ("minimap"),Hide ("Whitescreen"),Hide ("minimapHide")]
-
-
 screen minimap:
     $ s = -1
     for i in minimap:
@@ -36,6 +52,20 @@ screen minimap:
             xpos i.x*10-14
             ypos i.y*10+75
             text i.name
+
+screen gentillesse:
+    frame:
+        xalign 0.03
+        yalign 0.97
+        text "Gentillesse:"
+    hbox:
+        xalign 0.155
+        yalign 0.967
+        spacing 1
+        for i in range (gentillesse):
+            add "white.png" size(30,30)
+                
+
 
 #####Background
 image BlackScreen:
