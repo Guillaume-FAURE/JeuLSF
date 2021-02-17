@@ -37,9 +37,9 @@ label start:
     scene ArriveForetFees at sizeBackground with slowDissolve
 
     $ minimap.append(ArriveForetFees)
-    $ minimap.append(TransitionKabeGouffre)
+    $ minimap.append(Gouffre)
     $ minimap.append(ArbreABonbons)
-    $ minimap.append(PassageObstrue)
+    $ minimap.append(FondDuGouffre)
     $ minimap.append(Bibliotheque)
     $ minimap.append(Labyrinthe)
     $ minimap.append(ClairiereDOliveau)
@@ -51,7 +51,7 @@ label start:
     $ minimap.append(PseudoLabyrinthe)
     $ minimap.append(FalaiseAvecLierre)
     $ minimap.append(PiegeDeLAlchimiste)
-    show screen ArriveForetFeesToTransitionKabeGouffre
+    show screen ArriveForetFeesToGouffre
     show screen ArriveForetFeesToClairiereDOliveau
     jump WaitingScreen
 #############################################################################################################################
@@ -228,19 +228,16 @@ label start:
 
     label R26:
     o "Les fées ne seront pas les seules à t’aider, trouve un autre être magique et il t’apprendra le vrai pouvoir de la langue des signes"
-    jump DevantLeLac
 
     label RenvoyeParGarde:
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
     pp "On m’a renvoyé une fois à la porte, que faire? "
     o "Trouve une fée à aider, elle t’en sera reconnaissante et t’apprendras des signes"
-    jump LieuDuVol
 
     label AVuLOiseau:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
     o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
-    jump Falaise
 
     label FioleObtenu:
     $ avancement[3]="PossibiliteApprendreKAME"
@@ -248,26 +245,22 @@ label start:
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
     o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
-    jump DansLesAirs
 
     label ApprisSort:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
     o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
-    jump TransitionKabeGouffre
 
     label EnfantBonbon:
     $ avancement[3]="PossibiliteApprendrePIF"
     pp "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?"
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
-    jump DansLesAirs
 
     label ObtenuBouleDeCristal:
     $ avancement[3]="PossibiliteApprendreJUNQ"
     pp "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?"
     o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
-    jump DansLesAirs
 
     label BesoinApprendreCompter:
     pp "Peux-tu m’apprendre à compter?"
@@ -493,13 +486,15 @@ label start:
     $ avancement[0]= "ApprisSort"
     jump Labyrinthe
 #############################################################################################################################
-    label TransitionKabeGouffre:
-    show screen TransitionKabeGouffreToArbreABonbons
-    show screen TransitionKabeGouffreToArriveForetFees
-    show screen TransitionKabeGouffreToPassageObstrue
+    label Gouffre:
+    scene Gouffre at sizeBackground with slowDissolve
+    show screen GouffreToArbreABonbons
+    show screen GouffreToArriveForetFees
+    show screen GouffreToFondDuGouffre
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
+    jump WaitingScreen
 #############################################################################################################################
     label ArbreABonbons:
     $ minimap.append(ArbreABonbons)
@@ -547,11 +542,16 @@ label start:
     jump ArbreABonbons
 ############################################################################################################################
     label FondDuGouffre:
+    scene FondDuGouffre at sizeBackground with slowDissolve
+    show screen FondDuGouffreToGouffre
+    show screen FondDuGouffreToBibliotheque
+    show screen FondDuGouffreToLabyrinthe
+    jump WaitingScreen
     #Utilisation du sort PIF, porte se découvre
-    jump Bibliotheque
 ############################################################################################################################
     label Bibliotheque:
     $ minimap.append(Bibliotheque)
+    show screen BibliothequeToFondDuGouffre
     if avancement[5]=="null":
         #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
         #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
@@ -575,11 +575,10 @@ label start:
         "Lui rendre ses livres": 
             $ gentillesse += 1
             $ inventaire.append(BouleDeCristal)
-            jump ClairiereDOliveau
         "Partir avec ses livres": 
             $ gentillesse -= 1
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
-            jump ClairiereDOliveau
+    jump WaitingScreen
 #############################################################################################################################
     label Lac:
     #Utilisation JUNQ
