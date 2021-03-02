@@ -65,7 +65,12 @@ screen gentillesse:
         for i in range (gentillesse):
             add "white.png" size(30,30)
                 
-
+screen oliveau:
+    imagebutton:
+        idle 
+        xalign 0.5
+        yalign 0.2
+        action[Hide("oliveau"), Jump("Oliveau")]
 
 #####Background
 image BlackScreen:

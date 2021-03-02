@@ -1,3 +1,5 @@
+#Ce code s'exécute avec les autres fichiers du même dossier et avec le logiciel Ren'Py.
+
 label start:
     show screen menuShow
 #############################################################################################################################
@@ -108,45 +110,15 @@ label start:
 #############################################################################################################################
     label Niveau1:
     label ClairiereDOliveau:
-    if avancement[0]=="null":
-        $ minimap.append(ClairiereDOliveau)
-        o "Quel est ton nom?"
-        python:
-            nom = renpy.input("Quel est ton nom?")
-            nom = nom.strip() or "Anonyme"
-        o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
-        #Video Oliveau O-L-I-V-E-A-U LSF "O-L-I-V-E-A-U; O-L-I-V-E-A-U O L I V E A U"
-        python:
-            dico.append(O)
-            dico.append(L)
-            dico.append(I)
-            dico.append(V)
-            dico.append(E)
-            dico.append(A)
-            dico.append(U)
-        #Succes Oliveau debloque
-        label Q1:
-        menu:
-            "Ok, cool. C’est un peu nul comme nom non? Ta mère ne manquait pas d’imagination...":
-                jump R11
-            "Enchanté Oliveau! Dis-m’en plus sur cette forêt! Qu'a-t-elle de si spécial?":
-                jump R12
-            "Bonjour.":
-                jump R13
-    elif avancement[0]=="LieuDuVolComplete":
-        o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
-        menu:
-            "Les fées existent vraiment?":
-                jump R21
-            "Qui es-tu?":
-                jump R22
-            "Comment rentrer chez moi?":
-                jump R23
-            "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
-                jump R24
-            "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
-                jump R26
+    $ minimap.append(ClairiereDOliveau)
+    jump WaitingScreen
 
+    label Oliveau:
+
+    if avancement[0]=="null":
+        jump IntroOliveau
+    elif avancement[0]=="LieuDuVolComplete":
+        jump LieuDuVolComplete
     elif avancement[0]== "RenvoyeParGarde":
         jump RenvoyeParGarde
     elif avancement[0]== "AVuLOiseau":
@@ -160,8 +132,32 @@ label start:
     elif avancement[0]== "ObtenuBouleDeCristal":
         jump ObtenuBouleDeCristal
     elif avancement[0]== "BesoinApprendreCompter":
-        jump BesoinApprendreCompter
+        jump BesoinApprendreCompter    
     
+    label IntroOliveau:
+    o "Quel est ton nom?"
+    python:
+        nom = renpy.input("Quel est ton nom?")
+        nom = nom.strip() or "Anonyme"
+    o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
+    #Video Oliveau O-L-I-V-E-A-U LSF "O-L-I-V-E-A-U; O-L-I-V-E-A-U O L I V E A U"
+    python:
+        dico.append(O)
+        dico.append(L)
+        dico.append(I)
+        dico.append(V)
+        dico.append(E)
+        dico.append(A)
+        dico.append(U)
+    #Succes Oliveau debloque
+    label Q1:
+    menu:
+        "Ok, cool. C’est un peu nul comme nom non? Ta mère ne manquait pas d’imagination...":
+            jump R11
+        "Enchanté Oliveau! Dis-m’en plus sur cette forêt! Qu'a-t-elle de si spécial?":
+            jump R12
+        "Bonjour.":
+            jump R13
 
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
@@ -235,6 +231,20 @@ label start:
     pp "On m’a renvoyé une fois à la porte, que faire? "
     o "Trouve une fée à aider, elle t’en sera reconnaissante et t’apprendras des signes"
 
+    label LieuDuVolComplete:
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+        menu:
+            "Les fées existent vraiment?":
+                jump R21
+            "Qui es-tu?":
+                jump R22
+            "Comment rentrer chez moi?":
+                jump R23
+            "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+                jump R24
+            "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
+                jump R26
+
     label AVuLOiseau:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
     o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
@@ -285,6 +295,7 @@ label start:
         if lettre == dico[i].name:
             #oliveau refait le chiffre
             jump PlanDeTravail
+
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
