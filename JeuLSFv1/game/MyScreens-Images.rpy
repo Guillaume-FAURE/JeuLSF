@@ -67,10 +67,15 @@ screen gentillesse:
                 
 screen oliveau:
     imagebutton:
-        idle 
+        idle "Oliveau.png"
         xalign 0.5
         yalign 0.2
-        action[Hide("oliveau"), Jump("Oliveau")]
+        action[Hide("oliveau"), Show("oliveauStatic"), Jump("Oliveau")]
+screen oliveauStatic:
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
 
 #####Background
 image BlackScreen:
@@ -252,6 +257,10 @@ screen LinkLac:
         xalign 0.5
         yalign 0.1
         action [Hide ("LinkLac"), Jump ("Lac")]
+
+###Link Clairiere d'Oliveau
+#screen ClairiereDOliveauToArriveeForetFees:
+
 
 screen LinkNidDeLOiseau:
     imagebutton:

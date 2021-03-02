@@ -111,10 +111,10 @@ label start:
     label Niveau1:
     label ClairiereDOliveau:
     $ minimap.append(ClairiereDOliveau)
+    show screen oliveau
     jump WaitingScreen
 
     label Oliveau:
-
     if avancement[0]=="null":
         jump IntroOliveau
     elif avancement[0]=="LieuDuVolComplete":
@@ -233,17 +233,17 @@ label start:
 
     label LieuDuVolComplete:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
-        menu:
-            "Les fées existent vraiment?":
-                jump R21
-            "Qui es-tu?":
-                jump R22
-            "Comment rentrer chez moi?":
-                jump R23
-            "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
-                jump R24
-            "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
-                jump R26
+    menu:
+        "Les fées existent vraiment?":
+            jump R21
+        "Qui es-tu?":
+            jump R22
+        "Comment rentrer chez moi?":
+            jump R23
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
+            jump R26
 
     label AVuLOiseau:
     pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
