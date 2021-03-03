@@ -222,85 +222,95 @@ label start:
         pp "Qu'est ce que je fais maintenant... Je ferais mieux de retourner parler à Oliveau pour en apprendre plus..."
         jump Q2
 
-    label R26:
-    o "Les fées ne seront pas les seules à t’aider, trouve un autre être magique et il t’apprendra le vrai pouvoir de la langue des signes"
-
     label RenvoyeParGarde:
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
-    pp "On m’a renvoyé une fois à la porte, que faire? "
-    o "Trouve une fée à aider, elle t’en sera reconnaissante et t’apprendras des signes"
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "On m’a renvoyé une fois à la porte, que faire? ":
+            o "Trouve une fée à aider, elle t’en sera reconnaissante et t’apprendras des signes"
 
     label LieuDuVolComplete:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
-        "Les fées existent vraiment?":
-            jump R21
-        "Qui es-tu?":
-            jump R22
-        "Comment rentrer chez moi?":
-            jump R23
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
             jump R24
         "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
-            jump R26
-
-    label AVuLOiseau:
-    pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
-    o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
+            o "Les fées ne seront pas les seules à t’aider, trouve un autre être magique et il t’apprendra le vrai pouvoir de la langue des signes"
 
     label FioleObtenu:
     $ avancement[3]="PossibiliteApprendreKAME"
-    pp "J’ai rencontré une fée alchimiste et j’ai récupéré une potion. Que faire maintenant?"
-    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
-    o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "J’ai rencontré une fée alchimiste et j’ai récupéré une potion. Que faire maintenant?":
+            o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
+            o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
 
     label ApprisSort:
-    pp "Tous les chemins semblent à présent bloqués, je ne sais où aller?"
-    o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "Tous les chemins semblent à présent bloqués, je ne sais où aller?":
+            o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
 
     label EnfantBonbon:
     $ avancement[3]="PossibiliteApprendrePIF"
-    pp "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?"
-    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?":
+            o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
 
     label ObtenuBouleDeCristal:
     $ avancement[3]="PossibiliteApprendreJUNQ"
-    pp "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?"
-    o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?":
+            o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
 
     label BesoinApprendreCompter:
-    pp "Peux-tu m’apprendre à compter?"
-    #Oliveau fait les chiffres un à un en français et en LSF
-    python:
-        dico.append(Zero)
-        dico.append(Un)
-        dico.append(Deux)
-        dico.append(Trois)
-        dico.append(Quatre)
-        dico.append(Cinq)
-        dico.append(Six)
-        dico.append(Sept)
-        dico.append(Huit)
-        dico.append(Neuf)
-    o "Y a-t-il un chiffre que tu n’as pas compris?"
-    python:
-        chiffre = renpy.input("Laquelle?")
-        chiffre = chiffre.strip() or "?"
-    $ i=0
-    while i < (len(dico)):
-        if lettre == dico[i].name:
-            #oliveau refait le chiffre
-            jump PlanDeTravail
+    o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
+    menu:
+        "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
+            jump R24
+        "Peux-tu m’apprendre à compter?":
+            #incrustation video chiffre
+            python:
+                dico.append(Zero)
+                dico.append(Un)
+                dico.append(Deux)
+                dico.append(Trois)
+                dico.append(Quatre)
+                dico.append(Cinq)
+                dico.append(Six)
+                dico.append(Sept)
+                dico.append(Huit)
+                dico.append(Neuf)
+            o "Y a-t-il un chiffre que tu n’as pas compris?"
+            python:
+                chiffre = renpy.input("Laquelle?")
+                chiffre = chiffre.strip() or "?"
+            $ i=0
+            while i < (len(dico)):
+                if lettre == dico[i].name:
+                    #oliveau refait le chiffre
+                    jump PlanDeTravail
 
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
     $ avancement[0]= "RenvoyeParGarde"
-    jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
     if avancement[1]=="null":
@@ -392,7 +402,7 @@ label start:
         inventaire.append(Sifflet)
     #Onglet magie débloqué
     #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
-    $ avancement[0]="AVuLOiseau"
+    $ avancement[0]="ApprisSort"
     jump ClairiereDOliveau
 #############################################################################################################################
     label Falaise:
