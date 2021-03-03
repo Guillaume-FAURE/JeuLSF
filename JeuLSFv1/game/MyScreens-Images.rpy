@@ -249,39 +249,54 @@ screen LabyrintheToFondDuGouffre:
         action [Hide ("LabyrintheToFondDuGouffre"), Jump ("FondDuGouffre")]
 
 ###Link Lac
-screen LinkLac:
+screen LacToClairiereDOliveau:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("LinkLac"), Jump ("Lac")]
-
-###Link Clairiere d'Oliveau
-#screen ClairiereDOliveauToArriveeForetFees:
-screen ClairiereDOliveauToArriveForetFees:
+        xalign 0.1
+        yalign 0.5
+        action [Hide ("LacToCuisine"),Hide ("LacToNidDeLOiseau"),Hide ("LacToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
+screen LacToCuisine:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.2
         yalign 0.8
+        action [Hide ("LacToClairiereDOliveau"),Hide ("LacToNidDeLOiseau"),Hide ("LacToCuisine"), Jump ("Cuisine")]
+screen LacToNidDeLOiseau:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.9
+        yalign 0.5
+        action [Hide ("LacToClairiereDOliveau"),Hide ("LacToCuisine"),Hide ("LacToNidDeLOiseau"), Jump ("NidDeLOiseau")]
+
+###Link Clairiere d'Oliveau
+screen ClairiereDOliveauToArriveForetFees:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.2
+        yalign 0.95
         action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
 screen ClairiereDOliveauToLieuDuVol:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.4
-        yalign 0.1
+        xalign 0.45
+        yalign 0.05
         action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
 screen ClairiereDOliveauToLac:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.9
+        xalign 0.97
         yalign 0.5
         action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
 screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
@@ -293,8 +308,7 @@ screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
         yalign 0.1
         action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
 
-
-
+###Link Nid De L'Oiseau
 screen LinkNidDeLOiseau:
     imagebutton:
         idle "LinkIdle.png"
