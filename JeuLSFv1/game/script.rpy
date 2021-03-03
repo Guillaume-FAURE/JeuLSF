@@ -11,7 +11,7 @@ label start:
     
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
-    play music "audio/Mushishi.mp3"
+    #play music "audio/Mushishi.mp3"
     show screen Perdu1ToPerdu2
     jump WaitingScreen
     
@@ -112,6 +112,9 @@ label start:
     label ClairiereDOliveau:
     $ minimap.append(ClairiereDOliveau)
     show screen oliveau
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToLieuDuVol
     jump WaitingScreen
 
     label Oliveau:
@@ -172,6 +175,11 @@ label start:
     jump Q2
 
     label Q2:
+    jump WaitingScreen
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Les fées existent vraiment?":
@@ -231,6 +239,10 @@ label start:
             jump R24
         "On m’a renvoyé une fois à la porte, que faire? ":
             o "Trouve une fée à aider, elle t’en sera reconnaissante et t’apprendras des signes"
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label LieuDuVolComplete:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -239,6 +251,10 @@ label start:
             jump R24
         "J’ai aidé la fée, elle m’a donné quelques lettres en échange, mais je n’en vois plus.. Comment puis-je aller plus loin dans la forêt?":
             o "Les fées ne seront pas les seules à t’aider, trouve un autre être magique et il t’apprendra le vrai pouvoir de la langue des signes"
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label FioleObtenu:
     $ avancement[3]="PossibiliteApprendreKAME"
@@ -250,6 +266,10 @@ label start:
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
             o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label ApprisSort:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -258,6 +278,10 @@ label start:
             jump R24
         "Tous les chemins semblent à présent bloqués, je ne sais où aller?":
             o "Il me semble que l’Oiseau t’as montré quelques tours, pourquoi ne pas les utiliser?"
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label EnfantBonbon:
     $ avancement[3]="PossibiliteApprendrePIF"
@@ -268,6 +292,10 @@ label start:
         "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?":
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label ObtenuBouleDeCristal:
     $ avancement[3]="PossibiliteApprendreJUNQ"
@@ -278,6 +306,10 @@ label start:
         "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?":
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
     #Utilisation du sifflet
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
     label BesoinApprendreCompter:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -306,11 +338,16 @@ label start:
                 if lettre == dico[i].name:
                     #oliveau refait le chiffre
                     jump PlanDeTravail
+    show screen ClairiereDOliveauToArriveForetFees
+    show screen ClairiereDOliveauToLac
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
+    show screen ClairiereDOliveauToLieuDuVol
 
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
     $ avancement[0]= "RenvoyeParGarde"
+    jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
     if avancement[1]=="null":

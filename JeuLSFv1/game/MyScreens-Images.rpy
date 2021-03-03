@@ -260,6 +260,39 @@ screen LinkLac:
 
 ###Link Clairiere d'Oliveau
 #screen ClairiereDOliveauToArriveeForetFees:
+screen ClairiereDOliveauToArriveForetFees:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.2
+        yalign 0.8
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
+screen ClairiereDOliveauToLieuDuVol:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.4
+        yalign 0.1
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
+screen ClairiereDOliveauToLac:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.9
+        yalign 0.5
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
+screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.9
+        yalign 0.1
+        action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
+
 
 
 screen LinkNidDeLOiseau:
