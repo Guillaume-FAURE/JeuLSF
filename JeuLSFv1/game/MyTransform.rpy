@@ -30,6 +30,6 @@ transform achievement:
     block:
         linear 0.1 rotate 360.0
         repeat 5
-    linear 0.75 yalign 0.5 xalign 0.95
+    linear 0.75 yalign 0.05 xalign 0.95
     linear 0.5 zoom 0.0
     
