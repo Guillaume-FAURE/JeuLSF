@@ -339,7 +339,7 @@ screen ClairiereDOliveauToArriveForetFees:
         at sizeButton
         xalign 0.2
         yalign 0.95
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("Oliveau"), Hide("OliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
 screen ClairiereDOliveauToLieuDuVol:
     imagebutton:
         idle "LinkIdle.png"
@@ -347,7 +347,7 @@ screen ClairiereDOliveauToLieuDuVol:
         at sizeButton
         xalign 0.45
         yalign 0.05
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees")Hide("Oliveau"), Hide("OliveauStatic"),,Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
 screen ClairiereDOliveauToLac:
     imagebutton:
         idle "LinkIdle.png"
@@ -355,7 +355,7 @@ screen ClairiereDOliveauToLac:
         at sizeButton
         xalign 0.97
         yalign 0.5
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees")Hide("Oliveau"), Hide("OliveauStatic"),,Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
 screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
     imagebutton:
         idle "LinkIdle.png"
@@ -363,7 +363,7 @@ screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
         at sizeButton
         xalign 0.9
         yalign 0.1
-        action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("Oliveau"), Hide("OliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
+        action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
 
 ###Link Nid De L'Oiseau
 screen NidDeLOiseauToLac:

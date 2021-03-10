@@ -112,6 +112,8 @@ label start:
     label ClairiereDOliveau:
     $ minimap.append(ClairiereDOliveau)
     show screen oliveau
+    if avancement[0] != "null" and avancement[0] != "Q2":
+        show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     show screen ClairiereDOliveauToArriveForetFees
     show screen ClairiereDOliveauToLac
     show screen ClairiereDOliveauToLieuDuVol
@@ -213,7 +215,6 @@ label start:
     #Oliveau t'indique la direction
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
-    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     jump ClairiereDOliveau
 
     label R24:
@@ -236,6 +237,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -248,6 +250,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -260,6 +263,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreKAME"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -275,6 +279,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -286,6 +291,7 @@ label start:
     label EnfantBonbon:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     hide screen ClairiereDOliveauToLieuDuVol
     $ avancement[3]="PossibiliteApprendrePIF"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -301,6 +307,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreJUNQ"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -315,6 +322,7 @@ label start:
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
