@@ -221,17 +221,16 @@ label start:
     jump ClairiereDOliveau
 
     label R24:
-    o "Laquelle?"
     python:
         lettre = renpy.input("Laquelle?")
         lettre = lettre.strip() or "?"
     $ i=0
     while i < (len(dico)):
         if lettre == dico[i].name:
-            "Tu connais cette lettre"
+            o "Tu connais cette lettre"
             jump Q2
         $ i=i+1
-    "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
+    o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
     jump ClairiereDOliveau
 
     label RenvoyeParGarde:
