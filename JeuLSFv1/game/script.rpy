@@ -9,8 +9,8 @@ label start:
     show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     "pause"
-    show achieve at rubis
-    show achieve at rubis
+    show rubis at inventaire
+    show rubis at achievement
     "pause"
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
