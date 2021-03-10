@@ -134,6 +134,9 @@ screen birdStatic:
         xalign 0.5
         yalign 0.2
 
+image rubis:
+    "rubis.png"
+
 #####Background
 image BlackScreen:
     "black.png"
