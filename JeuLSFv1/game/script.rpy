@@ -140,7 +140,6 @@ label start:
         jump BesoinApprendreCompter    
     
     label IntroOliveau:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -171,20 +170,19 @@ label start:
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
     
     label R12:
     o "C’est un plaisir de parler à quelqu’un de si agréable! Sache que pour ta gentillesse, tu seras récompensé dans la forêt des fées!"
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
     
     label R13:
     o "Tu souhaites peut-être en savoir plus sur ces lieux. Tu es ici dans la forêt des fées."
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
 
     label Q2:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -215,6 +213,7 @@ label start:
     #Oliveau t'indique la direction
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
+    show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     jump ClairiereDOliveau
 
     label R24:
@@ -234,7 +233,6 @@ label start:
     label RenvoyeParGarde:
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -247,7 +245,6 @@ label start:
     jump ClairiereDOliveau
 
     label LieuDuVolComplete:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -260,7 +257,6 @@ label start:
     jump ClairiereDOliveau
 
     label FioleObtenu:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -276,7 +272,6 @@ label start:
     jump ClairiereDOliveau
 
     label ApprisSort:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -289,7 +284,6 @@ label start:
     jump ClairiereDOliveau
 
     label EnfantBonbon:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -304,7 +298,6 @@ label start:
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -319,7 +312,6 @@ label start:
     jump ClairiereDOliveau
 
     label BesoinApprendreCompter:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -381,7 +373,6 @@ label start:
 #############################################################################################################################
     label Lac:
     show screen LacToClairiereDOliveau
-    show screen LacToCuisine
     show screen LacToNidDeLOiseau
     jump WaitingScreen
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
@@ -659,7 +650,8 @@ label start:
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
     jump WaitingScreen
 #############################################################################################################################
-    label Lac:
+    label SurLac:
+    show screen LacToCuisine
     #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
