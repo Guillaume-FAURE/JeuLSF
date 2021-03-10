@@ -30,7 +30,7 @@ init python:
     minimap = []
     inventaire = []
     magie = []
-    gentillesse = 5
+    gentillesse = 0
     achievement = []
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)

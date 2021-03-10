@@ -350,7 +350,7 @@ label start:
                     #oliveau refait le chiffre
                     jump PlanDeTravail
     jump ClairiereDOliveau
-
+    
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -374,14 +374,24 @@ label start:
             dico.append(Y)
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
-        jump ClairiereDOliveau
+        show screen LieuDuVolToClairiereDOliveau
+        show screen LieuDuVolToPseudoLabyrinthe
+        show screen LieuDuVolToFalaiseAvecLierre
+        jump WaitingScreen
 #############################################################################################################################
-    label DevantLeLac:
+    label Lac:
+    show screen LacToClairiereDOliveau
+    show screen LacToCuisine
+    show screen LacToNidDeLOiseau
+    jump WaitingScreen
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
-    label Q3:
+    show screen NidDeLOiseauToLac
+    show screen bird
+    jump WaitingScreen
+    label Bird:
     menu:
         "Caresser":
             jump R31
@@ -396,7 +406,7 @@ label start:
 
     label R31:
     #Video Oiseau LSF:As-tu cru que j’étais animal primitif?
-    jump Q3
+    jump Bird
     label R32:
     b "Oh tu n’es pas d’ici, je suis un oiseau. Mais pas un rouge-gorges ou un pigeon, non, un vrai oiseau."
     b "Et dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
@@ -448,9 +458,12 @@ label start:
     #Onglet magie débloqué
     #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
     $ avancement[0]="ApprisSort"
-    jump ClairiereDOliveau
+    jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
+    show screen FalaiseAvecLierreToPiegeDeLAlchimiste
+    show screen FalaiseAvecLierreToLieuDuVol
+    jump WaitingScreen
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
     if avancement[2]=="null":
@@ -472,12 +485,12 @@ label start:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
-                jump ClairiereDOliveau 
+                jump Falaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
-                jump ClairiereDOliveau
+                jump Falaise
 #############################################################################################################################
     label DansLesAirs:
         b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
@@ -511,17 +524,17 @@ label start:
                 jump ApprentissageKAME
     
     label ApprentissageKAME:
-        b "Le sort que je vais t’apprendre se dit KAME"
-        #Video de l'oiseau signant KAME
-        python:
-            dico.append(K)
-        #L'oiseau vole sans battre des ailes
-        b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
-        #L'oiseau part
-        $ magie.append(KAME)
-        "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
-        #Possibilité de se téléporter
-        $ avancement[0]="ApprisSort"
+    b "Le sort que je vais t’apprendre se dit KAME"
+    #Video de l'oiseau signant KAME
+    python:
+        dico.append(K)
+    #L'oiseau vole sans battre des ailes
+    b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
+    #L'oiseau part
+    $ magie.append(KAME)
+    "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
+    #Possibilité de se téléporter
+    $ avancement[0]="ApprisSort"
 
     label PossibiliteApprendrePIF:
     b "Le sort que je vais t’apprendre se dit PIF" #oiseau signe PIF
@@ -680,9 +693,6 @@ label start:
     $ avancement[3]="PossibiliteApprendreGREX"
 #############################################################################################################################
     label Labyrinthe:
-    
-
-    
 
     "Fin de jeu"
 
