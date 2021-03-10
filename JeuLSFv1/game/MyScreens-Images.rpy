@@ -136,6 +136,8 @@ screen birdStatic:
 
 image rubis:
     "rubis.png"
+image oui:
+    "oui.png"
 
 #####Background
 image BlackScreen:

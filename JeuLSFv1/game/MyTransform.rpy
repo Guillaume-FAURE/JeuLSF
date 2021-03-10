@@ -15,21 +15,27 @@ transform goRight:
     xalign 0.1
     yalign 0.4
 
-transform inventaire:
+transform test:
+    xalign 0.5 yalign 0.5
+    linear 0.5 yalign 0.0
+    linear 0.5 yalign 0.5
+
+transform Tinventaire:
     xalign 0.5 yalign 0.5
     zoom 0.0
     linear 0.5 zoom 1.0
-    pause 2.0
+    pause 1.5
     linear 0.75 yalign 0.05 xalign 0.95
     linear 0.5 zoom 0.0
 
-transform achievement:
+transform Tachievement:
     xalign 0.5 yalign 0.5
     zoom 0.0
-    linear 0.5 zoom 1.0
-    block:
-        linear 0.1 rotate 360.0
-        repeat 5
-    linear 0.75 yalign 0.05 xalign 0.95
-    linear 0.5 zoom 0.0
+    linear 0.6 zoom 2.5
+    linear 0.4 zoom 1.0
+    pause 1.0
+    parallel:
+        linear 1.5 rotate 1800
+    parallel:
+        linear 1.5 yalign 0.05 xalign 0.95 zoom 0.0
     
