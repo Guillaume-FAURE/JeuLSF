@@ -8,7 +8,10 @@ label start:
     label Blackscreen1:
     show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
-    
+    show rubis at Tinventaire
+    "pause"
+    show oui at Tachievement
+    "pause"
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
     #play music "audio/Mushishi.mp3"
@@ -112,6 +115,8 @@ label start:
     label ClairiereDOliveau:
     $ minimap.append(ClairiereDOliveau)
     show screen oliveau
+    if avancement[0] != "null" and avancement[0] != "Q2":
+        show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     show screen ClairiereDOliveauToArriveForetFees
     show screen ClairiereDOliveauToLac
     show screen ClairiereDOliveauToLieuDuVol
@@ -140,7 +145,6 @@ label start:
         jump BesoinApprendreCompter    
     
     label IntroOliveau:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -171,20 +175,19 @@ label start:
     label R11:
     o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
     
     label R12:
     o "C’est un plaisir de parler à quelqu’un de si agréable! Sache que pour ta gentillesse, tu seras récompensé dans la forêt des fées!"
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
     
     label R13:
     o "Tu souhaites peut-être en savoir plus sur ces lieux. Tu es ici dans la forêt des fées."
     $ avancement[0]="Q2"
-    jump ClairiereDOliveau
+    jump Q2
 
     label Q2:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
@@ -218,26 +221,25 @@ label start:
     jump ClairiereDOliveau
 
     label R24:
-    o "Laquelle?"
     python:
         lettre = renpy.input("Laquelle?")
         lettre = lettre.strip() or "?"
     $ i=0
     while i < (len(dico)):
         if lettre == dico[i].name:
-            "Tu connais cette lettre"
+            o "Tu connais cette lettre"
             jump Q2
         $ i=i+1
-    "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
+    o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
     jump ClairiereDOliveau
 
     label RenvoyeParGarde:
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -247,10 +249,10 @@ label start:
     jump ClairiereDOliveau
 
     label LieuDuVolComplete:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -260,10 +262,10 @@ label start:
     jump ClairiereDOliveau
 
     label FioleObtenu:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreKAME"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -276,10 +278,10 @@ label start:
     jump ClairiereDOliveau
 
     label ApprisSort:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -289,9 +291,9 @@ label start:
     jump ClairiereDOliveau
 
     label EnfantBonbon:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     hide screen ClairiereDOliveauToLieuDuVol
     $ avancement[3]="PossibiliteApprendrePIF"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -304,10 +306,10 @@ label start:
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreJUNQ"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -319,10 +321,10 @@ label start:
     jump ClairiereDOliveau
 
     label BesoinApprendreCompter:
-    hide screen oliveau
     hide screen ClairiereDOliveauToArriveForetFees
     hide screen ClairiereDOliveauToLac
     hide screen ClairiereDOliveauToLieuDuVol
+    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -350,7 +352,7 @@ label start:
                     #oliveau refait le chiffre
                     jump PlanDeTravail
     jump ClairiereDOliveau
-
+    
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
@@ -374,14 +376,23 @@ label start:
             dico.append(Y)
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
-        jump ClairiereDOliveau
+        show screen LieuDuVolToClairiereDOliveau
+        show screen LieuDuVolToPseudoLabyrinthe
+        show screen LieuDuVolToFalaiseAvecLierre
+        jump WaitingScreen
 #############################################################################################################################
-    label DevantLeLac:
+    label Lac:
+    show screen LacToClairiereDOliveau
+    show screen LacToNidDeLOiseau
+    jump WaitingScreen
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
-    label Q3:
+    show screen NidDeLOiseauToLac
+    show screen bird
+    jump WaitingScreen
+    label Bird:
     menu:
         "Caresser":
             jump R31
@@ -396,7 +407,7 @@ label start:
 
     label R31:
     #Video Oiseau LSF:As-tu cru que j’étais animal primitif?
-    jump Q3
+    jump Bird
     label R32:
     b "Oh tu n’es pas d’ici, je suis un oiseau. Mais pas un rouge-gorges ou un pigeon, non, un vrai oiseau."
     b "Et dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
@@ -448,9 +459,12 @@ label start:
     #Onglet magie débloqué
     #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
     $ avancement[0]="ApprisSort"
-    jump ClairiereDOliveau
+    jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
+    show screen FalaiseAvecLierreToPiegeDeLAlchimiste
+    show screen FalaiseAvecLierreToLieuDuVol
+    jump WaitingScreen
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
     if avancement[2]=="null":
@@ -472,12 +486,12 @@ label start:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
-                jump ClairiereDOliveau 
+                jump Falaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
-                jump ClairiereDOliveau
+                jump Falaise
 #############################################################################################################################
     label DansLesAirs:
         b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
@@ -511,17 +525,17 @@ label start:
                 jump ApprentissageKAME
     
     label ApprentissageKAME:
-        b "Le sort que je vais t’apprendre se dit KAME"
-        #Video de l'oiseau signant KAME
-        python:
-            dico.append(K)
-        #L'oiseau vole sans battre des ailes
-        b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
-        #L'oiseau part
-        $ magie.append(KAME)
-        "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
-        #Possibilité de se téléporter
-        $ avancement[0]="ApprisSort"
+    b "Le sort que je vais t’apprendre se dit KAME"
+    #Video de l'oiseau signant KAME
+    python:
+        dico.append(K)
+    #L'oiseau vole sans battre des ailes
+    b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
+    #L'oiseau part
+    $ magie.append(KAME)
+    "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
+    #Possibilité de se téléporter
+    $ avancement[0]="ApprisSort"
 
     label PossibiliteApprendrePIF:
     b "Le sort que je vais t’apprendre se dit PIF" #oiseau signe PIF
@@ -646,7 +660,8 @@ label start:
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
     jump WaitingScreen
 #############################################################################################################################
-    label Lac:
+    label SurLac:
+    show screen LacToCuisine
     #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
@@ -680,9 +695,6 @@ label start:
     $ avancement[3]="PossibiliteApprendreGREX"
 #############################################################################################################################
     label Labyrinthe:
-    
-
-    
 
     "Fin de jeu"
 

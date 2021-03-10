@@ -5,7 +5,7 @@ screen menuShow:
         at sizeButton
         xalign 0.98
         yalign 0.02
-        action [Show("menuHide") ,Show ("minimapShow"),Show ("gentillesse"), Hide ("menuShow")]
+        action [Show("menuHide") ,Show ("minimapShow"), Hide ("menuShow")]
 screen menuHide:
     imagebutton:
         idle "LinkHover.png"
@@ -13,7 +13,7 @@ screen menuHide:
         at sizeButton
         xalign 0.98
         yalign 0.02
-        action [Hide("menuHide") ,Hide ("minimapShow"),Hide ("gentillesse"), Show ("menuShow")]
+        action [Hide("menuHide") ,Hide ("minimapShow"), Show ("menuShow")]
 
 screen minimapShow:
     imagebutton:
@@ -53,6 +53,50 @@ screen minimap:
             ypos i.y*10+75
             text i.name
 
+###Sorts
+
+screen KAME:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+screen DOY:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+screen PIF:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+screen JUNQ:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+screen GREX:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.45
+        yalign 0.39
+        action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
+
+'''
 screen gentillesse:
     frame:
         xalign 0.03
@@ -64,7 +108,8 @@ screen gentillesse:
         spacing 1
         for i in range (gentillesse):
             add "white.png" size(30,30)
-                
+'''
+
 screen oliveau:
     imagebutton:
         idle "Oliveau.png"
@@ -76,6 +121,23 @@ screen oliveauStatic:
         idle "Oliveau.png"
         xalign 0.5
         yalign 0.2
+
+screen bird:
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
+        action[Hide("bird"), Show("birdStatic"), Jump("Bird")]
+screen birdStatic:
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
+
+image rubis:
+    "rubis.png"
+image oui:
+    "oui.png"
 
 #####Background
 image BlackScreen:
@@ -282,7 +344,7 @@ screen ClairiereDOliveauToArriveForetFees:
         at sizeButton
         xalign 0.2
         yalign 0.95
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"), Jump ("ArriveForetFees")]
 screen ClairiereDOliveauToLieuDuVol:
     imagebutton:
         idle "LinkIdle.png"
@@ -290,7 +352,7 @@ screen ClairiereDOliveauToLieuDuVol:
         at sizeButton
         xalign 0.45
         yalign 0.05
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToLieuDuVol"), Jump ("LieuDuVol")]
 screen ClairiereDOliveauToLac:
     imagebutton:
         idle "LinkIdle.png"
@@ -298,7 +360,7 @@ screen ClairiereDOliveauToLac:
         at sizeButton
         xalign 0.97
         yalign 0.5
-        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
+        action [Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"),Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToLac"), Jump ("Lac")]
 screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
     imagebutton:
         idle "LinkIdle.png"
@@ -306,18 +368,19 @@ screen ClairiereDOliveauToPorteDuRoyaumeDesFees:
         at sizeButton
         xalign 0.9
         yalign 0.1
-        action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
+        action [Hide ("ClairiereDOliveauToLieuDuVol"),Hide ("ClairiereDOliveauToLac"),Hide("oliveau"), Hide("oliveauStatic"),Hide ("ClairiereDOliveauToArriveForetFees"),Hide ("ClairiereDOliveauToPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
 
 ###Link Nid De L'Oiseau
-screen LinkNidDeLOiseau:
+screen NidDeLOiseauToLac:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
+        xalign 0.9
         yalign 0.1
-        action [Hide ("LinkNidDeLOiseau"), Jump ("NidDeLOiseau")]
+        action [Hide ("NidDeLOiseauToLac"), Jump ("PorteDuRoyaumeDesFees")]
 
+###Link Porte du royaume des fées
 screen LinkPorteDuRoyaumeDesFees:
     imagebutton:
         idle "LinkIdle.png"
@@ -327,40 +390,68 @@ screen LinkPorteDuRoyaumeDesFees:
         yalign 0.1
         action [Hide ("LinkPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
 
-screen LinkLieuDuVol:
+###Link Lieu du vol
+screen LieuDuVolToClairiereDOliveau:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
+        xalign 0.3
+        yalign 0.8
+        action [Hide ("LieuDuVolToFalaiseAvecLierre"),Hide ("LieuDuVolToPseudoLabyrinthe"),Hide ("LieuDuVolToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
+screen LieuDuVolToPseudoLabyrinthe:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.7
         yalign 0.1
-        action [Hide ("LinkLieuDuVol"), Jump ("LieuDuVol")]
+        action [Hide ("LieuDuVolToFalaiseAvecLierre"),Hide ("LieuDuVolToClairiereDOliveau"),Hide ("LieuDuVolToPseudoLabyrinthe"), Jump ("PseudoLabyrinthe")]
+screen LieuDuVolToFalaiseAvecLierre:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.2
+        yalign 0.5
+        action [Hide ("LieuDuVolToClairiereDOliveau"),Hide ("LieuDuVolToPseudoLabyrinthe"),Hide ("LieuDuVolToFalaiseAvecLierre"), Jump ("FalaiseAvecLierre")]
+        
+###Link PseudoLabyrinthe
+screen PseudoLabyrintheToLieuDuVol:
+    imagebutton:
+        idle "LinkIdle.png"
+        hover "LinkHover.png"
+        at sizeButton
+        xalign 0.3
+        yalign 0.8
+        action [Hide ("PseudoLabyrintheToLieuDuVol"), Jump ("LieuDuVol")]
 
-screen LinkPseudoLabyrinthe:
+###Link Falaise avec lierre
+screen FalaiseAvecLierreToPiegeDeLAlchimiste:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
+        xalign 0.1
         yalign 0.1
-        action [Hide ("LinkPseudoLabyrinthe"), Jump ("PseudoLabyrinthe")]
-
-screen LinkFalaiseAvecLierre:
+        action [Hide ("FalaiseAvecLierreToLieuDuVol"),Hide ("FalaiseAvecLierreToPiegeDeLAlchimiste"), Jump ("PiegeDeLAlchimiste")]
+screen FalaiseAvecLierreToLieuDuVol:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("LinkFalaiseAvecLierre"), Jump ("FalaiseAvecLierre")]
-
-screen LinkPiegeDeLAlchimiste:
+        xalign 0.9
+        yalign 0.8
+        action [Hide ("FalaiseAvecLierreToPiegeDeLAlchimiste"),Hide ("FalaiseAvecLierreToLieuDuVol"), Jump ("LieuDuVol")]
+    
+###Link Piege de l'alchimiste
+screen PiegeDeLAlchimisteToFalaiseAvecLierre:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("LinkPiegeDeLAlchimiste"), Jump ("PiegeDeLAlchimiste")]
+        xalign 0.9
+        yalign 0.8
+        action [Hide ("PiegeDeLAlchimisteToFalaiseAvecLierre"), Jump ("FalaiseAvecLierre")]
 
 
