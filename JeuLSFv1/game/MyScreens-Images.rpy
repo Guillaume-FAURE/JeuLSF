@@ -1,34 +1,51 @@
+###Menu
 screen menuShow:
     imagebutton:
-        idle "LinkHover.png"
-        hover "LinkIdle.png"
+        idle "SacIdle.png"
+        hover "SacHover.png"
         at sizeButton
         xalign 0.98
         yalign 0.02
-        action [Show("menuHide") ,Show ("minimapShow"), Hide ("menuShow")]
+        action [Show("menuBackground"), Show("menuHide") ,Show ("minimapShow"), Hide ("menuShow")]
 screen menuHide:
     imagebutton:
-        idle "LinkHover.png"
-        hover "LinkIdle.png"
+        idle "SacHover.png"
+        hover "SacIdle.png"
         at sizeButton
         xalign 0.98
         yalign 0.02
-        action [Hide("menuHide") ,Hide ("minimapShow"), Show ("menuShow")]
+        action [Hide("menuHide") ,Hide ("minimapShow"),Hide("menuBackground"), Show ("menuShow")]
+
+screen menuBackground:
+    imagebutton:
+        idle "menuBackground.png"
+        at sizeMenuBackground
+        xalign 0.99
+        yalign 0.01
+    
 
 screen minimapShow:
     imagebutton:
-        idle "minimapShow.png"
+        idle "iconeMap.png"
         at sizeButton
         xalign 0.98
-        yalign 0.12
-        action [Show("Whitescreen") ,Show ("minimap"),Show("minimapHide"),Hide ("minimapShow")]
+        yalign 0.15
+        action [Show("mapBackground") ,Show ("minimap"),Show("minimapHide"), Hide ("minimapShow")]
 screen minimapHide:
     imagebutton:
-        idle "minimapHide.png"
+        idle "iconeMap.png"
         at sizeButton
         xalign 0.98
-        yalign 0.12
-        action [Show ("minimapShow"),Hide ("minimap"),Hide ("Whitescreen"),Hide ("minimapHide")]
+        yalign 0.15
+        action [Show ("minimapShow"),Hide ("minimap"),Hide ("mapBackground"),Hide ("minimapHide")]
+
+screen mapBackground:
+    imagebutton:
+        idle "map.png"
+        at sizeMapBackground
+        xpos 0
+        ypos 0
+
 screen Blackscreen:
     imagebutton:
         idle "black.png"
