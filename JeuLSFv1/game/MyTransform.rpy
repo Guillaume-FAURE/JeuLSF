@@ -4,6 +4,11 @@ transform sizeButton:
     size(72,72)
 transform sizeBackground:
     size(1280,720)
+transform sizeMenuBackground:
+    size(100, 650)
+transform sizeMapBackground:
+    size(1150,720)
+
 transform position(x,y):
     xpos x
     ypos y
