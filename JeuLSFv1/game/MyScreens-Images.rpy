@@ -7,6 +7,7 @@ screen menuShow:
         xalign 0.98
         yalign 0.02
         action [Show("menuBackground"), Show("menuHide") ,Show ("minimapShow"), Hide ("menuShow")]
+        
 screen menuHide:
     imagebutton:
         idle "SacHover.png"
@@ -66,7 +67,7 @@ screen minimap:
                 at sizeRoom
                 action [Hide ("minimap"),Hide ("Blackscreen"),Hide ("minimapHide"),Show ("minimapShow"), Jump (i.label)]
         frame:
-            xpos i.x*10-14
+            xpos i.x*10-65
             ypos i.y*10+75
             text i.name
 
@@ -238,22 +239,58 @@ screen Perdu4ToArriveForetFees:
         action [Hide ("Perdu4ToArriveForetFees"), Jump ("ArriveForetFees")]
 
 ###Links ArriveForetFees
-screen ArriveForetFeesToGouffre:
+screen ArriveForetFeesLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.04
         yalign 0.4
-        action [Hide ("ArriveForetFeesToGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("Gouffre")]
-screen ArriveForetFeesToClairiereDOliveau:
+        action [Hide("ArriveForetFeesLink"), Jump ("Gouffre")]
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("ArriveForetFeesToGouffre"), Hide ("ArriveForetFeesToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
+        action [Hide ("ArriveForetFeesLink"), Jump ("ClairiereDOliveau")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        
+        
+    
 
 ###Links Gouffre
 screen GouffreToArbreABonbons:

@@ -13,9 +13,15 @@ label start:
     show oui at Tachievement
     "pause"
     label Perdu1:
+    $ magie.append(KAME)
+    $ magie.append(DOY)
+    $ magie.append(PIF)
+    $ magie.append(JUNQ)
     show Perdu1 at sizeBackground with slowDissolve
     #play music "audio/Mushishi.mp3"
     show screen Perdu1ToPerdu2
+    "Vous pouvez vous déplacer grâce au lien sur l'écran"
+    "Pour le bon fonctionnement du jeu, lorsqu'une vidéo se met en route, ne cliquez pas."
     jump WaitingScreen
     
     label Perdu2:
@@ -41,23 +47,8 @@ label start:
     label ArriveForetFees:
     scene ArriveForetFees at sizeBackground with slowDissolve
 
-    $ minimap.append(ArriveForetFees)
-    $ minimap.append(Gouffre)
-    $ minimap.append(ArbreABonbons)
-    $ minimap.append(FondDuGouffre)
-    $ minimap.append(Bibliotheque)
-    $ minimap.append(Labyrinthe)
-    $ minimap.append(ClairiereDOliveau)
-    $ minimap.append(Lac)
-    $ minimap.append(Cuisine)
-    $ minimap.append(NidDeLOiseau)
-    $ minimap.append(PorteDuRoyaumeDesFees)
-    $ minimap.append(LieuDuVol)
-    $ minimap.append(PseudoLabyrinthe)
-    $ minimap.append(FalaiseAvecLierre)
-    $ minimap.append(PiegeDeLAlchimiste)
-    show screen ArriveForetFeesToGouffre
-    show screen ArriveForetFeesToClairiereDOliveau
+    
+    show screen ArriveForetFeesLink
     jump WaitingScreen
 #############################################################################################################################
     label ClairiereDOliveauIntro:
@@ -344,7 +335,7 @@ label start:
                 dico.append(Neuf)
             o "Y a-t-il un chiffre que tu n’as pas compris?"
             python:
-                chiffre = renpy.input("Laquelle?")
+                chiffre = renpy.input("Laquelle? (merci d'écrire la lettre en majuscule)")
                 chiffre = chiffre.strip() or "?"
             $ i=0
             while i < (len(dico)):
