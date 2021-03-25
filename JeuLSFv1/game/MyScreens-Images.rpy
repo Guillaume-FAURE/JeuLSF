@@ -522,7 +522,7 @@ screen ClairiereDOliveauLink:
         idle "Oliveau.png"
         xalign 0.5
         yalign 0.2
-        action[Hide("oliveau"), Show("oliveauStatic"), Jump("Oliveau")]
+        action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -560,14 +560,43 @@ screen oliveauStatic:
         yalign 0.2
 
 ###Link Nid De L'Oiseau
-screen NidDeLOiseauToLac:
+screen NidDeLOiseauLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.9
         yalign 0.1
-        action [Hide ("NidDeLOiseauToLac"), Jump ("PorteDuRoyaumeDesFees")]
+        action [Hide ("NidDeLOiseauLink"), Jump ("Lac")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
 
 ###Link Porte du royaume des fées
 screen LinkPorteDuRoyaumeDesFees:
@@ -578,69 +607,210 @@ screen LinkPorteDuRoyaumeDesFees:
         xalign 0.5
         yalign 0.1
         action [Hide ("LinkPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
 
 ###Link Lieu du vol
-screen LieuDuVolToClairiereDOliveau:
+screen LieuDuVolLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.3
         yalign 0.8
-        action [Hide ("LieuDuVolToFalaiseAvecLierre"),Hide ("LieuDuVolToPseudoLabyrinthe"),Hide ("LieuDuVolToClairiereDOliveau"), Jump ("ClairiereDOliveau")]
-screen LieuDuVolToPseudoLabyrinthe:
+        action [Hide ("LieuDuVolLink"), Jump ("ClairiereDOliveau")]
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.7
         yalign 0.1
-        action [Hide ("LieuDuVolToFalaiseAvecLierre"),Hide ("LieuDuVolToClairiereDOliveau"),Hide ("LieuDuVolToPseudoLabyrinthe"), Jump ("PseudoLabyrinthe")]
-screen LieuDuVolToFalaiseAvecLierre:
+        action [Hide ("LieuDuVolLink"), Jump ("PseudoLabyrinthe")]
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.2
         yalign 0.5
-        action [Hide ("LieuDuVolToClairiereDOliveau"),Hide ("LieuDuVolToPseudoLabyrinthe"),Hide ("LieuDuVolToFalaiseAvecLierre"), Jump ("FalaiseAvecLierre")]
-        
+        action [Hide ("LieuDuVolLink"), Jump ("FalaiseAvecLierre")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+     
 ###Link PseudoLabyrinthe
-screen PseudoLabyrintheToLieuDuVol:
+screen PseudoLabyrintheLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.3
         yalign 0.8
-        action [Hide ("PseudoLabyrintheToLieuDuVol"), Jump ("LieuDuVol")]
+        action [Hide ("PseudoLabyrintheLink"), Jump ("LieuDuVol")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
 
 ###Link Falaise avec lierre
-screen FalaiseAvecLierreToPiegeDeLAlchimiste:
+screen FalaiseAvecLierreLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.1
         yalign 0.1
-        action [Hide ("FalaiseAvecLierreToLieuDuVol"),Hide ("FalaiseAvecLierreToPiegeDeLAlchimiste"), Jump ("PiegeDeLAlchimiste")]
-screen FalaiseAvecLierreToLieuDuVol:
+        action [Hide ("FalaiseAvecLierreLink"), Jump ("PiegeDeLAlchimiste")]
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.9
         yalign 0.8
-        action [Hide ("FalaiseAvecLierreToPiegeDeLAlchimiste"),Hide ("FalaiseAvecLierreToLieuDuVol"), Jump ("LieuDuVol")]
-    
+        action [Hide ("FalaiseAvecLierreLink"), Jump ("LieuDeVol")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+  
 ###Link Piege de l'alchimiste
-screen PiegeDeLAlchimisteToFalaiseAvecLierre:
+screen PiegeDeLAlchimisteLink:
     imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
         xalign 0.9
         yalign 0.8
-        action [Hide ("PiegeDeLAlchimisteToFalaiseAvecLierre"), Jump ("FalaiseAvecLierre")]
-
+        action [Hide ("PiegeDeLAlchimisteLink"), Jump ("FalaiseAvecLierre")]
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
 
