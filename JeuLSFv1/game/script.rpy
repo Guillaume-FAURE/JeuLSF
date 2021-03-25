@@ -46,8 +46,6 @@ label start:
 #############################################################################################################################
     label ArriveForetFees:
     scene ArriveForetFees at sizeBackground with slowDissolve
-
-    
     show screen ArriveForetFeesLink
     jump WaitingScreen
 #############################################################################################################################
