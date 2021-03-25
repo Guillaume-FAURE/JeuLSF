@@ -513,7 +513,7 @@ label start:
 #############################################################################################################################
     label Gouffre:
     scene Gouffre at sizeBackground with slowDissolve
-    show screen GouffreToArbreLink
+    show screen GouffreLink
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
@@ -521,7 +521,8 @@ label start:
 #############################################################################################################################
     label ArbreABonbons:
     $ minimap.append(ArbreABonbons)
-    
+    show screen ArbreABonbonsLink
+    jump WaitingScreen
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
@@ -553,11 +554,11 @@ label start:
             $ gentillesse += 3
             $inventaire.append(Sucette)
             #enfant dit merci
-            jump ClairiereDOliveau
+            jump ArbreABonbons
         "Garder les bonbons":
             $ gentillesse -= 1
             #enfant pleure
-            jump ClairiereDOliveau
+            jump ArbreABonbons
 
     label MinijeuBonbons:
     #retrouver bonbons dans l'arbre
