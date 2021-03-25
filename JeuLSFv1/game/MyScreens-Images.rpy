@@ -291,6 +291,11 @@ screen GouffreLink:
         xalign 0.5
         yalign 0.1
         action [Hide ("GouffreLink"), Jump ("FondDuGouffre")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -344,6 +349,11 @@ screen FondDuGouffreLink:
         xalign 0.3
         yalign 0.1
         action [Hide ("FondDuGouffreLink"), Jump ("Labyrinthe")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -383,6 +393,40 @@ screen BibliothequeLink:
         xalign 0.5
         yalign 0.1
         action [Hide ("BibliothequeLink"), Jump ("FondDuGouffre")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
+    for i in magie:
+        if i.name=="KAME":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.08
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="DOY":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.16
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="PIF":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.24
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
+        elif i.name=="JUNQ":
+            imagebutton:
+                idle i.image
+                at sizeButton
+                xalign 0.32
+                yalign 0.01
+                action[Jump("ClairiereDOliveau")]
 
 ###Link Labyrinthe
 screen LabyrintheLink:
@@ -393,6 +437,11 @@ screen LabyrintheLink:
         xalign 0.5
         yalign 0.1
         action [Hide ("LabyrintheLink"), Jump ("FondDuGouffre")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -446,6 +495,11 @@ screen LacLink:
         xalign 0.9
         yalign 0.5
         action [Hide ("LacLink"), Jump ("NidDeLOiseau")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -512,6 +566,11 @@ screen ClairiereDOliveauLink:
         xalign 0.5
         yalign 0.2
         action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01 
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -562,6 +621,11 @@ screen NidDeLOiseauLink:
         xalign 0.5
         yalign 0.2
         action[Hide("NidDeLOiseauLink"), Show("birdStatic"), Jump("Bird")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -606,6 +670,11 @@ screen LinkPorteDuRoyaumeDesFees:
         xalign 0.5
         yalign 0.1
         action [Hide ("LinkPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -659,6 +728,11 @@ screen LieuDuVolLink:
         xalign 0.2
         yalign 0.5
         action [Hide ("LieuDuVolLink"), Jump ("FalaiseAvecLierre")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -698,6 +772,11 @@ screen PseudoLabyrintheLink:
         xalign 0.3
         yalign 0.8
         action [Hide ("PseudoLabyrintheLink"), Jump ("LieuDuVol")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -744,6 +823,11 @@ screen FalaiseAvecLierreLink:
         xalign 0.9
         yalign 0.8
         action [Hide ("FalaiseAvecLierreLink"), Jump ("LieuDeVol")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -783,6 +867,11 @@ screen PiegeDeLAlchimisteLink:
         xalign 0.9
         yalign 0.8
         action [Hide ("PiegeDeLAlchimisteLink"), Jump ("FalaiseAvecLierre")]
+    imagebutton:
+        idle "iconeMagie.png"
+        at sizeButton
+        xalign 0.01
+        yalign 0.01
     for i in magie:
         if i.name=="KAME":
             imagebutton:
