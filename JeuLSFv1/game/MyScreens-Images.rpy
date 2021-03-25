@@ -128,18 +128,6 @@ screen gentillesse:
             add "white.png" size(30,30)
 '''
 
-screen bird:
-    imagebutton:
-        idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
-        action[Hide("bird"), Show("birdStatic"), Jump("Bird")]
-screen birdStatic:
-    imagebutton:
-        idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
-
 image rubis:
     "rubis.png"
 image oui:
@@ -511,13 +499,14 @@ screen ClairiereDOliveauLink:
         xalign 0.97
         yalign 0.5
         action [Hide ("ClairiereDOliveauLink"), Jump ("Lac")]
-    imagebutton:
-        idle "LinkIdle.png"
-        hover "LinkHover.png"
-        at sizeButton
-        xalign 0.9
-        yalign 0.1
-        action [Hide ("ClairiereDOliveauLink"), Jump ("PorteDuRoyaumeDesFees")]
+    if avancement[0] != "null" and avancement[0] != "Q2":
+        imagebutton:
+            idle "LinkIdle.png"
+            hover "LinkHover.png"
+            at sizeButton
+            xalign 0.9
+            yalign 0.1
+            action [Hide ("ClairiereDOliveauLink"), Jump ("PorteDuRoyaumeDesFees")]
     imagebutton:
         idle "Oliveau.png"
         xalign 0.5
@@ -568,6 +557,11 @@ screen NidDeLOiseauLink:
         xalign 0.9
         yalign 0.1
         action [Hide ("NidDeLOiseauLink"), Jump ("Lac")]
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
+        action[Hide("NidDeLOiseauLink"), Show("birdStatic"), Jump("Bird")]
     for i in magie:
         if i.name=="KAME":
             imagebutton:
@@ -597,6 +591,11 @@ screen NidDeLOiseauLink:
                 xalign 0.32
                 yalign 0.01
                 action[Jump("ClairiereDOliveau")]
+screen birdStatic:
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
 
 ###Link Porte du royaume des fées
 screen LinkPorteDuRoyaumeDesFees:

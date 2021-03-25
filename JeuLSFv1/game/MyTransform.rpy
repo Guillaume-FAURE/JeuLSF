@@ -25,7 +25,7 @@ transform test:
     linear 0.5 yalign 0.0
     linear 0.5 yalign 0.5
 
-transform Tinventaire:
+transform inventaire:
     xalign 0.5 yalign 0.5
     zoom 0.0
     linear 0.5 zoom 1.0
@@ -33,7 +33,7 @@ transform Tinventaire:
     linear 0.75 yalign 0.05 xalign 0.95
     linear 0.5 zoom 0.0
 
-transform Tachievement:
+transform achievement:
     xalign 0.5 yalign 0.5
     zoom 0.0
     linear 0.6 zoom 2.5

@@ -8,9 +8,9 @@ label start:
     label Blackscreen1:
     show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
-    show rubis at Tinventaire
+    show rubis at inventaire
     "pause"
-    show oui at Tachievement
+    show oui at achievement
     "pause"
     label Perdu1:
     $ magie.append(KAME)
@@ -103,12 +103,7 @@ label start:
     label Niveau1:
     label ClairiereDOliveau:
     $ minimap.append(ClairiereDOliveau)
-    show screen oliveau
-    if avancement[0] != "null" and avancement[0] != "Q2":
-        show screen ClairiereDOliveauToPorteDuRoyaumeDesFees
-    show screen ClairiereDOliveauToArriveForetFees
-    show screen ClairiereDOliveauToLac
-    show screen ClairiereDOliveauToLieuDuVol
+    show screen ClairiereDOliveauLink
     jump WaitingScreen
 
     label Oliveau:
@@ -134,9 +129,6 @@ label start:
         jump BesoinApprendreCompter    
     
     label IntroOliveau:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
     o "Quel est ton nom?"
     python:
         nom = renpy.input("Quel est ton nom?")
@@ -177,9 +169,6 @@ label start:
     jump Q2
 
     label Q2:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
     o "Est-ce qu’il y a quelque chose d'autre que tu souhaites savoir?"
     menu:
         "Les fées existent vraiment?":
@@ -225,10 +214,6 @@ label start:
     label RenvoyeParGarde:
     #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
     #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -238,10 +223,6 @@ label start:
     jump ClairiereDOliveau
 
     label LieuDuVolComplete:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -251,10 +232,6 @@ label start:
     jump ClairiereDOliveau
 
     label FioleObtenu:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreKAME"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -267,10 +244,6 @@ label start:
     jump ClairiereDOliveau
 
     label ApprisSort:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -280,10 +253,6 @@ label start:
     jump ClairiereDOliveau
 
     label EnfantBonbon:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
-    hide screen ClairiereDOliveauToLieuDuVol
     $ avancement[3]="PossibiliteApprendrePIF"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -295,10 +264,6 @@ label start:
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     $ avancement[3]="PossibiliteApprendreJUNQ"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
@@ -310,10 +275,6 @@ label start:
     jump ClairiereDOliveau
 
     label BesoinApprendreCompter:
-    hide screen ClairiereDOliveauToArriveForetFees
-    hide screen ClairiereDOliveauToLac
-    hide screen ClairiereDOliveauToLieuDuVol
-    hide screen ClairiereDOliveauToPorteDuRoyaumeDesFees
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -365,21 +326,17 @@ label start:
             dico.append(Y)
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
-        show screen LieuDuVolToClairiereDOliveau
-        show screen LieuDuVolToPseudoLabyrinthe
-        show screen LieuDuVolToFalaiseAvecLierre
+        show screen LieuDuVolLink
         jump WaitingScreen
 #############################################################################################################################
     label Lac:
-    show screen LacToClairiereDOliveau
-    show screen LacToNidDeLOiseau
+    show screen LacLink
     jump WaitingScreen
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
-    show screen NidDeLOiseauToLac
-    show screen bird
+    show screen NidDeLOiseauLink
     jump WaitingScreen
     label Bird:
     menu:
@@ -451,8 +408,7 @@ label start:
     jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
-    show screen FalaiseAvecLierreToPiegeDeLAlchimiste
-    show screen FalaiseAvecLierreToLieuDuVol
+    show screen FalaiseAvecLierreLink
     jump WaitingScreen
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
@@ -557,9 +513,7 @@ label start:
 #############################################################################################################################
     label Gouffre:
     scene Gouffre at sizeBackground with slowDissolve
-    show screen GouffreToArbreABonbons
-    show screen GouffreToArriveForetFees
-    show screen GouffreToFondDuGouffre
+    show screen GouffreToArbreLink
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
@@ -612,15 +566,13 @@ label start:
 ############################################################################################################################
     label FondDuGouffre:
     scene FondDuGouffre at sizeBackground with slowDissolve
-    show screen FondDuGouffreToGouffre
-    show screen FondDuGouffreToBibliotheque
-    show screen FondDuGouffreToLabyrinthe
+    show screen FondDuGouffreLink
     jump WaitingScreen
     #Utilisation du sort PIF, porte se découvre
 ############################################################################################################################
     label Bibliotheque:
     $ minimap.append(Bibliotheque)
-    show screen BibliothequeToFondDuGouffre
+    show screen BibliothequeLink
     if avancement[5]=="null":
         #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
         #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
@@ -650,7 +602,7 @@ label start:
     jump WaitingScreen
 #############################################################################################################################
     label SurLac:
-    show screen LacToCuisine
+    show screen LacLink
     #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
