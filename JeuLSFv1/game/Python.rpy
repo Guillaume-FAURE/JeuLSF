@@ -32,6 +32,7 @@ init python:
     magie = []
     gentillesse = 0
     achievement = []
+    falaiseLierre = 0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","Gouffre.jpg", 30, 52)
@@ -46,7 +47,7 @@ init python:
     PorteDuRoyaumeDesFees = Room("Porte du royaume","PorteDuRoyaumeDesFees","Salle2.png", 107, 2)
     LieuDuVol = Room("Lieu du vol","LieuDuVol","Salle2.png", 57, 18)
     PseudoLabyrinthe = Room("Pseudo labyrinthe","PseudoLabyrinthe","Salle2.png", 73, 3)
-    FalaiseAvecLierre = Room("Falaise avec lierre","FalaiseAvecLierre","Salle2.png", 33, 13)
+    Falaise = Room("Falaise","Falaise","Salle2.png", 33, 13)
     PiegeDeLAlchimiste = Room("Piege de l'alchimiste","PiegeDeLAlchimiste","Salle2.png", 14, 2)
 #Initialisation Variables du dictionnaire
     A = Mot("A")

@@ -8,10 +8,6 @@ label start:
     label Blackscreen1:
     show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
-    show rubis at Tinventaire
-    "pause"
-    show oui at Tachievement
-    "pause"
     label Perdu1:
     $ magie.append(KAME)
     $ magie.append(DOY)
@@ -19,9 +15,10 @@ label start:
     $ magie.append(JUNQ)
     show Perdu1 at sizeBackground with slowDissolve
     #play music "audio/Mushishi.mp3"
-    show screen Perdu1ToPerdu2
-    "Vous pouvez vous déplacer grâce au lien sur l'écran"
+    "Pour passer les dialogues, cliquez sur l'écran ou appuyer sur entrée."
+    "Vous pouvez vous déplacer grâce aux liens sur l'écran"
     "Pour le bon fonctionnement du jeu, lorsqu'une vidéo se met en route, ne cliquez pas."
+    show screen Perdu1ToPerdu2
     jump WaitingScreen
     
     label Perdu2:
@@ -45,9 +42,12 @@ label start:
         jump WaitingScreen
 #############################################################################################################################
     label ArriveForetFees:
+    #IntroLabel
+    $ minimpa.append(ArriveForetFees)
     scene ArriveForetFees at sizeBackground with slowDissolve
     show screen ArriveForetFeesLink
     jump WaitingScreen
+    #
 #############################################################################################################################
     label ClairiereDOliveauIntro:
     #Possibilité d’aller à différents endroits en vain.
@@ -102,9 +102,12 @@ label start:
 #############################################################################################################################
     label Niveau1:
     label ClairiereDOliveau:
+    #IntroLabel
     $ minimap.append(ClairiereDOliveau)
+    scene ClairiereDOliveau at sizeBackground with slowDissolve
     show screen ClairiereDOliveauLink
     jump WaitingScreen
+    #
 
     label Oliveau:
     if avancement[0]=="null":
@@ -305,11 +308,19 @@ label start:
     
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
+    #IntroLabel
+    $ minimap.append(PorteDuRoyaumeDesFees)
+    scene PorteDuRoyaumeDesFees at sizeBackground with slowDissolve
+    #
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
     $ avancement[0]= "RenvoyeParGarde"
     jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
+    #IntroLabel
+    scene LieuDuVol at sizeBackground with slowDissolve
+    jump WaitingScreen
+    #
     if avancement[1]=="null":
         $ minimap.append(LieuDuVol)
         #Fée: On m’a volé quelque chose... V-O-L
@@ -330,14 +341,22 @@ label start:
         jump WaitingScreen
 #############################################################################################################################
     label Lac:
+    #IntroLabel
+    $ minimap.append(Lac)
+    scene Lac at sizeBackground with slowDissolve
     show screen LacLink
     jump WaitingScreen
+    #
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
+    #IntroLabel
+    $ minimap.append(NidDeLOiseau)
+    scene NidDeLOiseau at sizeBackground with slowDissolve
     show screen NidDeLOiseauLink
     jump WaitingScreen
+    #
     label Bird:
     menu:
         "Caresser":
@@ -408,8 +427,19 @@ label start:
     jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
-    show screen FalaiseAvecLierreLink
-    jump WaitingScreen
+    #IntroLabel Sans lierre
+    if falaiseLierre =0:
+        $ minimap.append(Falaise)
+        scene Falaise at sizeBackground with slowDissolve
+        show screen FalaiseAvecLierreLink
+        jump WaitingScreen
+    #IntroLabel Avec lierre
+    elif falaiseLierre =1:
+        $ minimap.append(Falaise)
+        scene FalaiseLierre at sizeBackground with slowDissolve
+        show screen FalaiseAvecLierreLink
+        jump WaitingScreen
+    #
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
     if avancement[2]=="null":
@@ -439,7 +469,12 @@ label start:
                 jump Falaise
 #############################################################################################################################
     label DansLesAirs:
-        b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    #IntroLabel
+    scene DansLesAirs at sizeBackground with slowDissolve
+    show screen DansLesAirsLink
+    jump WaitingScreen
+    #
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     if avancement[3]=="null":
         b "Attends, tu oses m'appeler alors que ton ignorance est inchangée? Quel toupet!"
         jump ClairiereDOliveau
@@ -512,17 +547,24 @@ label start:
     jump Labyrinthe
 #############################################################################################################################
     label Gouffre:
+    #IntroLabel
+    $ minimap.append(Gouffre)
     scene Gouffre at sizeBackground with slowDissolve
     show screen GouffreLink
+    jump WaitingScreen
+    #
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
     jump WaitingScreen
 #############################################################################################################################
     label ArbreABonbons:
+    #IntroLabel
     $ minimap.append(ArbreABonbons)
+    scene ArbreABonbons at sizeBackground with slowDissolve
     show screen ArbreABonbonsLink
     jump WaitingScreen
+    #
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
@@ -566,14 +608,21 @@ label start:
     jump ArbreABonbons
 ############################################################################################################################
     label FondDuGouffre:
+    #IntroLabel
+    $ minimap.append(FondDuGouffre)
     scene FondDuGouffre at sizeBackground with slowDissolve
     show screen FondDuGouffreLink
     jump WaitingScreen
+    #
     #Utilisation du sort PIF, porte se découvre
 ############################################################################################################################
     label Bibliotheque:
+    #IntroLabel
     $ minimap.append(Bibliotheque)
+    scene Bibliotheque at sizeBackground with slowDissolve
     show screen BibliothequeLink
+    jump WaitingScreen
+    #
     if avancement[5]=="null":
         #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
         #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
@@ -603,15 +652,31 @@ label start:
     jump WaitingScreen
 #############################################################################################################################
     label SurLac:
-    show screen LacLink
+    #IntroLabel
+    $ minimap.append(SurLac)
+    scene SurLac at sizeBackground with slowDissolve
+    show screen SurLacLink
+    jump WaitingScreen
+    #
     #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
     label FondDuLac:
+    #IntroLabel
+    scene FondDuLac at sizeBackground with slowDissolve
+    show screen FondDuLacLink
+    jump WaitingScreen
+    #
     #on trouve une porte sculptée dans le corail.
     jump Cuisine
 #############################################################################################################################
     label Cuisine:
+    #IntroLabel
+    $ minimap.append(Cuisine)
+    scene Cuisine at sizeBackground with slowDissolve
+    show screen CuisineLink
+    jump WaitingScreen
+    #
     #Cuisinière: 2 tomates
     #Le joueur peut donner les tomates à la cuisinière (en choisissant le nombre)
     #Cuisinière: 12 carottes
@@ -630,6 +695,11 @@ label start:
     jump ClairiereDOliveau
 #############################################################################################################################
     label PlanDeTravail:
+    #IntroLabel
+    scene PlanDeTravail at sizeBackground with slowDissolve
+    show screen PlanDeTravailLink
+    jump WaitingScreen
+    #
     #mini-jeu
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)

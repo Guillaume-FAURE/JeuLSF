@@ -135,47 +135,55 @@ image oui:
 
 #####Background
 image BlackScreen:
-    "black.png"
+    "images/Background/Black.png"
 image Perdu1:
-    "Perdu1.jpg" 
+    "images/Background/Perdu1.jpg" 
 image Perdu2:
-    "Perdu2.jpg" 
+    "images/Background/Perdu2.jpg" 
 image Perdu3:
-    "Perdu3.jpg"
+    "images/Background/Perdu3.jpg"
 image Perdu4:
-    "Perdu4.jpg"
+    "images/Background/Perdu4.jpg"
 image ArriveForetFees:
-    "images/ArriveForetFees.jpg"
+    "images/Background/ArriveForetFees.jpg"
 image Gouffre:
-    "images/Gouffre.jpg"
+    "images/Background/Gouffre.jpg"
 image ArbreABonbons:
-    "images/ArbreABonbons.jpg"
+    "images/Background/ArbreABonbons.jpg"
 image FondDuGouffre:
-    "images/FondDuGouffre.jpg"
+    "images/Background/FondDuGouffre.jpg"
 image Bibliotheque:
-    "images/Bibliotheque.png"
+    "images/Background/Bibliotheque.png"
 image Labyrinthe:
-    "images/Labyrinthe.png"
+    "images/Background/Labyrinthe.png"
 image ClairiereDOliveau:
-    "images/ClairiereDOliveau.png"
+    "images/Background/ClairiereDOliveau.jpg"
 image Lac:
-    "images/Lac.png"
+    "images/Background/Lac.jpg"
+image SurLac:
+    "images/Background/SurLac.png"
+image FondDuLac:
+    "images/Background/FondDuLac.png"
 image Cuisine:
-    "images/Cuisine.png"
+    "images/Background/Cuisine.png"
 image NidDeLOiseau:
-    "images/NidDeLOiseau.png"
+    "images/Background/NidDeLOiseau.jpg"
 image Cuisine:
-    "images/Cuisine.png"
+    "images/Background/Cuisine.png"
 image PorteDuRoyaumeDesFees:
-    "images/PorteDuRoyaumeDesFees.png"
+    "images/Background/PorteDuRoyaumeDesFees.png"
 image LieuDuVol:
-    "images/LieuDuVol.png"
+    "images/Background/LieuDuVol.png"
 image Cuisine:
-    "images/PseudoLabyrinthe.png"
-image FalaiseAvecLierre:
-    "images/FalaiseAvecLierre.png"
+    "images/Background/PseudoLabyrinthe.png"
+image Falaise:
+    "images/Background/Falaise.jpg"
+image FalaiseLierre:
+    "images/Background/FalaiseLierre.png"
 image PiegeDeLAlchimiste:
-    "images/PiegeDeLAlchimiste.png"
+    "images/Background/PiegeDeLAlchimiste.png"
+image PlanDeTravail:
+    "images/Background/PlanDeTravail.png"
 
 
 ######Links
@@ -533,6 +541,11 @@ screen LacLink:
 ###Link Clairiere d'Oliveau
 screen ClairiereDOliveauLink:
     imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
+        action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
+    imagebutton:
         idle "LinkIdle.png"
         hover "LinkHover.png"
         at sizeButton
@@ -561,11 +574,6 @@ screen ClairiereDOliveauLink:
             xalign 0.9
             yalign 0.1
             action [Hide ("ClairiereDOliveauLink"), Jump ("PorteDuRoyaumeDesFees")]
-    imagebutton:
-        idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
-        action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
     imagebutton:
         idle "iconeMagie.png"
         at sizeButton
