@@ -879,7 +879,86 @@ label start:
     $ avancement[3]="PossibiliteApprendreGREX"
 #############################################################################################################################
     label Labyrinthe:
+    $ taille_labyrinthe= renpy.random.randint(5,10)    # nombre de salles du labyrinthe
+    $ position_laby = 0                               # a quelle salle on en est
+    $ cod_laby = Code_laby()
+    $ chem_laby = Bon_chem()
+    $ cod_laby.nouv_code()
 
-    "Fin de jeu"
+
+    scene gallerie porte with dissolve
+    "Vous arrivez au labyrinthe."
+    call screen porte_gallerie with dissolve
+
+    return
+
+    label transition_lab:                               # transition entre 2 salles
+        $ position_laby += 1
+        $ switch_laby = position_laby % 3
+
+        "Cela semble correct. Continuons d'avancer."
+        if position_laby == taille_labyrinthe:
+            jump fin_laby
+        elif switch_laby == 0:
+            $ cod_laby.nouv_code()
+            scene gallerie porte with dissolve
+            call screen porte_gallerie with dissolve
+        elif switch_laby == 1:
+            $ chem_laby.nouv_code(2)
+            scene gallerie croisement 2 with dissolve
+            call screen carrefour_deux with dissolve
+        else:
+            $ chem_laby.nouv_code(3)
+            scene gallerie croisement 3 with dissolve
+            call screen carrefour_trois with dissolve
+
+    label entrer_code_laby:
+        $ code_j_laby = renpy.input("Quel est le code?", length = 4)
+        if code_j_laby == cod_laby.sum_code:
+            jump transition_lab
+        else:
+            jump echec_porte_lab
+
+    label echec_porte_lab:
+        "Ca ne semble pas être le bon code..."
+        "Réessayons!"
+        call screen porte_gallerie with dissolve
+
+    label video_fantome_deux:
+        "porte [chem_laby.n_laby]"
+        #if chem_laby.n_laby == 1:
+        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
+        #else:
+        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
+        call screen carrefour_deux with dissolve
+
+    label video_fantome_trois:
+        "porte [chem_laby.n_laby]"
+        #if chem_laby.n_laby == 1:
+        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
+        #elif chem_laby.n_laby == 2:
+        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
+        #else:
+        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.c_laby]])
+        call screen carrefour_trois with dissolve
+
+    label video_fantome_porte:
+        $ renpy.say(None,cod_laby.sum_code)
+        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.a_laby]])
+        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.b_laby]])
+        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.c_laby]])
+        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.d_laby]])
+        call screen porte_gallerie with dissolve
+
+    label echec_lab:
+        scene gallerie croisement 3 with dissolve
+        "Il semble que c'était le mauvais chemin"
+        "Cela fait des heures que vous errez dans des galeries toutes semblables."
+        "Prenez la taupe pour retourner au début."
+        call screen taupe_lab with dissolve
+
+    label fin_laby:
+        scene carte with dissolve
+        "Vous êtes enfin sorti!"
 
     return
