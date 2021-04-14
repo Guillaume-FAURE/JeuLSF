@@ -55,3 +55,14 @@ transform jeuFiole_custom_zoom:
 
 transform jeuFiole_custom_zoom2:
     zoom 0.2
+
+transform goutte_chaudron_cuisson:
+    xalign 0.5 yalign 1.02 xzoom 4.0 yzoom 2.0
+    pause 0.25
+    xalign 0.5 yalign 1.02 xzoom 4.5 yzoom 2.5
+    pause 0.25
+    repeat
+
+transform pos_flamme:
+    xalign 0.0
+    yalign 0.06

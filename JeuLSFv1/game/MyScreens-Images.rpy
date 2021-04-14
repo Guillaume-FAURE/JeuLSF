@@ -1196,9 +1196,24 @@ screen show_vars:
     image "flamme.png":
         pos (1000, 50)
 
-transform pos_flamme:
-    xalign 0.0
-    yalign 0.06
-
 screen le_feu_cuisson:
     text "{b}Allumez le feu!!!{/b} Touchez au moins 10 flammes" at truecenter
+
+image goutte_chaudron:
+    "goutte_chaudron.png"
+    xpos 1000 ypos 240
+    pause 0.25
+    "goutte_chaudron.png"
+    xpos 1010 ypos 200
+    pause 0.25
+#    "goutte_chaudron.png"
+#    xpos 1000 ypos 240
+#    pause 0.25
+#    "goutte_chaudron.png"
+#    xpos 1010 ypos 200
+#    pause 0.25
+    "goutte_chaudron.png"
+    xpos 10000 ypos 10000
+
+screen ajout_ingr:
+    add "goutte_chaudron"

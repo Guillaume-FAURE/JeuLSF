@@ -7,6 +7,7 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
+    jump Labyrinthe
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -884,13 +885,12 @@ label start:
     $ cod_laby = Code_laby()
     $ chem_laby = Bon_chem()
     $ cod_laby.nouv_code()
-
-
-    scene gallerie porte with dissolve
+    $ minimap.append(Labyrinthe)
+    
+    label labyrinthe_minijeu:
+    scene gallerie porte at sizeBackground with slowDissolve
     "Vous arrivez au labyrinthe."
-    call screen porte_gallerie with dissolve
-
-    return
+    call screen porte_gallerie with slowDissolve
 
     label transition_lab:                               # transition entre 2 salles
         $ position_laby += 1
@@ -901,15 +901,15 @@ label start:
             jump fin_laby
         elif switch_laby == 0:
             $ cod_laby.nouv_code()
-            scene gallerie porte with dissolve
+            scene gallerie porte at sizeBackground with dissolve
             call screen porte_gallerie with dissolve
         elif switch_laby == 1:
             $ chem_laby.nouv_code(2)
-            scene gallerie croisement 2 with dissolve
+            scene gallerie croisement 2 at sizeBackground with dissolve
             call screen carrefour_deux with dissolve
         else:
             $ chem_laby.nouv_code(3)
-            scene gallerie croisement 3 with dissolve
+            scene gallerie croisement 3 at sizeBackground with dissolve
             call screen carrefour_trois with dissolve
 
     label entrer_code_laby:
