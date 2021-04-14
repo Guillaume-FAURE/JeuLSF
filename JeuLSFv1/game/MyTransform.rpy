@@ -44,3 +44,14 @@ transform Tachievement:
     parallel:
         linear 1.5 yalign 0.05 xalign 0.95 zoom 0.0
     
+transform jeuBiblio_custom_zoom:
+    zoom 0.45
+
+transform jeuBiblio_custom_zoom2:
+    zoom 0.6
+
+transform jeuFiole_custom_zoom:
+    zoom 0.5
+
+transform jeuFiole_custom_zoom2:
+    zoom 0.2
