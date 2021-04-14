@@ -8,35 +8,28 @@ label start:
     label Blackscreen1:
     show BlackScreen at sizeBackground
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
-    show rubis at Tinventaire
-    "pause"
-    show oui at Tachievement
-    "pause"
     label Perdu1:
-    $ magie.append(KAME)
-    $ magie.append(DOY)
-    $ magie.append(PIF)
-    $ magie.append(JUNQ)
     show Perdu1 at sizeBackground with slowDissolve
-    #play music "audio/Mushishi.mp3"
-    show screen Perdu1ToPerdu2
-    "Vous pouvez vous déplacer grâce au lien sur l'écran"
+    play music "audio/Mushishi.mp3"
+    "Pour passer les dialogues, cliquez sur l'écran ou appuyer sur entrée."
+    "Vous pouvez vous déplacer grâce aux liens sur l'écran"
     "Pour le bon fonctionnement du jeu, lorsqu'une vidéo se met en route, ne cliquez pas."
+    show screen Perdu1ToPerdu2 with slowDissolve
     jump WaitingScreen
     
     label Perdu2:
     scene Perdu2 at sizeBackground with slowDissolve
-    show screen Perdu2ToPerdu3
+    show screen Perdu2ToPerdu3 with slowDissolve
     jump WaitingScreen
     
     label Perdu3:
     scene Perdu3 at sizeBackground with slowDissolve
-    show screen Perdu3ToPerdu4
+    show screen Perdu3ToPerdu4 with slowDissolve
     jump WaitingScreen
     
     label Perdu4:
     scene Perdu4 at sizeBackground with slowDissolve
-    show screen Perdu4ToArriveForetFees
+    show screen Perdu4ToArriveForetFees with slowDissolve
     jump WaitingScreen
 #############################################################################################################################
     label WaitingScreen:
@@ -45,15 +38,17 @@ label start:
         jump WaitingScreen
 #############################################################################################################################
     label ArriveForetFees:
+    #IntroLabel
+    $ minimap.append(ArriveForetFees)
     scene ArriveForetFees at sizeBackground with slowDissolve
-    show screen ArriveForetFeesLink
+    show screen ArriveForetFeesLink with slowDissolve
     jump WaitingScreen
+    #
 #############################################################################################################################
     label ClairiereDOliveauIntro:
-    #Possibilité d’aller à différents endroits en vain.
-    #Imagemap Oliveau vers label OliveauParle
     label OliveauLSF:
-    #Inclure video de Oliveau qui parle en LSF (EAU) (voir FaceRig)
+    scene ClairiereDOliveau at sizeBackground with slowDissolve
+    #Inclure video de Oliveau qui parle en LSF (EAU)
     "Qu’a-t-il dit?"
     menu:
         "Eau":
@@ -98,16 +93,24 @@ label start:
     #Oliveau te tend un sceau et te montre le lac, tu vas chercher de l’eau et tu passes niveau 1.
     #Obtention seau dans inventaire
     "Vous allez chercher de l'eau pour l'arbre qui avait de toute évidence très soif"
+    $ avancement[0]="niveau1"
+    jump Niveau1
 #############################################################################################################################
 #############################################################################################################################
     label Niveau1:
     label ClairiereDOliveau:
+    #IntroLabel
+    if avancement[0]=="null":
+        jump ClairiereDOliveauIntro
     $ minimap.append(ClairiereDOliveau)
-    show screen ClairiereDOliveauLink
+    scene ClairiereDOliveau at sizeBackground with slowDissolve
+    show screen ClairiereDOliveauLink with slowDissolve
     jump WaitingScreen
+    #
 
     label Oliveau:
-    if avancement[0]=="null":
+    $ nbOliveau += 1
+    if avancement[0]=="niveau1":
         jump IntroOliveau
     elif avancement[0]=="Q2":
         jump Q2
@@ -212,8 +215,6 @@ label start:
     jump ClairiereDOliveau
 
     label RenvoyeParGarde:
-    #(on garde les options de choix précédentes et on en ajoute  au fur et à mesure)
-    #Si le joueur demande plus de 10 fois l’aide d’Oliveau: Enfant ignorant
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -305,11 +306,22 @@ label start:
     
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
+    #IntroLabel
+    $ minimap.append(PorteDuRoyaumeDesFees)
+    scene PorteDuRoyaumeDesFees at sizeBackground with slowDissolve
+    #
+
     "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
     $ avancement[0]= "RenvoyeParGarde"
     jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
+    #IntroLabel
+    scene LieuDuVol at sizeBackground with slowDissolve
+    show screen LieuDuVolLink with slowDissolve
+    jump WaitingScreen
+    #
+
     if avancement[1]=="null":
         $ minimap.append(LieuDuVol)
         #Fée: On m’a volé quelque chose... V-O-L
@@ -330,14 +342,22 @@ label start:
         jump WaitingScreen
 #############################################################################################################################
     label Lac:
-    show screen LacLink
+    #IntroLabel
+    $ minimap.append(Lac)
+    scene Lac at sizeBackground with slowDissolve
+    show screen LacLink with slowDissolve
     jump WaitingScreen
+    #
     #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
-    show screen NidDeLOiseauLink
+    #IntroLabel
+    $ minimap.append(NidDeLOiseau)
+    scene NidDeLOiseau at sizeBackground with slowDissolve
+    show screen NidDeLOiseauLink with slowDissolve
     jump WaitingScreen
+    #
     label Bird:
     menu:
         "Caresser":
@@ -408,23 +428,26 @@ label start:
     jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
-    show screen FalaiseAvecLierreLink
-    jump WaitingScreen
+    #IntroLabel Sans lierre
+    if falaiseLierre =0:
+        $ minimap.append(Falaise)
+        scene Falaise at sizeBackground with slowDissolve
+        show screen FalaiseAvecLierreLink with slowDissolve
+        jump WaitingScreen
+    #IntroLabel Avec lierre
+    elif falaiseLierre =1:
+        scene FalaiseLierre at sizeBackground with slowDissolve
+        show screen FalaiseAvecLierreLink with slowDissolve
+        jump WaitingScreen
+    #
     #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
+    scene DessusDeLaFalaise at sizeBackground with slowDissolve
     if avancement[2]=="null":
         #Video Fee AIDE MOI
         pp "{k=4}.....{/k}"
         #Video Fee SOS
-        #Fee indique un sac rempli de fiole
-        #LE CHAUDRON ET LES FIOLES (mini-jeu)
-        #La fée fait des lettres en langue des signes, il faut verser la fiole correspondante dans le chaudron 
-        #Il reste deux fioles “N” et “M”, la fée pointe la fiole “M” et signe le M puis pointe la fiole “N” et signe le “N” 
-        python:
-            dico.append(M)
-            dico.append(N)
-        $ avancement[2]="FioleObtenu"
-        jump DessusDeLaFalaise
+        jump jeuFiole_lancement
     elif avancement[2]=="FioleObtenu":
         $ avancement[0]="FioleObtenu"
         menu:
@@ -437,9 +460,57 @@ label start:
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
                 #Fee en larme
                 jump Falaise
+
+    label jeuFiole_lancement:
+        show screen lancementjeufiole
+        "Appuie sur le chaudron pour lancer le mini-jeu !"
+        jump jeuFiole_lancement
+
+    label jeuFiole_init:
+        $tab,ordre,coeur = jeuFiole_initVar()
+        jump jeuFiole_loop
+
+    label jeuFiole_loop:
+        "Appuie sur [ordre[0]] pour continuer la préparation de la potion"
+        jump jeuFiole_loop
+
+    label jeuFiole_valider:
+        $tab,ordre = jeuFiole_majtab(tab,ordre)
+        "Oui, bravo"
+        $renpy.jump(jeuFiole_fin(ordre))
+
+    label jeuFiole_echec:
+        $coeur-=1
+        "Raté, regarde plus attentivement la vidéo"
+        $renpy.jump(jeuFiole_nul(coeur))
+
+    label jeuFiole_fingagner:
+        hide screen jeufiole
+        "Super, on a fini la potion grâce a ton aide"
+        jump jeuFiole_fini
+
+    label jeuFiole_finperdu:
+        hide screen jeufiole
+        "Tu t'es trompé trop de fois, essaye de réviser un peu ton alphabet puis relance le mini-jeu !"
+        jump jeuFiole_lancement
+
+    label jeuFiole_fini:
+        #Fee indique un sac rempli de fiole
+        #Il reste deux fioles “N” et “M”, la fée pointe la fiole “M” et signe le M puis pointe la fiole “N” et signe le “N” 
+        python:
+            dico.append(M)
+            dico.append(N)
+        $ avancement[2]="FioleObtenu"
+        jump DessusDeLaFalaise
+   
 #############################################################################################################################
     label DansLesAirs:
-        b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    #IntroLabel
+    scene DansLesAirs at sizeBackground with slowDissolve
+    show screen DansLesAirsLink with slowDissolve
+    jump WaitingScreen
+    #
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     if avancement[3]=="null":
         b "Attends, tu oses m'appeler alors que ton ignorance est inchangée? Quel toupet!"
         jump ClairiereDOliveau
@@ -512,17 +583,24 @@ label start:
     jump Labyrinthe
 #############################################################################################################################
     label Gouffre:
+    #IntroLabel
+    $ minimap.append(Gouffre)
     scene Gouffre at sizeBackground with slowDissolve
-    show screen GouffreLink
+    show screen GouffreLink with slowDissolve
+    jump WaitingScreen
+    #
     #Possibilite d'utiliser KAME.
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
     jump WaitingScreen
 #############################################################################################################################
     label ArbreABonbons:
+    #IntroLabel
     $ minimap.append(ArbreABonbons)
-    show screen ArbreABonbonsLink
+    scene ArbreABonbons at sizeBackground with slowDissolve
+    show screen ArbreABonbonsLink with slowDissolve
     jump WaitingScreen
+    #
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
@@ -566,14 +644,20 @@ label start:
     jump ArbreABonbons
 ############################################################################################################################
     label FondDuGouffre:
+    #IntroLabel
+    $ minimap.append(FondDuGouffre)
     scene FondDuGouffre at sizeBackground with slowDissolve
-    show screen FondDuGouffreLink
+    show screen FondDuGouffreLink with slowDissolve
     jump WaitingScreen
+    #
     #Utilisation du sort PIF, porte se découvre
 ############################################################################################################################
     label Bibliotheque:
+    #IntroLabel
     $ minimap.append(Bibliotheque)
-    show screen BibliothequeLink
+    scene Bibliotheque at sizeBackground with slowDissolve
+    show screen BibliothequeLink with slowDissolve
+    #
     if avancement[5]=="null":
         #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
         #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
@@ -586,6 +670,143 @@ label start:
     #Les étagères sont remplies de boules de cristal 
     #Les références sont composées de 3 lettres chacune. 
     #Chaque boule fait 3 lettres (il y en a autant que possible, rangées dans l’ordre alphabétique). 
+    # ----- DEBUT JEU BIBLIOTHEQUE -----
+    label jeuBiblio_init:
+        $rep,repV,tab,coeur=jeuBiblio_initVar()
+        jump jeuBiblio_loop
+
+    label jeuBiblio_loop:
+        show screen jeubiblio with slowDissolve
+        "Clique sur les boules de cristal pour voir leurs mots associés puis valide si c'est un mot recherché !"
+    jump jeuBiblio_loop
+
+    # -début vérification réussite/échec-
+    label jeuBiblio_valider1:
+        $repV[0]=1
+        $rep[0][1]="jeuBiblio_MotValider.png"
+        $renpy.jump(jeuBiblio_validation(repV))
+
+    label jeuBiblio_valider2:
+        $repV[1]=1
+        $rep[1][1]="jeuBiblio_MotValider.png"
+        $renpy.jump(jeuBiblio_validation(repV))
+
+    label jeuBiblio_valider3:
+        $repV[2]=1
+        $rep[2][1]="jeuBiblio_MotValider.png"
+        $renpy.jump(jeuBiblio_validation(repV))
+
+    label jeuBiblio_echec:
+        $coeur-=1
+        $renpy.jump(jeuBiblio_echec(coeur))
+    # -fin vérification réussite/échec-
+
+    # -début lancement vidéo des boules de cristal-
+    label jeuBiblio_video0:
+        $ renpy.movie_cutscene(tab[0][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video1:
+        $ renpy.movie_cutscene(tab[1][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video2:
+        $ renpy.movie_cutscene(tab[2][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video3:
+        $ renpy.movie_cutscene(tab[3][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video4:
+        $ renpy.movie_cutscene(tab[4][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video5:
+        $ renpy.movie_cutscene(tab[5][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video6:
+        $ renpy.movie_cutscene(tab[6][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video7:
+        $ renpy.movie_cutscene(tab[7][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video8:
+        $ renpy.movie_cutscene(tab[8][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video9:
+        $ renpy.movie_cutscene(tab[9][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video10:
+        $ renpy.movie_cutscene(tab[10][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video11:
+        $ renpy.movie_cutscene(tab[11][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video12:
+        $ renpy.movie_cutscene(tab[12][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video13:
+        $ renpy.movie_cutscene(tab[13][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video14:
+        $ renpy.movie_cutscene(tab[14][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video15:
+        $ renpy.movie_cutscene(tab[15][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video16:
+        $ renpy.movie_cutscene(tab[16][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video17:
+        $ renpy.movie_cutscene(tab[17][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video18:
+        $ renpy.movie_cutscene(tab[18][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video19:
+        $ renpy.movie_cutscene(tab[19][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video20:
+        $ renpy.movie_cutscene(tab[20][3])
+        jump jeuBiblio_loop
+
+    label jeuBiblio_video21:
+        $ renpy.movie_cutscene(tab[21][3])
+        jump jeuBiblio_loop
+    # -fin lancement vidéo des boules de cristal-
+
+    # -début des fins du jeu-
+    label jeuBiblio_fingagner:
+        hide screen jeubiblio with slowDissolve
+        "Bravo ! Tu as réussi"
+        jump Bibliotheque
+
+    label jeuBiblio_finperdu:
+        hide screen jeubiblio with slowDissolve
+        "Raté. Essaye de réviser grâce a Oliveau avant de rejouer"
+        jump MinijeuBibliotheque
+
+    # -fin des fins du jeu-
+
+    # ----- FIN JEU BIBLIOTHEQUE -----
+
+
     
     label ObtenuReference:
     #Le joueur doit retrouver les trois boules correspondant à ses références et les ramène au bibliothécaire pour les valider.
@@ -603,15 +824,31 @@ label start:
     jump WaitingScreen
 #############################################################################################################################
     label SurLac:
-    show screen LacLink
+    #IntroLabel
+    $ minimap.append(SurLac)
+    scene SurLac at sizeBackground with slowDissolve
+    show screen SurLacLink with slowDissolve
+    jump WaitingScreen
+    #
     #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
     label FondDuLac:
+    #IntroLabel
+    scene FondDuLac at sizeBackground with slowDissolve
+    show screen FondDuLacLink with slowDissolve
+    jump WaitingScreen
+    #
     #on trouve une porte sculptée dans le corail.
     jump Cuisine
 #############################################################################################################################
     label Cuisine:
+    #IntroLabel
+    $ minimap.append(Cuisine)
+    scene Cuisine at sizeBackground with slowDissolve
+    show screen CuisineLink with slowDissolve
+    jump WaitingScreen
+    #
     #Cuisinière: 2 tomates
     #Le joueur peut donner les tomates à la cuisinière (en choisissant le nombre)
     #Cuisinière: 12 carottes
@@ -630,6 +867,11 @@ label start:
     jump ClairiereDOliveau
 #############################################################################################################################
     label PlanDeTravail:
+    #IntroLabel
+    scene PlanDeTravail at sizeBackground with slowDissolve
+    show screen PlanDeTravailLink with slowDissolve
+    jump WaitingScreen
+    #
     #mini-jeu
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
