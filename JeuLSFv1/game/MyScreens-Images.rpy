@@ -988,3 +988,217 @@ screen jeufiole:
     for i in range (coeur):
         add "Jeu_CoeurPlein.png" xpos 1150-100*i ypos 50
 # --- FIN SCREEN JEU FIOLE ---
+
+#bibliotheque
+screen carrefour_deux:
+    imagebutton:        #aller a gauche
+        idle "fleche_laby_g.png"
+        hover "fleche_laby_hover_g.png"
+        xalign 0.2 yalign 0.27
+        action [Hide("carrefour_deux",transition=dissolve), If((chem_laby.n_laby == 1), true = [Jump("transition_lab")], false = [Jump("echec_lab")])]
+    imagebutton:        #aller a droite
+        idle "fleche_laby.png"
+        hover "fleche_laby_hover.png"
+        xalign 0.7 yalign 0.3
+        action [Hide("carrefour_deux",transition=dissolve), If((chem_laby.n_laby == 2), true = [Jump("transition_lab")], false = [Jump("echec_lab")])]
+
+    add dico_panneau[Choix_laby[chem_laby.a_laby]] xalign 0.2 yalign 0.8              # Panneau à gauche
+    add dico_panneau[Choix_laby[chem_laby.b_laby]] xalign 0.75 yalign 0.8              # Panneau à droite
+
+    imagebutton:                        # Fantome LSF
+        idle "Boule_fantome.png"
+        hover "Boule_fantome_hover.png"
+        xalign 0.9 yalign 0.9
+        action [Jump("video_fantome_deux")]
+
+    imagebutton:                        # Taupe
+        idle "taupe_01.png"
+        hovered [Show("taupe_sort")]
+        unhovered [Hide("taupe_sort")]
+        xalign 0.5 yalign 1.0
+        action [Hide("taupe_sort"),Hide("carrefour_deux",transition=dissolve), Jump("labyrinthe_minijeu")]
+
+
+screen carrefour_trois:
+    imagebutton:        #aller a gauche
+        idle "fleche_laby_g.png"
+        hover "fleche_laby_hover_g.png"
+        xalign 0.2 yalign 0.3
+        action [Hide("carrefour_deux",transition=dissolve), If((chem_laby.n_laby == 1), true = [Jump("transition_lab")], false = [Jump("echec_lab")])]
+    imagebutton:        #aller au milieu
+        idle "fleche_laby_m.png"
+        hover "fleche_laby_hover_m.png"
+        xalign 0.5 yalign 0.1
+        action [Hide("carrefour_deux",transition=dissolve), If((chem_laby.n_laby == 2), true = [Jump("transition_lab")], false = [Jump("echec_lab")])]
+    imagebutton:        #aller a droite
+        idle "fleche_laby.png"
+        hover "fleche_laby_hover.png"
+        xalign 0.8 yalign 0.3
+        action [Hide("carrefour_deux",transition=dissolve), If((chem_laby.n_laby == 3), true = [Jump("transition_lab")], false = [Jump("echec_lab")])]
+
+    add dico_panneau[Choix_laby[chem_laby.a_laby]] xalign 0.2 yalign 0.8              # Panneau à gauche
+    add dico_panneau[Choix_laby[chem_laby.b_laby]] xalign 0.5 yalign 0.7              # Panneau au milieu
+    add dico_panneau[Choix_laby[chem_laby.c_laby]] xalign 0.8 yalign 0.8              # Panneau à droite
+
+    imagebutton:                        # Fantome LSF
+        idle "Boule_fantome.png"
+        hover "Boule_fantome_hover.png"
+        xalign 0.9 yalign 0.9
+        action [Jump("video_fantome_trois")]
+
+    imagebutton:                        # Taupe
+        idle "taupe_01.png"
+        hovered [Show("taupe_sort")]
+        unhovered [Hide("taupe_sort")]
+        xalign 0.5 yalign 1.0
+        action [Hide("taupe_sort"),Hide("carrefour_trois",transition=dissolve), Jump("labyrinthe_minijeu")]
+
+screen porte_gallerie:
+    imagebutton:                    #passer la porte
+        idle "fleche_laby_m.png"
+        hover "fleche_laby_hover_m.png"
+        xalign 0.4 yalign 0.5
+        action [Jump("entrer_code_laby")]
+
+    imagebutton:                        # Fantome LSF
+        idle "Boule_fantome.png"
+        hover "Boule_fantome_hover.png"
+        xalign 0.7 yalign 0.9
+        action [Jump("video_fantome_porte")]
+
+    imagebutton:                        # Taupe
+        idle "taupe_01.png"
+        hovered [Show("taupe_sort")]
+        unhovered [Hide("taupe_sort")]
+        xalign 0.5 yalign 1.0
+        action [Hide("taupe_sort"),Hide("porte_gallerie",transition=dissolve), Jump("labyrinthe_minijeu")]
+
+image taupe_sorti:
+    "taupe_01.png"
+    xalign 0.5 yalign 1.0
+    pause 0.3
+    "taupe_02.png"
+    xalign 0.5 yalign 1.0
+    pause 0.3
+    "taupe_03.png"
+    xalign 0.5 yalign 1.0
+    pause 0.3
+    "taupe_04.png"
+    xalign 0.5 yalign 1.0
+    pause 1.0
+
+screen taupe_sort:
+
+    add "taupe_sorti"
+screen taupe_lab:
+
+    imagebutton:                        # Taupe
+        idle "taupe_01.png"
+        hovered [Show("taupe_sort")]
+        unhovered [Hide("taupe_sort")]
+        xalign 0.5 yalign 1.0
+        action [Hide("taupe_sort"),Hide("taupe_lab",transition=dissolve), Jump("labyrinthe_minijeu")]
+
+#Cuisine
+screen ingred:
+    text "{size=+10}{b}{color=#ffd700} oeuf : [gat.n_oeufs], farine : [gat.n_farine] , levure : [gat.n_levure], beurre : [gat.n_beurre], lait: [gat.n_lait], sucre : [gat.n_sucre]{/color}{/b}{/size}" xalign 0.1 yalign 0.9
+    draggroup:
+
+        # ingrédients.
+        drag:
+            drag_name "beurre"
+            child "Beurre.png"
+            droppable False
+            dragged ing_dragged
+            xpos 100 ypos 100
+        drag:
+            drag_name "oeufs"
+            child "Ingrédients_oeufs.png"
+            droppable False
+            dragged ing_dragged
+            xpos 300 ypos 100
+        drag:
+            drag_name "lait"
+            child "Ingrédients_lait.png"
+            droppable False
+            dragged ing_dragged
+            xpos 500 ypos 100
+        drag:
+            drag_name "levure"
+            child "Ingrédients_levure.png"
+            droppable False
+            dragged ing_dragged
+            xpos 700 ypos 100
+        drag:
+            drag_name "farine"
+            child "Ingrédients_farine.png"
+            droppable False
+            dragged ing_dragged
+            xpos 100 ypos 300
+        drag:
+            drag_name "sucre"
+            child "Ingrédients_sucre.png"
+            droppable False
+            dragged ing_dragged
+            xpos 300 ypos 300
+        drag:
+            drag_name "sirop_de_rose"
+            child "Ingrédients_sirop_rose.png"
+            droppable choix_sirop
+            dragged ing_dragged
+            xpos 500 ypos 300
+        drag:
+            drag_name "sirop_d'arsenic"
+            idle_child "Ingrédients_sirop_rose.png"
+            hover_child "Ingrédients_sirop_arsenic.png"
+            droppable choix_sirop
+            dragged ing_dragged
+            xpos 700 ypos 300
+        # Le gateau ou on dépose les ingrédients.
+        drag:
+            drag_name "pate_a_gateau"
+            child "chaudron_2.png"
+            draggable False
+            xpos 1000 ypos 300
+
+    imagebutton:
+        idle "bouton_cuisson.png"
+        hover "bouton_cuisson_hover.png"
+        xalign 0.92
+        yalign 0.80
+        action If ((gat.ingredients == []), true = [Hide("ingred",transition=dissolve), Jump("cuire_gateau")], false = [Hide("ingred",transition=dissolve), Jump("echec_jeu_four")])
+
+    imagebutton:
+        idle "gateau_bulle_idle.png"
+        hover "gateau_bulle_hover.png"
+        xalign 0.92
+        yalign 0.1
+        action Jump("ingredients_gateau")
+
+
+screen cuisinefour:
+    image "chaudron.png":
+        xalign 0.10
+        yalign 0.7
+    imagebutton:
+        idle "bouton_cuisson.png"
+        hover "bouton_cuisson_hover.png"
+        xalign 0.7
+        yalign 0.5
+        action [Hide("cuisinefour",transition=dissolve),Jump("cuisson")]
+
+screen marmite_cuisson:
+    image "chaudron.png" at center
+    image "flamme.png" at goutte_chaudron_cuisson
+
+screen show_vars:
+    text "Raté: [misses], Flammes: [hits]!" xalign 0.5
+    image "flamme.png":
+        pos (1000, 50)
+
+transform pos_flamme:
+    xalign 0.0
+    yalign 0.06
+
+screen le_feu_cuisson:
+    text "{b}Allumez le feu!!!{/b} Touchez au moins 10 flammes" at truecenter

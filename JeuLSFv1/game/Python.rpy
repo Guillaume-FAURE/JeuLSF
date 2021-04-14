@@ -204,3 +204,95 @@ init python:
 
 # --- FIN PYTHON JEU FIOLE ---
 
+#Labyrinthe python
+    dico_lab_vid ={"1":".avi","2":".avi","3":".avi","4":".avi","5":".avi","6":".avi","7":".avi","8":".avi","9":".avi","A":".avi","B":".avi",
+    "C":".avi","D":".avi","E":".avi","F":".avi","G":".avi","H":".avi","I":".avi",
+    "J":".avi","K":".avi","M":".avi","N":".avi","O":".avi","P":".avi","Q":".avi","R":".avi","S":".avi","T":".avi","U":".avi","V":".avi",
+    "W":".avi","X":".avi","Y":".avi","Z":".avi"}
+    Choix_laby = ["1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+    "O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
+    def random_code_lab():
+        a_lab= renpy.random.randint(0,len(Choix_laby)-1)
+        b_lab= renpy.random.randint(0,len(Choix_laby)-1)
+        c_lab= renpy.random.randint(0,len(Choix_laby)-1)
+        d_lab= renpy.random.randint(0,len(Choix_laby)-1)
+        return (a_lab,b_lab,c_lab,d_lab)
+
+    class Code_laby():
+        def __init__(self):
+            self.a_laby = 0
+            self.b_laby = 0
+            self.c_laby = 0
+            self.d_laby = 0
+            self.sum_code = ""
+
+        def nouv_code(self):
+            (a_l, b_l,c_l, d_l) = random_code_lab()
+            self.a_laby = a_l
+            self.b_laby = b_l
+            self.c_laby = c_l
+            self.d_laby = d_l
+            self.sum_code = Choix_laby[self.a_laby] + Choix_laby[self.b_laby] + Choix_laby[self.c_laby] + Choix_laby[self.d_laby]
+
+        def verif(code):
+            return (self.sum_code == code)
+
+    class Bon_chem():
+        def __init__(self):
+            self.n_laby = 0
+            self.a_laby = 0
+            self.b_laby = 0
+            self.c_laby = 0
+
+        def nouv_code(self,n):
+            if n == 2:
+                self.n_laby = renpy.random.randint(1,2)
+                self.a_laby = renpy.random.randint(0,len(Choix_laby)-1)
+                self.b_laby = renpy.random.randint(0,len(Choix_laby)-1)
+            else:
+                self.n_laby = renpy.random.randint(1,3)
+                self.a_laby = renpy.random.randint(0,len(Choix_laby)-1)
+                self.b_laby = renpy.random.randint(0,len(Choix_laby)-1)
+                self.c_laby = renpy.random.randint(0,len(Choix_laby)-1)
+
+    dico_panneau ={"1":"panneau_1.png","2":"panneau_2.png","3":"panneau_3.png","4":"panneau_4.png",
+    "5":"panneau_5.png","6":"panneau_6.png","7":"panneau_7.png","8":"panneau_8.png",
+    "9":"panneau_9.png","A":"panneau_A.png","B":"panneau_B.png", "C":"panneau_C.png",
+    "D":"panneau_D.png","E":"panneau_E.png","F":"panneau_F.png","G":"panneau_G.png",
+    "H":"panneau_H.png","I":"panneau_I.png","J":"panneau_J.png","K":"panneau_K.png",
+    "L":"panneau_L.png","M":"panneau_M.png","N":"panneau_N.png","O":"panneau_O.png",
+    "P":"panneau_P.png","Q":"panneau_Q.png","R":"panneau_R.png","S":"panneau_S.png",
+    "T":"panneau_T.png","U":"panneau_U.png","V":"panneau_V.png","W":"panneau_W.png",
+    "X":"panneau_X.png","Y":"panneau_Y.png","Z":"panneau_Z.png"}
+    Choix_laby = ["1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+    "O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
+#Cuisine
+    config.screen_width=1280
+    config.screen_height=720
+    import time
+    import pygame
+    MOUSEBUTTONDOWN=pygame.MOUSEBUTTONDOWN
+    dico_ingr = {"beurre":[100,100], "oeufs":[300,100], "lait":[500,100], "levure":[700,100], "farine":[100,300], "sucre":[300,300], "sirop_de_rose":[500,300], "sirop_d'arsenic":[700,300]}
+
+    def ing_dragged(drags, drop):
+
+        if not drop:
+            return
+        store.show_drag = False
+        renpy.hide_screen("ajout_ingr")
+        renpy.show_screen("ajout_ingr")
+        if ((drags[0].drag_name == "sirop_de_rose") or (drags[0].drag_name == "sirop_d'arsenic")):
+            drags[0].snap(10000,10000)
+            if (drags[0].drag_name == "sirop_de_rose"):            
+                globals()['choix_sirop'] = 1
+            else:
+                globals()['choix_sirop'] = 2
+        else:
+            drags[0].snap(dico_ingr[drags[0].drag_name][0],dico_ingr[drags[0].drag_name][1])
+            if gat.check(drags[0].drag_name):
+                gat.remove_ingredient(drags[0].drag_name)
+            else:
+                gat.echec_ingr()
+        return
