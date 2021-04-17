@@ -31,25 +31,76 @@ init python:
 
 #Classe Achievements pour les achievements appris
     class Achievements:
-        def __init__(self, name, image, bool):
+        def __init__(self, name, image):
             self.name = name
             self.image = image
-            self.bool = 0
 
 #Initialisation Achievements
-    Histoire_Alphabet=
-    Histoire_Compter=
-    
+    Histoire_Alphabet= Achievements("Alphabet","Achievements/Histoire_Alphabet.png")
+    Histoire_Compter= Achievements("Compter","Achievements/Histoire_Compter.png")
+    Histoire_Magie= Achievements("Magie","Achievements/Histoire_Magie.png")
+    Histoire_Niveau1= Achievements("Niveau1","Achievements/Histoire_Niveau1.png")
+    Lettre_BIBLIOTHEQUE= Achievements("BIBLIOTHEQUE","Achievements/Lettre_BIBLIOTHEQUE.png")
+    Lettre_CHWYZ= Achievements("CHWYZ","Achievements/Lettre_CHWYZ.png")
+    Lettre_OLIVEAU= Achievements("Oliveau","Achievements/Lettre_Oliveau.png")
+    Lettre_V = Achievements("V","Achievements/Lettre_V.png")
+    Lettre_D = Achievements("D","Achievements/Lettre_D.png")  
+    Lettre_S = Achievements("S","Achievements/Lettre_S.png")
+    Lettre_B = Achievements("B","Achievements/Lettre_B.png")
+    Lettre_F = Achievements("F","Achievements/Lettre_F.png")
+    Lettre_G = Achievements("G","Achievements/Lettre_G.png")
+    Lettre_J = Achievements("J","Achievements/Lettre_J.png")
+    Lettre_K = Achievements("K","Achievements/Lettre_K.png")
+    Lettre_MN = Achievements("MN","Achievements/Lettre_MN.png")
+    Lettre_P = Achievements("P","Achievements/Lettre_P.png")
+    Lettre_X = Achievements("X","Achievements/Lettre_X.png")
+    Secret_EnfantIgnorant= Achievements("EnfantIgnorant","Achievements/Secret_EnfantIgnorant.png")
+    Secret_GrosseBosse= Achievements("GrosseBosse","Achievements/Secret_GrosseBosse.png")
+    Secret_TueurdOiseau= Achievements("TueurdOiseau","Achievements/Secret_TueurdOiseau.png")
+    Sort_GREX= Achievements("GREX","Achievements/Sort_GREX.png")
+    Sort_JUNQ= Achievements("JUNQ","Achievements/Sort_JUNQ.png")
+    Sort_KAME= Achievements("KAME","Achievements/Sort_KAME.png")
+    Sort_PIF= Achievements("PIF","Achievements/Sort_PIF.png")
+    Sort_SOY= Achievements("SOY","Achievements/Sort_SOY.png")
 #Initialisation Tableau
     dico = []
     avancement = ["null"]*50
     minimap = []
     inventaire = []
     magie = []
+    achievements = []
+#Initialisation Entier
     gentillesse = 0
-    achievement = []
     falaiseLierre = 0
-    nbOliveau = 0
+    achEnfantIgnorant = 0
+    achV =0
+    achD=0
+    achS=0
+    achB=0
+    achF=0
+    achG=0
+    achJ=0
+    achK=0
+    achMN=0
+    achP=0
+    achBIBLIOTHEQUE=0
+    achX=0
+    achievementshow=0
+    achOLIVEAU=0
+    achCHWYZ=0
+    achAlphabet=0
+    achCompter=0
+    achMagie=0
+    achNiveau1=0
+    achGrosseBosse=0
+    achTueurdOiseau=0
+    achGREX=0
+    achJUNQ=0
+    achKAME=0
+    achPIF=0
+    achSOY=0
+    mapshow=0
+    inventaireshow = 0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","Gouffre.jpg", 30, 52)
@@ -105,6 +156,7 @@ init python:
     Neuf = Mot("9")
 #Initialisation inventaire
     Sifflet = Objet("Sifflet", "Salle2.png")
+    LettreDeRemerciement = Objet("LettreDeRemerciement", "Salle2.png")
     Sucette = Objet("Sucette", "Salle2.png")
     BouleDeCristal = Objet("Boule de cristal", "Salle2.png")
 #Initialisation magie

@@ -8,6 +8,10 @@ transform sizeMenuBackground:
     size(100, 650)
 transform sizeMapBackground:
     size(1150,720)
+transform sizeAchievement:
+    size(278,100)
+transform sizeObjet:
+    size(200,200)
 
 transform position(x,y):
     xpos x

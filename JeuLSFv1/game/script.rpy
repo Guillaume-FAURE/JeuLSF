@@ -7,11 +7,11 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    jump Labyrinthe
+    jump ArriveForetFees
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
-    play music "audio/Mushishi.mp3"
+    #play music "audio/Mushishi.mp3"
     "Pour passer les dialogues, cliquez sur l'écran ou appuyer sur entrée."
     "Vous pouvez vous déplacer grâce aux liens sur l'écran"
     "Pour le bon fonctionnement du jeu, lorsqu'une vidéo se met en route, ne cliquez pas."
@@ -110,7 +110,11 @@ label start:
     #
 
     label Oliveau:
-    $ nbOliveau += 1
+    $ achEnfantIgnorant += 1
+    if achEnfantIgnorant==10:
+        show achEnfantIgnorant at Tachievement onlayer overlay
+        $ achievements.append(Secret_EnfantIgnorant)
+        $ achEnfantIgnorant +=1
     if avancement[0]=="niveau1":
         jump IntroOliveau
     elif avancement[0]=="Q2":
@@ -139,6 +143,10 @@ label start:
         nom = nom.strip() or "Anonyme"
     o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
     #Video Oliveau O-L-I-V-E-A-U LSF "O-L-I-V-E-A-U; O-L-I-V-E-A-U O L I V E A U"
+    if achOLIVEAU==0:
+        show achOLIVEAU at Tachievement onlayer overlay
+        $ achievements.append(Lettre_OLIVEAU)
+        $ achOLIVEAU +=1
     python:
         dico.append(O)
         dico.append(L)
@@ -294,6 +302,10 @@ label start:
                 dico.append(Sept)
                 dico.append(Huit)
                 dico.append(Neuf)
+            if achCompter==0:
+                show achCompter at Tachievement onlayer overlay
+                $ achievements.append(Histoire_Compter)
+                $ achCompter +=1
             o "Y a-t-il un chiffre que tu n’as pas compris?"
             python:
                 chiffre = renpy.input("Laquelle? (merci d'écrire la lettre en majuscule)")
@@ -323,15 +335,25 @@ label start:
     jump WaitingScreen
     #
 
+    label Fee:
     if avancement[1]=="null":
         $ minimap.append(LieuDuVol)
         #Fée: On m’a volé quelque chose... V-O-L
+        if achV==0:
+            show achV at Tachievement onlayer overlay
+            $ achievements.append(Lettre_V)
+            $ achV +=1
         #POURSUITE (mini-jeu)
         $ avancement[1]= "ObjetRecupere"
         jump LieuDuVol
     elif avancement[1]=="ObjetRecupere":
         #la Fée donne une lettre de remerciement
+        $ inventaire.append(LettreDeRemerciement)
         #Video de la fee qui fait les lettres CHWYZ
+        if achCHWYZ==0:
+            show achCHWYZ at Tachievement onlayer overlay
+            $ achievements.append(Lettre_CHWYZ)
+            $ achCHWYZ +=1
         python:
             dico.append(C)
             dico.append(H)
@@ -381,9 +403,18 @@ label start:
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     #Video Oiseau DOY
     #Du lierre pousse autour des branches des arbres
+    if achD==0:
+            show achD at Tachievement onlayer overlay
+            $ achievements.append(Lettre_D)
+            $ achD +=1
     python:
         dico.append(D)
         dico.append(Y)
+    $ magie.append(DOY)
+    if achDOY==0:
+        show achDOY at Tachievement onlayer overlay
+        $ achievements.append(Sort_DOY)
+        $ achDOY +=1
     jump Sifflet
     label R33:
     #Video Oiseau LSF: Rend la moi!
@@ -393,9 +424,18 @@ label start:
             b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     #Video Oiseau DOY
     #Du lierre pousse autour des branches des arbres
+    if achD==0:
+            show achD at Tachievement onlayer overlay
+            $ achievements.append(Lettre_D)
+            $ achD +=1
     python:
         dico.append(D)
         dico.append(Y)
+    $ magie.append(DOY)
+    if achDOY==0:
+        show achDOY at Tachievement onlayer overlay
+        $ achievements.append(Sort_DOY)
+        $ achDOY +=1
     jump Sifflet
     label R34:
     
@@ -405,15 +445,28 @@ label start:
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     #Video Oiseau DOY
     #Du lierre pousse autour des branches des arbres
+    if achD==0:
+            show achD at Tachievement onlayer overlay
+            $ achievements.append(Lettre_D)
+            $ achD +=1
     python:
         dico.append(D)
         dico.append(Y)
+    $ magie.append(DOY)
+    if achDOY==0:
+        show achDOY at Tachievement onlayer overlay
+        $ achievements.append(Sort_DOY)
+        $ achDOY +=1
     jump Sifflet
 
     label Sifflet:
     b "Je ne peux pas encore t’apprendre d’autres sorts, ta connaissance en langue des signes est... Trop primitive."
     b "Appelle-moi avec ce sifflet"
     #Video Oiseau SIFFLET
+    if achS==0:
+            show achS at Tachievement onlayer overlay
+            $ achievements.append(Lettre_S)
+            $ achS +=1
     python:
         dico.append(S)
         dico.append(I)
@@ -424,7 +477,10 @@ label start:
     python:
         inventaire.append(Sifflet)
     #Onglet magie débloqué
-    #Peut repartir et doit avoir l’idée de faire pousser le lierre devant la falaise
+    if achMagie==0:
+            show achMagie at Tachievement onlayer overlay
+            $ achievements.append(Histoire_Magie)
+            $ achMagie +=1
     $ avancement[0]="ApprisSort"
     jump NidDeLOiseau
 #############################################################################################################################
@@ -455,10 +511,18 @@ label start:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
                 #Video Fee :Merci. Prends cette fiole. F-I-O-L-E
+                if achF==0:
+                    show achF at Tachievement onlayer overlay
+                    $ achievements.append(Lettre_F)
+                    $ achF +=1
                 jump Falaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
                 #Video Fee :NON! Rend-moi cette F-I-O-L-E!
+                if achF==0:
+                    show achF at Tachievement onlayer overlay
+                    $ achievements.append(Lettre_F)
+                    $ achF +=1
                 #Fee en larme
                 jump Falaise
 
@@ -498,6 +562,10 @@ label start:
     label jeuFiole_fini:
         #Fee indique un sac rempli de fiole
         #Il reste deux fioles “N” et “M”, la fée pointe la fiole “M” et signe le M puis pointe la fiole “N” et signe le “N” 
+        if achMN==0:
+            show achMN at Tachievement onlayer overlay
+            $ achievements.append(Lettre_MN)
+            $ achMN +=1
         python:
             dico.append(M)
             dico.append(N)
@@ -544,43 +612,80 @@ label start:
     label ApprentissageKAME:
     b "Le sort que je vais t’apprendre se dit KAME"
     #Video de l'oiseau signant KAME
+    if achK==0:
+        show achK at Tachievement onlayer overlay
+        $ achievements.append(Lettre_K)
+        $ achK +=1
     python:
         dico.append(K)
     #L'oiseau vole sans battre des ailes
     b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
     #L'oiseau part
     $ magie.append(KAME)
+    if achKAME==0:
+        show achKAME at Tachievement onlayer overlay
+        $ achievements.append(Sort_KAME)
+        $ achKAME +=1
     "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
     #Possibilité de se téléporter
     $ avancement[0]="ApprisSort"
 
     label PossibiliteApprendrePIF:
     b "Le sort que je vais t’apprendre se dit PIF" #oiseau signe PIF
+    if achP==0:
+        show achP at Tachievement onlayer overlay
+        $ achievements.append(Lettre_P)
+        $ achP +=1
+    $ dico.append(P)
     #l'oiseau casse le rocher
     b "Ce sort, comme tu le vois, permet de casser ce que l’on souhaite. C’est de lui que la plupart des fées tirent leur force."
     b "Pas moi, évidemment.Tu devrais en avoir besoin bientôt. Bon courage, humain."
     #l'oiseau part
     $ magie.append(PIF)
+    if achPIF==0:
+        show achPIF at Tachievement onlayer overlay
+        $ achievements.append(Sort_PIF)
+        $ achPIF +=1
     $ avancement[0]= "ApprisSort"
     jump ClairiereDOliveau
 
     label PossibiliteApprendreJUNQ:
     b "Le sort que je vais t’apprendre se dit JUNQ"
+    if achJ==0:
+        show achJ at Tachievement onlayer overlay
+        $ achievements.append(Lettre_J)
+        $ achJ +=1
     $ dico.append(J)
     b " Ce sort, comme tu le vois, permet de respirer dans l’eau." 
     b "Il te servira à traverser de longues étendues d’eau ou bien à aller chercher les trésors des fonds marins."
     b "Enfin, ceux dont je n’ai pas voulu. Bon courage, humain."
     $ magie.append(JUNQ)
+    if achJUNQ==0:
+        show achJUNQ at Tachievement onlayer overlay
+        $ achievements.append(Sort_JUNQ)
+        $ achJUNQ +=1
     $ avancement[0]= "ApprisSort"
     jump Lac
     
     label PossibiliteApprendreGREX:
     b "Le sort que je vais t'apprendre se dit GREX"
+    if achX==0:
+        show achX at Tachievement onlayer overlay
+        $ achievements.append(Lettre_X)
+        $ achX +=1
     $ dico.append(X)
     b "Ce sort, comme tu le vois, permet de creuser. Il te servira à retrouver des animaux de ton ordre comme les mulots et autres taupes." 
     b "Il y a sûrement des galeries que tu aimeras explorer là-bas. Bon courage, humain."
     $ magie.append(GREX)
+    if achGREX==0:
+        show achGREX at Tachievement onlayer overlay
+        $ achievements.append(Sort_GREX)
+        $ achGREX +=1
     $ avancement[0]= "ApprisSort"
+    if achAlphabet==0:
+        show achAlphabet at Tachievement onlayer overlay
+        $ achievements.append(Histoire_Alphabet)
+        $ achAlphabet +=1
     jump Labyrinthe
 #############################################################################################################################
     label Gouffre:
@@ -622,6 +727,10 @@ label start:
     #enfant dit bonbon en LSF
     pp "..."
     #enfant dit B-O-N-B-O-N
+    if achB==0:
+        show achB at Tachievement onlayer overlay
+        $ achievements.append(Lettre_B)
+        $ achB +=1
     $ dico.append(B)
     #L’enfant pointe le doigt vers l’arbre et tend un sac de bonbons vides
     #Le joueur peut monter dans l’arbre
@@ -812,6 +921,10 @@ label start:
     label ObtenuReference:
     #Le joueur doit retrouver les trois boules correspondant à ses références et les ramène au bibliothécaire pour les valider.
     #Bibliothécaire: Merci, B-I-B-L-I-O-T-H-È-Q-U-E
+    if achBIBLIOTHEQUE==0:
+        show achBIBLIOTHEQUE at Tachievement onlayer overlay
+        $ achievements.append(Lettre_BIBLIOTHEQUE)
+        $ achBIBLIOTHEQUE +=1
     $ dico.append(T)
     $ dico.append(Q)
     $ avancement[0]="ObtenuBouleDeCristal"
@@ -886,7 +999,7 @@ label start:
     $ chem_laby = Bon_chem()
     $ cod_laby.nouv_code()
     $ minimap.append(Labyrinthe)
-    
+
     label labyrinthe_minijeu:
     scene gallerie porte at sizeBackground with slowDissolve
     "Vous arrivez au labyrinthe."
@@ -960,5 +1073,13 @@ label start:
     label fin_laby:
         scene carte with dissolve
         "Vous êtes enfin sorti!"
+        jump RoyaumeDesFees
+#############################################################################################################################
+    label RoyaumeDesFees:
+    if achNiveau1==0:
+        show achNiveau1 at Tachievement onlayer overlay
+        $ achievements.append(Histoire_Niveau1)
+        $ achNiveau1 +=1
+    "Alors c'est ça le royaume des fées!!"
 
     return
