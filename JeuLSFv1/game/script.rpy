@@ -7,6 +7,7 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
+    jump miniJeuFiole
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -549,7 +550,7 @@ label start:
         $ renpy.movie_cutscene("Videos/alchimiste_besoin.webm")
         pp "{k=4}.....{/k}"
         $ renpy.movie_cutscene("Videos/alchimiste_SOS_LSF.webm")
-        jump jeuFiole_lancement
+        jump miniJeuFiole
     elif avancement[2]=="FioleObtenu":
         $ avancement[0]="FioleObtenu"
         menu:
@@ -572,17 +573,19 @@ label start:
                     $ achF +=1
                 jump Falaise
 
+    label miniJeuFiole:
     label jeuFiole_lancement:
         show screen lancementjeufiole
         "Appuie sur le chaudron pour lancer le mini-jeu !"
         jump jeuFiole_lancement
 
     label jeuFiole_init:
-        $tab,ordre,coeur = jeuFiole_initVar()
+        $tab,ordre,video,coeur = jeuFiole_initVar()
         jump jeuFiole_loop
 
     label jeuFiole_loop:
-        "Appuie sur [ordre[0]] pour continuer la préparation de la potion"
+        $ renpy.movie_cutscene(video[0])
+        "Appuie pour relancer la video"
         jump jeuFiole_loop
 
     label jeuFiole_valider:

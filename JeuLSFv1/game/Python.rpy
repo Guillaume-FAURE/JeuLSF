@@ -179,27 +179,27 @@ init python:
 # ----- DEBUT PYTHON JEU BIBLIOTHEQUE -----
 
     def jeuBiblio_initVar():
-        mot1=["JeuBiblio_BoulesCristal1.png","JeuBiblio_mot_AOC.png","AOC","AEI_film.mpeg"]
-        mot2=["JeuBiblio_BoulesCristal2.png","JeuBiblio_mot_CFP.png","CFP","AEI_film.mpeg"]
-        mot3=["JeuBiblio_BoulesCristal3.png","JeuBiblio_mot_DZS.png","DZS","AEI_film.mpeg"]
-        mot4=["JeuBiblio_BoulesCristal4.png","JeuBiblio_mot_ELM.png","ELM","AEI_film.mpeg"]
-        mot5=["JeuBiblio_BoulesCristal5.png","JeuBiblio_mot_EPO.png","EPO","AEI_film.mpeg"]
-        mot6=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_EVA.png","EVA","AEI_film.mpeg"]
-        mot7=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_FOM.png","FOM","AEI_film.mpeg"]
-        mot8=["JeuBiblio_BoulesCristal7.png","JeuBiblio_mot_FSP.png","FSP","AEI_film.mpeg"]
-        mot9=["JeuBiblio_BoulesCristal8.png","JeuBiblio_mot_ICP.png","ICP","AEI_film.mpeg"]
-        mot10=["JeuBiblio_BoulesCristal9.png","JeuBiblio_mot_IZA.png","IZA","AEI_film.mpeg"]
-        mot11=["JeuBiblio_BoulesCristal10.png","JeuBiblio_mot_LWV.png","LWV","AEI_film.mpeg"]
-        mot12=["JeuBiblio_BoulesCristal11.png","JeuBiblio_mot_MAV.png","MAV","AEI_film.mpeg"]
-        mot13=["JeuBiblio_BoulesCristal12.png","JeuBiblio_mot_OHA.png","OHA","AEI_film.mpeg"]
-        mot14=["JeuBiblio_BoulesCristal13.png","JeuBiblio_mot_OPB.png","OPB","AEI_film.mpeg"]
-        mot15=["JeuBiblio_BoulesCristal14.png","JeuBiblio_mot_PKO.png","PKO","AEI_film.mpeg"]
-        mot16=["JeuBiblio_BoulesCristal15.png","JeuBiblio_mot_PZK.png","PZK","AEI_film.mpeg"]
-        mot17=["JeuBiblio_BoulesCristal16.png","JeuBiblio_mot_SNK.png","SNK","AEI_film.mpeg"]
-        mot18=["JeuBiblio_BoulesCristal17.png","JeuBiblio_mot_SUB.png","SUB","AEI_film.mpeg"]
-        mot19=["JeuBiblio_BoulesCristal18.png","JeuBiblio_mot_VYE.png","VYE","AEI_film.mpeg"]
-        mot20=["JeuBiblio_BoulesCristal19.png","JeuBiblio_mot_WPC.png","WPC","AEI_film.mpeg"]
-        mot21=["JeuBiblio_BoulesCristal20.png","JeuBiblio_mot_ZFZ.png","ZFZ","AEI_film.mpeg"]
+        mot1=["JeuBiblio_BoulesCristal1.png","JeuBiblio_mot_AOC.png","AOC","Lettre_A_LSF.webm","Lettre_O_LSF.webm","Lettre_C_LSF.webm"]
+        mot2=["JeuBiblio_BoulesCristal2.png","JeuBiblio_mot_CFP.png","CFP","Lettre_C_LSF.webm","Lettre_F_LSF.webm","Lettre_P_LSF.webm"]
+        mot3=["JeuBiblio_BoulesCristal3.png","JeuBiblio_mot_DZS.png","DZS","Lettre_D_LSF.webm","Lettre_Z_LSF.webm","Lettre_S_LSF.webm"]
+        mot4=["JeuBiblio_BoulesCristal4.png","JeuBiblio_mot_ELM.png","ELM","Lettre_E_LSF.webm","Lettre_L_LSF.webm","Lettre_M_LSF.webm"]
+        mot5=["JeuBiblio_BoulesCristal5.png","JeuBiblio_mot_EPO.png","EPO","Lettre_E_LSF.webm","Lettre_P_LSF.webm","Lettre_O_LSF.webm"]
+        mot6=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_EVA.png","EVA","Lettre_E_LSF.webm","Lettre_V_LSF.webm","Lettre_A_LSF.webm"]
+        mot7=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_FOM.png","FOM","Lettre_F_LSF.webm","Lettre_O_LSF.webm","Lettre_M_LSF.webm"]
+        mot8=["JeuBiblio_BoulesCristal7.png","JeuBiblio_mot_FSP.png","FSP","Lettre_F_LSF.webm","Lettre_S_LSF.webm","Lettre_P_LSF.webm"]
+        mot9=["JeuBiblio_BoulesCristal8.png","JeuBiblio_mot_ICP.png","ICP","Lettre_I_LSF.webm","Lettre_C_LSF.webm","Lettre_P_LSF.webm"]
+        mot10=["JeuBiblio_BoulesCristal9.png","JeuBiblio_mot_IZA.png","IZA","Lettre_I_LSF.webm","Lettre_Z_LSF.webm","Lettre_A_LSF.webm"]
+        mot11=["JeuBiblio_BoulesCristal10.png","JeuBiblio_mot_LWV.png","LWV","Lettre_L_LSF.webm","Lettre_W_LSF.webm","Lettre_V_LSF.webm"]
+        mot12=["JeuBiblio_BoulesCristal11.png","JeuBiblio_mot_MAV.png","MAV","Lettre_M_LSF.webm","Lettre_A_LSF.webm","Lettre_V_LSF.webm"]
+        mot13=["JeuBiblio_BoulesCristal12.png","JeuBiblio_mot_OHA.png","OHA","Lettre_O_LSF.webm","Lettre_H_LSF.webm","Lettre_A_LSF.webm"]
+        mot14=["JeuBiblio_BoulesCristal13.png","JeuBiblio_mot_OPB.png","OPB","Lettre_O_LSF.webm","Lettre_P_LSF.webm","Lettre_B_LSF.webm"]
+        mot15=["JeuBiblio_BoulesCristal14.png","JeuBiblio_mot_PKO.png","PKO","Lettre_P_LSF.webm","Lettre_K_LSF.webm","Lettre_O_LSF.webm"]
+        mot16=["JeuBiblio_BoulesCristal15.png","JeuBiblio_mot_PZK.png","PZK","Lettre_P_LSF.webm","Lettre_Z_LSF.webm","Lettre_K_LSF.webm"]
+        mot17=["JeuBiblio_BoulesCristal16.png","JeuBiblio_mot_SNK.png","SNK","Lettre_S_LSF.webm","Lettre_N_LSF.webm","Lettre_K_LSF.webm"]
+        mot18=["JeuBiblio_BoulesCristal17.png","JeuBiblio_mot_SUB.png","SUB","Lettre_S_LSF.webm","Lettre_U_LSF.webm","Lettre_B_LSF.webm"]
+        mot19=["JeuBiblio_BoulesCristal18.png","JeuBiblio_mot_VYE.png","VYE","Lettre_V_LSF.webm","Lettre_Y_LSF.webm","Lettre_E_LSF.webm"]
+        mot20=["JeuBiblio_BoulesCristal19.png","JeuBiblio_mot_WPC.png","WPC","Lettre_W_LSF.webm","Lettre_P_LSF.webm","Lettre_C_LSF.webm"]
+        mot21=["JeuBiblio_BoulesCristal20.png","JeuBiblio_mot_ZFZ.png","ZFZ","Lettre_Z_LSF.webm","Lettre_F_LSF.webm","Lettre_Z_LSF.webm"]
         tab = [mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8,mot9,mot10,mot11,mot12,mot13,mot14,mot15,mot16,mot17,mot18,mot19,mot20,mot21]
         rep=random.sample(tab,3)
         repV=[0,0,0]
@@ -243,14 +243,18 @@ init python:
         fiole16=["JeuFiole_FioleZ.png","Z"]
         tab = [fiole1,fiole2,fiole3,fiole4,fiole5,fiole6,fiole7,fiole8,fiole9,fiole10,fiole11,fiole12,fiole13,fiole14,fiole15,fiole16]
         ordre = ["V","H","D","L","Y","S","C","A","W","E","I","O","Z","U"]
+        video = ["Lettre_V_LSF.webm","Lettre_H_LSF.webm","Lettre_D_LSF.webm","Lettre_L_LSF.webm","Lettre_Y_LSF.webm","Lettre_S_LSF.webm",
+        "Lettre_C_LSF.webm","Lettre_A_LSF.webm","Lettre_W_LSF.webm","Lettre_E_LSF.webm","Lettre_I_LSF.webm","Lettre_O_LSF.webm",
+        "Lettre_Z_LSF.webm","Lettre_U_LSF.webm"]
         coeur = 3
-        return (tab,ordre,coeur)
+        return (tab,ordre,video,coeur)
 
-    def jeuFiole_majtab(tableau,order):
+    def jeuFiole_majtab(tableau,order,video):
         for i in range (16):
                 if tableau[i][1] == order[0]:
                     tableau[i][1]=""
         order = order [1:]
+        video = video [1:]
         if not order:
             order.append("fin")
         return (tableau,order)
