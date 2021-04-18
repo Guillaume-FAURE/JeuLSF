@@ -282,6 +282,14 @@ image Sucette:
     "sucette.png"
 image BouleCristal:
     "Boule_fantome.png"
+image FioleM:
+    "JeuFiole_FioleM.png"
+image FioleN:
+    "JeuFiole_FioleN.png"
+image sacFiole:
+    "sac_fiole_alphabet.png"
+image indication:
+    "indicationBibliotheque.png"
 
 #####Background
 image BlackScreen:
@@ -577,8 +585,7 @@ screen FondDuGouffreLink:
         action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Gouffre")]
     if porteGouffre==1: 
         imagebutton:
-            idle "LinkIdleE.png"
-            hover "LinkHoverE.png"
+            idle "Porte_bibliotheque.png"
             at sizeButton
             xalign 0.04
             yalign 0.4
@@ -1187,8 +1194,7 @@ screen FondDuLacLink:
         yalign 0.1
         action [SetVariable("PossibiliteKAME",1),Hide ("FondDuLacLink"), Jump ("Lac")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "porte_cuisine.png"
         at sizeButton
         xalign 0.1
         yalign 0.1

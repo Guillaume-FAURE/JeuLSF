@@ -51,7 +51,7 @@ label start:
     label ClairiereDOliveauIntro:
     label OliveauLSF:
     scene ClairiereDOliveau at sizeBackground with slowDissolve
-    $ renpy.movie_cutscene("Videos/oliveau_eau.webm")
+    $ renpy.movie_cutscene("oliveau_eau.webm")
     "Qu’a-t-il dit?"
     menu:
         "Eau":
@@ -72,7 +72,7 @@ label start:
             jump OliveauLSFL
 
     label OliveauLSFL:
-    $ renpy.movie_cutscene("Videos/oliveau_eau_LSF.webm")
+    $ renpy.movie_cutscene("oliveau_eau_LSF.webm")
     "Qu’a-t-il dit?"
     menu:
         "Bonjour":
@@ -150,7 +150,7 @@ label start:
         nom = renpy.input("Quel est ton nom?")
         nom = nom.strip() or "Anonyme"
     o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
-    $ renpy.movie_cutscene("Videos/oliveau_oliveau_LSF.webm")
+    $ renpy.movie_cutscene("oliveau_oliveau_LSF.webm")
     stop music
     play music "<loop 0.0>/audio/Oliveau.mp3"
     if achOLIVEAU==0:
@@ -299,26 +299,26 @@ label start:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
             jump R24
         "Peux-tu m’apprendre à compter?":
-            $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_2_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_3_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_4_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_5_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_6_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_7_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_8_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_9_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_10_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_11_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_12_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_13_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_14_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_15_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_16_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_17_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_18_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_19_LSF.webm")
-            $ renpy.movie_cutscene("Videos/oliveau_20_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_1_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_2_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_3_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_4_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_5_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_6_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_7_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_8_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_9_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_10_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_11_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_12_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_13_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_14_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_15_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_16_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_17_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_18_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_19_LSF.webm")
+            $ renpy.movie_cutscene("oliveau_20_LSF.webm")
             python:
                 dico.append(Zero)
                 dico.append(Un)
@@ -375,7 +375,7 @@ label start:
     scene PorteDuRoyaumeDesFees at sizeBackground with slowDissolve
     #
 
-    $ renpy.movie_cutscene("Videos/garde_tes.webm")
+    $ renpy.movie_cutscene("garde_tes.webm")
     $ avancement[0]= "RenvoyeParGarde"
     jump ClairiereDOliveau
 #############################################################################################################################
@@ -391,9 +391,9 @@ label start:
     label Fee:
     if avancement[1]=="null":
         $ minimap.append(LieuDuVol)
-        $ renpy.movie_cutscene("Videos/Lettre_V_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_O_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_L_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_V_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_O_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_L_LSF.webm")
         if achV==0:
             show achV at Tachievement onlayer overlay
             $ achievements.append(Lettre_V)
@@ -404,11 +404,11 @@ label start:
     elif avancement[1]=="ObjetRecupere":
         "Tiens une lettre de remerciement"
         $ inventaire.append(LettreDeRemerciement)
-        $ renpy.movie_cutscene("Videos/Lettre_C_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_H_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_W_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_Y_LSF.webm")
-        $ renpy.movie_cutscene("Videos/Lettre_Z_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_C_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_H_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_W_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_Y_LSF.webm")
+        $ renpy.movie_cutscene("Lettre_Z_LSF.webm")
         if achCHWYZ==0:
             show achCHWYZ at Tachievement onlayer overlay
             $ achievements.append(Lettre_CHWYZ)
@@ -506,13 +506,13 @@ label start:
             jump R35
 
     label R31:
-    $ renpy.movie_cutscene("Videos/oiseau_qui.webm")
+    $ renpy.movie_cutscene("oiseau_qui.webm")
     jump Bird
     label R32:
     b "Oh tu n’es pas d’ici, je suis un oiseau. Mais pas un rouge-gorges ou un pigeon, non, un vrai oiseau."
     b "Et dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
-    $ renpy.movie_cutscene("Videos/oiseau_DOY_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
             show achD at Tachievement onlayer overlay
             $ achievements.append(Lettre_D)
@@ -531,7 +531,7 @@ label start:
         "Rendre la plume à l'oiseau":
             b "Pour ta bonté, je vais t’apprendre un sort." 
             b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
-    $ renpy.movie_cutscene("Videos/oiseau_DOY_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
             show achD at Tachievement onlayer overlay
             $ achievements.append(Lettre_D)
@@ -551,7 +551,7 @@ label start:
     label R35:
     b "Dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
-    $ renpy.movie_cutscene("Videos/oiseau_DOY_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
             show achD at Tachievement onlayer overlay
             $ achievements.append(Lettre_D)
@@ -569,7 +569,7 @@ label start:
     label Sifflet:
     b "Je ne peux pas encore t’apprendre d’autres sorts, ta connaissance en langue des signes est... Trop primitive."
     b "Appelle-moi avec ce sifflet"
-    $ renpy.movie_cutscene("Videos/oiseau_sifflet_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_sifflet_LSF.webm")
     if achS==0:
             show achS at Tachievement onlayer overlay
             $ achievements.append(Lettre_S)
@@ -615,17 +615,17 @@ label start:
 
     label alchimiste:
     if avancement[2]=="null":
-        $ renpy.movie_cutscene("Videos/alchimiste_besoin.webm")
+        $ renpy.movie_cutscene("alchimiste_besoin.webm")
         pp "{k=4}.....{/k}"
-        $ renpy.movie_cutscene("Videos/alchimiste_SOS_LSF.webm")
+        $ renpy.movie_cutscene("alchimiste_SOS_LSF.webm")
         jump miniJeuFiole
     elif avancement[2]=="FioleObtenu":
         $ avancement[0]="FioleObtenu"
         menu:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
-                $ renpy.movie_cutscene("Videos/achimiste_merci.webm")
-                $ renpy.movie_cutscene("Videos/alchimiste_FIOLE_LSF.webm")
+                $ renpy.movie_cutscene("achimiste_merci.webm")
+                $ renpy.movie_cutscene("alchimiste_FIOLE_LSF.webm")
                 if achF==0:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
@@ -633,8 +633,8 @@ label start:
                 jump Falaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
-                $ renpy.movie_cutscene("Videos/alchimiste_NON.webm")
-                $ renpy.movie_cutscene("Videos/alchimiste_FIOLE_LSF.webm")
+                $ renpy.movie_cutscene("alchimiste_NON.webm")
+                $ renpy.movie_cutscene("alchimiste_FIOLE_LSF.webm")
                 if achF==0:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
@@ -677,8 +677,10 @@ label start:
         jump jeuFiole_lancement
 
     label jeuFiole_fini:
-        $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
-        $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
+        show FioleM at Montrer
+        $ renpy.movie_cutscene("lettre_M_LSF.webm")
+        show FioleN at Montrer
+        $ renpy.movie_cutscene("lettre_N_LSF.webm")
         if achMN==0:
             show achMN at Tachievement onlayer overlay
             $ achievements.append(Lettre_MN)
@@ -730,7 +732,7 @@ label start:
     
     label ApprentissageKAME:
     b "Le sort que je vais t’apprendre se dit KAME"
-    $ renpy.movie_cutscene("Videos/oiseau_KAME_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_KAME_LSF.webm")
     if achK==0:
         show achK at Tachievement onlayer overlay
         $ achievements.append(Lettre_K)
@@ -750,7 +752,7 @@ label start:
 
     label PossibiliteApprendrePIF:
     b "Le sort que je vais t’apprendre se dit PIF"
-    $ renpy.movie_cutscene("Videos/oiseau_PIF_LSF.webm")
+    $ renpy.movie_cutscene("oiseau_PIF_LSF.webm")
     if achP==0:
         show achP at Tachievement onlayer overlay
         $ achievements.append(Lettre_P)
@@ -769,7 +771,7 @@ label start:
 
     label PossibiliteApprendreJUNQ:
     b "Le sort que je vais t’apprendre se dit JUNQ"
-    #oiseau signe pas JUNQ??
+    $ renpy.movie_cutscene("oiseau_JUNQ_LSF.webm")
     if achJ==0:
         show achJ at Tachievement onlayer overlay
         $ achievements.append(Lettre_J)
@@ -788,7 +790,7 @@ label start:
     
     label PossibiliteApprendreGREX:
     b "Le sort que je vais t'apprendre se dit GREX"
-    #oiseau signe pas GREX??
+    $ renpy.movie_cutscene("oiseau_GREX_LSF.webm")
     if achX==0:
         show achX at Tachievement onlayer overlay
         $ achievements.append(Lettre_X)
@@ -846,16 +848,15 @@ label start:
         "Rooh, même les enfants-fées pleurent tout le temps?":
             jump bonbon
     label bonbon:
-    $ renpy.movie_cutscene("Videos/enfant_bonbon.webm")
+    $ renpy.movie_cutscene("enfant_bonbon.webm")
     pp "..."
-    $ renpy.movie_cutscene("Videos/enfant_Bonbon_LSF.webm")
+    $ renpy.movie_cutscene("enfant_Bonbon_LSF.webm")
     if achB==0:
         show achB at Tachievement onlayer overlay
         $ achievements.append(Lettre_B)
         $ achB +=1
     $ dico.append(B)
-    #L’enfant pointe le doigt vers l’arbre et tend un sac de bonbons vides
-    #Le joueur peut monter dans l’arbre
+    show sacFiole at Montrer
     jump MinijeuBonbons
 
     label ObtenuBonbons:
@@ -863,11 +864,11 @@ label start:
         "Rendre les bonbons":
             $ gentillesse += 3
             $inventaire.append(Sucette)
-            $ renpy.movie_cutscene("Videos/enfant_merci.webm")
+            $ renpy.movie_cutscene("enfant_merci.webm")
             jump ArbreABonbons
         "Garder les bonbons":
             $ gentillesse -= 1
-            $ renpy.movie_cutscene("Videos/enfant_mechant.webm")
+            $ renpy.movie_cutscene("enfant_mechant.webm")
             jump ArbreABonbons
 
     label MinijeuBonbons:
@@ -908,9 +909,9 @@ label start:
     play music "<loop 0.0>/audio/Bibliotheque.mp3"
     #
     if avancement[5]=="null":
-        #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
-        #Le bibliothécaire tend un bout de papier avec trois références bibliographiques dessus et indique la bibliothèque
-        $ renpy.movie_cutscene("Videos/bibliothecaire_amene_LSF.webm")
+        #Mettre bibliothecaire
+        show indication at Montrer
+        $ renpy.movie_cutscene("bibliothecaire_amene_LSF.webm")
         jump MinijeuBibliotheque
     elif avancement[5]=="ObtenuReference":
         jump ObtenuReference
@@ -1093,7 +1094,7 @@ label start:
 
     
     label ObtenuReference:
-    $ renpy.movie_cutscene("Videos/bibliothecaire_merci.webm")
+    $ renpy.movie_cutscene("bibliothecaire_merci.webm")
     if achBIBLIOTHEQUE==0:
         show achBIBLIOTHEQUE at Tachievement onlayer overlay
         $ achievements.append(Lettre_BIBLIOTHEQUE)
@@ -1117,8 +1118,6 @@ label start:
     show screen FondDuLacLink with slowDissolve
     jump WaitingScreen
     #
-    #on trouve une porte sculptée dans le corail.
-    jump Cuisine
 #############################################################################################################################
     label Cuisine:
     #IntroLabel
