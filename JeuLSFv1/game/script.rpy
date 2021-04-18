@@ -12,6 +12,7 @@ label start:
     play music "<loop 0.0>/audio/Cuisine.mp3"
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     
     label Perdu1:
@@ -107,6 +108,8 @@ label start:
     #IntroLabel
     if avancement[0]=="null":
         jump ClairiereDOliveauIntro
+    stop music
+    play music "<loop 0.0>/audio/Oliveau.mp3"
     $ minimap.append(ClairiereDOliveau)
     scene ClairiereDOliveau at sizeBackground with slowDissolve
     show screen ClairiereDOliveauLink with slowDissolve
@@ -114,6 +117,8 @@ label start:
     #
 
     label Oliveau:
+    stop music
+    play music "<loop 0.0>/audio/Cuisine.mp3"
     $ achEnfantIgnorant += 1
     if achEnfantIgnorant==10:
         show achEnfantIgnorant at Tachievement onlayer overlay
@@ -147,6 +152,8 @@ label start:
         nom = nom.strip() or "Anonyme"
     o "Bienvenue dans cette forêt pas tout à fait ordinaire [nom], Je me fait appeler Oliveau"
     $ renpy.movie_cutscene("Videos/oliveau_oliveau_LSF.webm")
+    stop music
+    play music "<loop 0.0>/audio/Oliveau.mp3"
     if achOLIVEAU==0:
         show achOLIVEAU at Tachievement onlayer overlay
         $ achievements.append(Lettre_OLIVEAU)
@@ -212,7 +219,7 @@ label start:
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
     jump ClairiereDOliveau
-
+   
     label R24:
     python:
         lettre = renpy.input("Laquelle?")
@@ -322,6 +329,8 @@ label start:
     
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
     $ minimap.append(PorteDuRoyaumeDesFees)
     scene PorteDuRoyaumeDesFees at sizeBackground with slowDissolve
@@ -332,6 +341,8 @@ label start:
     jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
+    stop music
+    play music "<loop 0.0>/audio/Foret.mp3"
     #IntroLabel
     scene LieuDuVol at sizeBackground with slowDissolve
     show screen LieuDuVolLink with slowDissolve
@@ -374,6 +385,8 @@ label start:
         jump WaitingScreen
 
     label miniJeuPoursuite:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     scene LieuDuVol at sizeBackground with slowDissolve
 
     pp "Oh ! Qu'est ce que c'est ?"
@@ -419,6 +432,8 @@ label start:
         jump JeuPapier
 #############################################################################################################################
     label Lac:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
     $ minimap.append(Lac)
     scene Lac at sizeBackground with slowDissolve
@@ -429,6 +444,8 @@ label start:
     #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
     $ minimap.append(NidDeLOiseau)
     scene NidDeLOiseau at sizeBackground with slowDissolve
@@ -436,6 +453,8 @@ label start:
     jump WaitingScreen
     #
     label Bird:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     menu:
         "Caresser":
             jump R31
@@ -536,6 +555,8 @@ label start:
     jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel Sans lierre
     if falaiseLierre ==0:
         $ PossibiliteDOY=1
@@ -550,6 +571,8 @@ label start:
         jump WaitingScreen
     #
     label DessusDeLaFalaise:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     scene DessusDeLaFalaise at sizeBackground with slowDissolve
     if avancement[2]=="null":
         $ renpy.movie_cutscene("Videos/alchimiste_besoin.webm")
@@ -628,6 +651,8 @@ label start:
    
 #############################################################################################################################
     label DansLesAirs:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
     scene DansLesAirs at sizeBackground with slowDissolve
     show screen DansLesAirsLink with slowDissolve
@@ -744,6 +769,8 @@ label start:
     jump Labyrinthe
 #############################################################################################################################
     label Gouffre:
+    stop music
+    play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
     $ minimap.append(Gouffre)
     scene Gouffre at sizeBackground with slowDissolve
@@ -837,6 +864,8 @@ label start:
     $ minimap.append(Bibliotheque)
     scene Bibliotheque at sizeBackground with slowDissolve
     show screen BibliothequeLink with slowDissolve
+    stop music
+    play music "<loop 0.0>/audio/Bibliotheque.mp3"
     #
     if avancement[5]=="null":
         #Une fée bibliothécaire qui semble avoir des milliers d’années est assise derrière un immense bureau dans la bibliothèque
@@ -1067,6 +1096,8 @@ label start:
     $ minimap.append(Cuisine)
     scene Cuisine at sizeBackground with slowDissolve
     show screen CuisineLink with slowDissolve
+    stop music
+    play music "<loop 0.0>/audio/Cuisine.mp3"
     jump WaitingScreen
     #
     #Cuisinière: 2 tomates
@@ -1104,6 +1135,8 @@ label start:
     scene gallerie porte at sizeBackground with slowDissolve
     "Vous arrivez au labyrinthe."
     call screen porte_gallerie with slowDissolve
+    stop music
+    play music "<loop 0.0>/audio/Labyrinthe.mp3"
 
     label transition_lab:                               # transition entre 2 salles
         $ position_laby += 1
@@ -1176,6 +1209,8 @@ label start:
         jump RoyaumeDesFees
 #############################################################################################################################
     label RoyaumeDesFees:
+    stop music
+    play music "<loop 0.0>/audio/Denouement.mp3"
     if achNiveau1==0:
         show achNiveau1 at Tachievement onlayer overlay
         $ achievements.append(Histoire_Niveau1)
