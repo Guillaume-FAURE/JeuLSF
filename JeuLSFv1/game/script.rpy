@@ -1146,6 +1146,97 @@ label start:
     $ avancement[0]="BesoinApprendreCompter"
 
     #mini-jeu
+    label PlanDeTravail:
+        scene décor_cuisine
+        with dissolve
+
+        pause(1.0)
+        # pour rouge:#711616
+        show cuisine with dissolve
+
+        pause(2.5)
+
+        hide cuisine with dissolve
+
+        scene décor_cuisine with dissolve
+
+        "Ce mini-jeu est en deux parties: la préparation et la cuisson du gateau."
+        "La préparation consiste simplement à mettre les bon ingrédients au bon nombre dans le chaudron."
+        "La cuisson est un petit jeu de rythme ou il vous faut toucher 10 flammes pour cuire le gateau."
+        jump kitch
+
+    label kitch:
+        scene décor_cuisine with dissolve
+        $ gat = Gateau()
+        $ choix_sirop = 0
+        #n= [n_oeufs*5, n_farine, n_levure, n_beurre, n_lait]
+        "J'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
+        "Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
+
+        scene fond_minijeu_cuisine
+        with dissolve
+
+        call screen ingred
+
+    label cuisson:
+        scene fond_minijeu_cuisine with dissolve
+        show barre_flamme at pos_flamme
+        show screen timeup_cuisson
+        show screen le_feu_cuisson
+        show screen marmite_cuisson
+        python:
+            hits = 0
+            misses = 0
+            t = time.time()
+            manager = SpriteManager(update=sprites_update, event=sprites_event)
+            sprite = "flamme.png"
+            targets = set(1000+i for i in xrange(-30, 30))
+            sprites = []
+            td = 0
+            for i in xrange(100):
+                td += renpy.random.random() + 0.5
+                sprites.append(Four("flamme.png", 15, td, 50))
+            renpy.show_screen("show_vars")
+            renpy.show("_", what=manager, zorder=1)
+            while True:
+                result = ui.interact()
+
+    label cuire_gateau:
+        scene fond_minijeu_cuisine with dissolve
+        call screen cuisinefour with dissolve
+
+    label ingredients_gateau:
+        scene décor_cuisine with dissolve
+        "J'ai dis que j'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
+        "Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
+        scene fond_minijeu_cuisine with dissolve
+        call screen ingred with dissolve
+
+
+
+    label echec_jeu_four:
+        scene décor_cuisine
+        with dissolve
+
+        "Ce n'est pas ce que j'ai demandé!"
+        "Tu vas devoir recommencer!"
+
+        jump kitch
+
+    label fin_minijeu_cuisine:
+
+        scene décor_cuisine with dissolve
+        show gateau at right
+        if choix_sirop == 1:
+            "Merci d'avoir mis du sirop du rose!"
+            "Tu gagne 2 points de gentillesse!"
+            $ gentillesse += 2
+        elif choix_sirop == 2:
+            "Tu veux m'empoisonner avec l'arsenic!!"
+            "Je te retire 3 points de gentillesse!"
+            $ gentillesse -= 3
+
+    "Merci beaucoup, tu peux continuer"
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
     #le joueur repart avec une part de gateau
