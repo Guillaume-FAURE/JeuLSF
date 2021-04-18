@@ -258,7 +258,7 @@ label start:
         "J’ai rencontré une fée alchimiste et j’ai récupéré une potion. Que faire maintenant?":
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin."
             o "Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
-    #Utilisation du sifflet
+    show sifflet at Tinventaire
     jump ClairiereDOliveau
 
     label ApprisSort:
@@ -278,7 +278,7 @@ label start:
             jump R24
         "J’ai rencontré un enfant fée et j’ai récupéré des sucreries. Que faire maintenant?":
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
-    #Utilisation du sifflet
+    show sifflet at Tinventaire
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
@@ -289,7 +289,7 @@ label start:
             jump R24
         "J’ai rencontré la fée bibliothécaire et j’ai récupéré une boule de cristal. Que faire maintenant?":
             o "Il me semble que l’oiseau use d’un objet particulier en cas de besoin. Tu as appris de nouvelles lettres n’est-ce pas? Appelle-le donc!"
-    #Utilisation du sifflet
+    show sifflet at Tinventaire
     jump ClairiereDOliveau
 
     label BesoinApprendreCompter:
@@ -298,7 +298,26 @@ label start:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
             jump R24
         "Peux-tu m’apprendre à compter?":
-            #incrustation video chiffre
+            $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_2_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_3_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_4_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_5_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_6_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_7_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_8_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_9_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_10_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_11_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_12_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_13_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_14_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_15_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_16_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_17_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_18_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_19_LSF.webm")
+            $ renpy.movie_cutscene("Videos/oliveau_20_LSF.webm")
             python:
                 dico.append(Zero)
                 dico.append(Un)
@@ -493,7 +512,6 @@ label start:
     b "Et dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     $ renpy.movie_cutscene("Videos/oiseau_DOY_LSF.webm")
-    #Du lierre pousse autour des branches des arbres
     if achD==0:
             show achD at Tachievement onlayer overlay
             $ achievements.append(Lettre_D)
@@ -508,7 +526,6 @@ label start:
         $ achDOY +=1
     jump Sifflet
     label R33:
-    #Video Oiseau LSF: Rend la moi!
     menu:
         "Rendre la plume à l'oiseau":
             b "Pour ta bonté, je vais t’apprendre un sort." 
@@ -657,8 +674,8 @@ label start:
         jump jeuFiole_lancement
 
     label jeuFiole_fini:
-        #Fee indique un sac rempli de fiole
-        #Il reste deux fioles “N” et “M”, la fée pointe la fiole “M” et signe le M puis pointe la fiole “N” et signe le “N” 
+        $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
+        $ renpy.movie_cutscene("Videos/oliveau_1_LSF.webm")
         if achMN==0:
             show achMN at Tachievement onlayer overlay
             $ achievements.append(Lettre_MN)
