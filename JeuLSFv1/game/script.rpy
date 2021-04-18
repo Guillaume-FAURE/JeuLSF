@@ -7,14 +7,11 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    $ magie.append(DOY)
-    jump Falaise
-    play music "<loop 0.0>/audio/Cuisine.mp3"
+    jump OliveauSeau
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
-    
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
     "Pour passer les dialogues, cliquez sur l'écran ou appuyer sur entrée."
@@ -96,8 +93,8 @@ label start:
             jump OliveauSeau
     
     label OliveauSeau:
-    #Oliveau te tend un sceau et te montre le lac, tu vas chercher de l’eau et tu passes niveau 1.
-    #$ inventaire.append(seau)
+    $ inventaire.append(seau)
+    show seau at Tinventaire onlayer overlay
     "Vous allez chercher de l'eau pour l'arbre qui avait de toute évidence très soif"
     $ avancement[0]="niveau1"
     jump Niveau1
@@ -143,7 +140,8 @@ label start:
     elif avancement[0]== "ObtenuBouleDeCristal":
         jump ObtenuBouleDeCristal
     elif avancement[0]== "BesoinApprendreCompter":
-        jump BesoinApprendreCompter    
+        jump BesoinApprendreCompter
+    elif avancement[0]== "SaitCompter"
     
     label IntroOliveau:
     o "Quel est ton nom?"
@@ -215,9 +213,9 @@ label start:
     label R23:
     o "Il te faut demander l’aide de la Reine des fées pour rentrer dans ton monde. Tu la trouveras facilement."
     pp "Où est-elle?"
-    #Oliveau t'indique la direction
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
+    show LinkHoverE at indication
     jump ClairiereDOliveau
    
     label R24:
@@ -312,20 +310,41 @@ label start:
                 dico.append(Sept)
                 dico.append(Huit)
                 dico.append(Neuf)
+                dico.append(Dix)
+                dico.append(Onze)
+                dico.append(Douze)
+                dico.append(Treize)
+                dico.append(Quatorze)
+                dico.append(Quinze)
+                dico.append(Seize)
+                dico.append(DixSept)
+                dico.append(DixHuit)
+                dico.append(DixNeuf)
+                dico.append(Vingt)
             if achCompter==0:
                 show achCompter at Tachievement onlayer overlay
                 $ achievements.append(Histoire_Compter)
                 $ achCompter +=1
-            o "Y a-t-il un chiffre que tu n’as pas compris?"
+            $ avancement[0]="SaitCompter"
+            jump Oliveau
+    
+    label SaitCompter:
+    o "Tu as besoin de quelque chose ?"
+    menu:
+        "Parmi les lettres et les chiffres que l'on m'a signée il y en a uns que j'ai mal compris...":
             python:
-                chiffre = renpy.input("Laquelle? (merci d'écrire la lettre en majuscule)")
-                chiffre = chiffre.strip() or "?"
+                lettre = renpy.input("Lequel? (merci d'écrire la lettre en majuscule)")
+                lettre = chiffre.strip() or "?"
             $ i=0
             while i < (len(dico)):
                 if lettre == dico[i].name:
-                    #oliveau refait le chiffre
-                    jump PlanDeTravail
-    jump ClairiereDOliveau
+                    $ renpy.movie_cutscene(i.video)
+            jump ClairiereDOliveau
+        "Je n'ai besoin de rien":
+            jump ClairiereDOliveau
+        
+            
+    
     
 #############################################################################################################################
     label PorteDuRoyaumeDesFees:
@@ -435,13 +454,12 @@ label start:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
+    $ PossibiliteJUNQ=1
     $ minimap.append(Lac)
     scene Lac at sizeBackground with slowDissolve
     show screen LacLink with slowDissolve
     jump WaitingScreen
     #
-    #Un bateau est posé sur les rives du lac. En cliquant dessus on arrive sur une petite ile au milieu du lac avec un immense arbre dessus.
-    #imagemap de bateau pour aller au nid de l'oiseau
 #############################################################################################################################
     label NidDeLOiseau:
     stop music
@@ -573,7 +591,9 @@ label start:
     label DessusDeLaFalaise:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
-    scene DessusDeLaFalaise at sizeBackground with slowDissolve
+    scene DessusDeLaFalaise at sizeBackground with slowDissolve*
+
+    label alchimiste:
     if avancement[2]=="null":
         $ renpy.movie_cutscene("Videos/alchimiste_besoin.webm")
         pp "{k=4}.....{/k}"
@@ -789,13 +809,13 @@ label start:
     show screen ArbreABonbonsLink with slowDissolve
     jump WaitingScreen
     #
+    label enfant:
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
         jump ObtenuBonbons
     
     label EnfantQuiPleure:
-    #un enfant qui pleure
     menu:
         "Que se passe t-il jeune fée ?":
             $ gentillesse += 1
@@ -1069,16 +1089,6 @@ label start:
             $ gentillesse -= 1
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
     jump WaitingScreen
-#############################################################################################################################
-    label SurLac:
-    #IntroLabel
-    $ PossibiliteJUNQ=1
-    $ minimap.append(SurLac)
-    scene SurLac at sizeBackground with slowDissolve
-    show screen SurLacLink with slowDissolve
-    jump WaitingScreen
-    #
-    jump FondDuLac
 #############################################################################################################################
     label FondDuLac:
     #IntroLabel

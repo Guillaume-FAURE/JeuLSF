@@ -82,3 +82,14 @@ transform custom_zoom3:
 
 transform custom_zoom2:
     zoom 0.090
+
+transform indication1:
+    xalign 0.9
+    yalign 0.1
+    pause 1
+    size (0,0)
+    pause 1
+    size (50,50)
+    repeat 5
+
+    
