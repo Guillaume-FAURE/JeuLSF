@@ -32,6 +32,7 @@ transform test:
     linear 0.5 yalign 0.5
 
 transform Tinventaire:
+    size(400,400)
     xalign 0.5 yalign 0.5
     zoom 0.0
     linear 0.5 zoom 1.0
@@ -40,6 +41,7 @@ transform Tinventaire:
     linear 0.5 zoom 0.0
 
 transform Tachievement:
+    size(288,100)
     xalign 0.5 yalign 0.5
     zoom 0.0
     linear 0.6 zoom 2.5
