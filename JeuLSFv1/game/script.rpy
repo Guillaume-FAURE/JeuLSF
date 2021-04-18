@@ -1181,29 +1181,29 @@ label start:
         call screen porte_gallerie with dissolve
 
     label video_fantome_deux:
-        "porte [chem_laby.n_laby]"
-        #if chem_laby.n_laby == 1:
-        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
-        #else:
-        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
+        #"porte [chem_laby.n_laby]"
+        if chem_laby.n_laby == 1:
+            $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
+        else:
+            $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
         call screen carrefour_deux with dissolve
 
     label video_fantome_trois:
-        "porte [chem_laby.n_laby]"
-        #if chem_laby.n_laby == 1:
-        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
-        #elif chem_laby.n_laby == 2:
-        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
-        #else:
-        #    $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.c_laby]])
+        #"porte [chem_laby.n_laby]"
+        if chem_laby.n_laby == 1:
+            $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.a_laby]])
+        elif chem_laby.n_laby == 2:
+            $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.b_laby]])
+        else:
+            $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[chem_laby.c_laby]])
         call screen carrefour_trois with dissolve
 
     label video_fantome_porte:
-        $ renpy.say(None,cod_laby.sum_code)
-        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.a_laby]])
-        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.b_laby]])
-        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.c_laby]])
-        #$ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.d_laby]])
+        #$ renpy.say(None,cod_laby.sum_code)
+        $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.a_laby]])
+        $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.b_laby]])
+        $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.c_laby]])
+        $ renpy.movie_cutscene(dico_lab_vid[Choix_laby[cod_laby.d_laby]])
         call screen porte_gallerie with dissolve
 
     label echec_lab:
