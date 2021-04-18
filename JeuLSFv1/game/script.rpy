@@ -1320,13 +1320,14 @@ label start:
             c"Tu veux m'empoisonner avec l'arsenic!!"
             c"Je te retire 3 points de gentillesse!"
             $ gentillesse -= 3
+        jump Cuisine
 
     c"Merci beaucoup, tu peux continuer"
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
     #le joueur repart avec une part de gateau
     $ avancement[3]="PossibiliteApprendreGREX"
-    jump WaitingScreen
+    jump Cuisine
 #############################################################################################################################
     label Labyrinthe:
     $ PossibiliteKAME=0
