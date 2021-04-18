@@ -287,7 +287,8 @@ init python:
 # --- FIN PYTHON JEU FIOLE ---
 
 #Labyrinthe python
-    dico_lab_vid ={"1":".avi","2":".avi","3":".avi","4":".avi","5":".avi","6":".avi","7":".avi","8":".avi","9":".avi","A":"fantome_A.webm","B":"fantome_B.webm",
+    dico_lab_vid ={"1":"fantome_1.webm","2":"fantome_2.webm","3":"fantome_3.webm","4":"fantome_4.webm","5":"fantome_5.webm","6":"fantome_6.webm",
+    "7":"fantome_7.webm","8":"fantome_8.webm","9":"fantome_9.webm","A":"fantome_A.webm","B":"fantome_B.webm",
     "C":"fantome_C.webm","D":"fantome_D.webm","E":"fantome_E.webm","F":"fantome_F.webm","G":"fantome_G.webm","H":"fantome_H.webm","I":"fantome_I.webm",
     "J":"fantome_J.webm","K":"fantome_K.webm","L":"fantome_L.webm","M":"fantome_M.webm","N":"fantome_N.webm","O":"fantome_O.webm","P":"fantome_P.webm",
     "Q":"fantome_Q.webm","R":"fantome_R.webm","S":"fantome_S.webm","T":"fantome_T.webm","U":"fantome_U.webm","V":"fantome_V.webm",
