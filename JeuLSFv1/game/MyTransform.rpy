@@ -12,6 +12,8 @@ transform sizeAchievement:
     size(278,100)
 transform sizeObjet:
     size(200,200)
+transform sizeFermer:
+    size(30,30)
 
 transform position(x,y):
     xpos x

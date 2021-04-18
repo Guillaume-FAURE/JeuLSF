@@ -26,19 +26,19 @@ screen menu:
         at sizeButton
         xalign 0.98
         yalign 0.15
-        action If ((mapshow == 0), true = [SetVariable("mapshow", mapshow + 1), Show ("minimap")], false =[Hide ("minimap"), SetVariable("mapshow", mapshow - 1)])
+        action If ((mapshow == 0), true = [SetVariable("mapshow", mapshow + 1), Show ("minimap")], false =[Hide ("minimap"), SetVariable("mapshow", 0)])
     imagebutton:
         idle "achievementShow.png"
         at sizeButton
         xalign 0.98
         yalign 0.85
-        action If ((achievementshow == 0), true = [SetVariable("achievementshow", achievementshow + 1), Show ("achievements")], false =[Hide ("achievements"), SetVariable("achievementshow", achievementshow - 1)])
+        action If ((achievementshow == 0), true = [SetVariable("achievementshow", achievementshow + 1), Show ("achievements")], false =[Hide ("achievements"), SetVariable("achievementshow", 0)])
     imagebutton:
         idle "inventaireShow.png"
         at sizeButton
         xalign 0.98
         yalign 0.30
-        action If ((inventaireshow == 0), true = [SetVariable("inventaireshow", inventaireshow + 1), Show ("inventaire")], false =[Hide ("inventaire"), SetVariable("inventaireshow", inventaireshow - 1)])
+        action If ((inventaireshow == 0), true = [SetVariable("inventaireshow", inventaireshow + 1), Show ("inventaire")], false =[Hide ("inventaire"), SetVariable("inventaireshow", 0)])
 
 screen minimap:
     $ s = -1
@@ -99,6 +99,66 @@ screen inventaire:
             $ y+=300
 
 ###Sorts
+screen KAMEPasPossible:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        text "{size=48}{color=#fd0a0a}Impossible de voler si on n'est pas en extérieur!{/color}{/size}"
+    imagebutton:
+        xalign 0.97
+        yalign 0.45
+        idle "fermeridle.png"
+        hover "fermerhover.png"
+        at sizeFermer
+        action (Hide("KAMEPasPossible"))
+screen DOYPasPossible:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        text "{size=48}{color=#fd0a0a}Faire pousser des plantes ne servirait à rien ici!{/color}{/size}"
+    imagebutton:
+        xalign 0.96
+        yalign 0.45
+        idle "fermeridle.png"
+        hover "fermerhover.png"
+        at sizeFermer
+        action (Hide("DOYPasPossible"))
+screen PIFPasPossible:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        text "{size=48}{color=#fd0a0a}Il n'y a rien à casser ici!{/color}{/size}"
+    imagebutton:
+        xalign 0.73
+        yalign 0.45
+        idle "fermeridle.png"
+        hover "fermerhover.png"
+        at sizeFermer
+        action (Hide("PIFPasPossible"))
+screen JUNQPasPossible:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        text "{size=48}{color=#fd0a0a}Il n'y a pas d'eau!{/color}{/size}"
+    imagebutton:
+        xalign 0.68
+        yalign 0.45
+        idle "fermeridle.png"
+        hover "fermerhover.png"
+        at sizeFermer
+        action (Hide("JUNQPasPossible"))
+screen GREXPasPossible:
+    frame:
+        xalign 0.5
+        yalign 0.5
+        text "{size=48}{color=#fd0a0a}Creuser ne servirait à rien ici!{/color}{/size}"
+    imagebutton:
+        xalign 0.79
+        yalign 0.45
+        idle "fermeridle.png"
+        hover "fermerhover.png"
+        at sizeFermer
+        action (Hide("GREXPasPossible"))
 
 screen KAME:
     imagebutton:
@@ -329,28 +389,35 @@ screen ArriveForetFeesLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action[Jump("ClairiereDOliveau")]
+                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",0),Jump("ClairiereDOliveau")], false=[Show("KAMEPasPossible")])
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.16
                     yalign 0.01
-                    action[Jump("ClairiereDOliveau")]
+                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),Jump("ClairiereDOliveau")], false=[Show("DOYPasPossible")])
             elif i.name=="PIF":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.24
                     yalign 0.01
-                    action[Jump("ClairiereDOliveau")]
+                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),Jump("ClairiereDOliveau")], false=[Show("PIFPasPossible")])
             elif i.name=="JUNQ":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.32
                     yalign 0.01
-                    action[Jump("ClairiereDOliveau")]
+                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("ClairiereDOliveau")], false=[Show("JUNQPasPossible")])
+            elif i.name=="GREX":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.40
+                    yalign 0.01
+                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("ClairiereDOliveau")], false=[Show("GREXPasPossible")])
         
 screen magie:
     if achMagie>=1:

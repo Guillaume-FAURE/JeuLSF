@@ -90,7 +90,7 @@ init python:
     achCHWYZ=0
     achAlphabet=0
     achCompter=0
-    achMagie=0
+    achMagie=1
     achNiveau1=0
     achGrosseBosse=0
     achTueurdOiseau=0
@@ -101,6 +101,11 @@ init python:
     achSOY=0
     mapshow=0
     inventaireshow = 0
+    PossibiliteKAME =0
+    PossibiliteDOY =0
+    PossibilitePIF=0
+    PossibiliteJUNQ=0
+    PossibiliteGREX=0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","ArriveForetFees.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","Gouffre.jpg", 30, 52)

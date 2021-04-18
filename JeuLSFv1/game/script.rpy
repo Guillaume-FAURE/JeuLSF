@@ -1,14 +1,21 @@
 #Ce code s'exécute avec les autres fichiers du même dossier et avec le logiciel Ren'Py.
 
 label start:
+    #style.menu_choice.color = "#04671c"
+    #style.menu_choice.hover_color = "#0bcd3a"
     show screen menuShow
 #############################################################################################################################
 #############################################################################################################################    
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    jump ArriveForetFees
+    $ magie.append(KAME)
+    $ magie.append(DOY)
+    $ magie.append(PIF)
+    $ magie.append(JUNQ)
+    $ magie.append(GREX)
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
+    jump ArriveForetFees
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
     #play music "audio/Mushishi.mp3"
@@ -50,15 +57,16 @@ label start:
     label OliveauLSF:
     scene ClairiereDOliveau at sizeBackground with slowDissolve
     #Inclure video de Oliveau qui parle en LSF (EAU)
+    $ renpy.movie_cutscene("Videos/oliveau_eau.webm")
     "Qu’a-t-il dit?"
     menu:
         "Eau":
             jump TransitionNiveau3
-        "Choix2":
+        "Aidez-moi":
             jump OliveauLSFL
-        "Choix3":
+        "Manger":
             jump OliveauLSFL
-        "Choix4":
+        "Bonjour":
             jump OliveauLSFL
     
     label TransitionNiveau3:
@@ -71,15 +79,16 @@ label start:
 
     label OliveauLSFL:
     #Inclure video de Oliveau E-A-U
-        "Qu’a-t-il dit?"
+    $ renpy.movie_cutscene("Videos/oliveau_eau_LSF.webm")
+    "Qu’a-t-il dit?"
     menu:
-        "Eau":
+        "Bonjour":
             jump TransitionNiveau2
-        "Choix2":
+        "Aidez-moi":
             jump OliveauSeau
-        "Choix3":
+        "Eau":
             jump OliveauSeau
-        "Choix4":
+        "Manger":
             jump OliveauSeau
 
     label TransitionNiveau2:
@@ -155,7 +164,6 @@ label start:
         dico.append(E)
         dico.append(A)
         dico.append(U)
-    #Succes Oliveau debloque
     label Q1:
     menu:
         "Ok, cool. C’est un peu nul comme nom non? Ta mère ne manquait pas d’imagination...":
