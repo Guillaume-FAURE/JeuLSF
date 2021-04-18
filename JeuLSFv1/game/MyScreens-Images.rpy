@@ -453,13 +453,6 @@ screen GouffreLink:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
-        xalign 0.04
-        yalign 0.4
-        action [Hide ("GouffreLink"), Jump ("ArbreABonbons")]
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
         xalign 0.96
         yalign 0.6
         action [Hide ("GouffreLink"), Jump ("ArriveForetFees")]
