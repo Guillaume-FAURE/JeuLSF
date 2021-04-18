@@ -15,8 +15,9 @@ init python:
             self.y = y
 #Classe Mot pour les mots appris qui sont dans le dictionnaire
     class Mot:
-        def __init__(self, name):
+        def __init__(self, name, video):
             self.name = name
+            self.video = video
 
 #Classe Objet pour les objets qui sont dans l'inventaire
     class Objet:
@@ -150,22 +151,32 @@ init python:
     X = Mot("X")
     Y = Mot("Y")
     Z = Mot("Z")
-    Zero = Mot("0")
-    Un = Mot("1")
-    Deux = Mot("2")
-    Trois = Mot("3")
-    Quatre = Mot("4")
-    Cinq = Mot("5")
-    Six = Mot("6")
-    Sept = Mot("7")
-    Huit = Mot("8")
-    Neuf = Mot("9")
+    Un = Mot("1", "oliveau_1_LSF.webm")
+    Deux = Mot("2", "oliveau_2_LSF.webm")
+    Trois = Mot("3", "oliveau_3_LSF.webm")
+    Quatre = Mot("4", "oliveau_4_LSF.webm")
+    Cinq = Mot("5", "oliveau_5_LSF.webm")
+    Six = Mot("6", "oliveau_6_LSF.webm")
+    Sept = Mot("7", "oliveau_7_LSF.webm")
+    Huit = Mot("8", "oliveau_8_LSF.webm")
+    Neuf = Mot("9", "oliveau_9_LSF.webm")
+    Dix = Mot("10", "oliveau_10_LSF.webm")
+    Onze = Mot("11", "oliveau_11_LSF.webm")
+    Douze = Mot("12", "oliveau_12_LSF.webm")
+    Treize = Mot("13", "oliveau_13_LSF.webm")
+    Quatorze = Mot ("14", "oliveau_14_LSF.webm")
+    Quinze = Mot("15", "oliveau_15_LSF.webm")
+    Seize = Mot("16", "oliveau_16_LSF.webm")
+    DixSept = Mot("17", "oliveau_17_LSF.webm")
+    DixHuit = Mot ("18", "oliveau_18_LSF.webm")
+    DixNeuf = Mot("19", "oliveau_19_LSF.webm")
+    Vingt = Mot("20", "oliveau_20_LSF.webm")
 #Initialisation inventaire
-    Seau = Objet("Seau", "Salle2.png")
-    Sifflet = Objet("Sifflet", "Salle2.png")
-    LettreDeRemerciement = Objet("LettreDeRemerciement", "Salle2.png")
-    Sucette = Objet("Sucette", "Salle2.png")
-    BouleDeCristal = Objet("Boule de cristal", "Salle2.png")
+    Seau = Objet("Seau", "seau.png")
+    Sifflet = Objet("Sifflet", "sifflet.png")
+    LettreDeRemerciement = Objet("LettreDeRemerciement", "LettreDeRemerciement.png")
+    Sucette = Objet("Sucette", "sucette.png")
+    BouleDeCristal = Objet("Boule de cristal", "Boule_fantome.png")
 #Initialisation magie
     DOY = Magie("DOY", "doy.png")
     KAME = Magie("KAME", "kame.png")
