@@ -1295,8 +1295,8 @@ screen FalaiseLink:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
-        xalign 0.9
-        yalign 0.8
+        xalign 0.3
+        yalign 0.4
         action [Hide ("FalaiseLink"), Jump ("LieuDeVol")]
     if achMagie>=1:
         imagebutton:

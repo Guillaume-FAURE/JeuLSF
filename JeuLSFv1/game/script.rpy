@@ -7,7 +7,8 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    jump miniJeuFiole
+    $ magie.append(DOY)
+    jump Falaise
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -532,16 +533,16 @@ label start:
 #############################################################################################################################
     label Falaise:
     #IntroLabel Sans lierre
-    if falaiseLierre =0:
+    if falaiseLierre ==0:
         $ PossibiliteDOY=1
         $ minimap.append(Falaise)
         scene Falaise at sizeBackground with slowDissolve
-        show screen FalaiseAvecLierreLink with slowDissolve
+        show screen FalaiseLink with slowDissolve
         jump WaitingScreen
     #IntroLabel Avec lierre
-    elif falaiseLierre =1:
+    elif falaiseLierre ==1:
         scene FalaiseLierre at sizeBackground with slowDissolve
-        show screen FalaiseAvecLierreLink with slowDissolve
+        show screen FalaiseLink with slowDissolve
         jump WaitingScreen
     #
     label DessusDeLaFalaise:
