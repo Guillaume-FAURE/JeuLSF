@@ -1129,7 +1129,54 @@ label start:
     stop music
     play music "<loop 0.0>/audio/Cuisine.mp3"
     jump WaitingScreen
-    #
+    label Intro_cuisine:
+        "Vous appercevez une cuisinière. Elle semble vous demander quelque chose."
+        jump tomates
+    label tomates:
+        $ renpy.movie_cutscene("cuisine_2_tomates.webm")
+        $ n_tomates = renpy.input("Combien de tomates veut-elle?", length = 4)
+        if n_tomates == "2":
+            c"Merci!"
+            jump carottes
+        else:
+            c"Ce n'est pas ce que j'ai demandé!!"
+            $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            jump tomates
+    
+    label carottes:
+        $ renpy.movie_cutscene("cuisine_12_carottes.webm")
+        $ n_carottes = renpy.input("Combien de carottes veut-elle?", length = 4)
+        if n_carottes == "12":
+            c"Merci!"
+            jump asperges
+        else:
+            c"Ce n'est pas ce que j'ai demandé!!"
+            $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            jump carottes
+     
+    label asperges:
+        $ renpy.movie_cutscene("cuisine_10_asperges.webm")
+        $ n_asperges = renpy.input("Combien d'asperges veut-elle?", length = 4)
+        if n_asperges == "10":
+            c"Merci!"
+            jump poivrons
+        else:
+            c"Ce n'est pas ce que j'ai demandé!!"
+            $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            jump asperges
+    
+    label poivrons:
+        $ renpy.movie_cutscene("cuisine_16_poivrons.webm")
+        $ n_poivrons= renpy.input("Combien de poivrons veut-elle?", length = 4)
+        if n_tomates == "16":
+            c"Merci!"
+            "La fée semble vouloir votre aide pour faire un gateau."
+            jump PlanDeTravail
+        else:
+            c"Ce n'est pas ce que j'ai demandé!!"
+            $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            jump poivrons
+        
     #Cuisinière: 2 tomates
     #Le joueur peut donner les tomates à la cuisinière (en choisissant le nombre)
     #Cuisinière: 12 carottes
@@ -1171,9 +1218,26 @@ label start:
         scene décor_cuisine with dissolve
         $ gat = Gateau()
         $ choix_sirop = 0
-        #n= [n_oeufs*5, n_farine, n_levure, n_beurre, n_lait]
-        "J'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
-        "Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
+        $ n_oeuf = gat.n_ingr[0] - 1
+        $ n_farine = gat.n_ingr[1] - 1
+        $ n_levure = gat.n_ingr[2] - 1
+        $ n_beurre = gat.n_ingr[3] - 1
+        $ n_lait = gat.n_ingr[4] - 1
+        $ n_sucre = gat.n_ingr[5] -1
+        c"Je voudrais dans mon gateau ce nombre d'oeufs (par paquets de cinq):"
+        $ renpy.movie_cutscene(dico_cuis[n_oeuf])
+        c"Je voudrais dans mon gateau ce nombre de sachets de farine :"
+        $ renpy.movie_cutscene(dico_cuis[n_farine])
+        c"Je voudrais dans mon gateau ce nombre de sachets de levure :"
+        $ renpy.movie_cutscene(dico_cuis[n_levure])
+        c"Je voudrais dans mon gateau ce nombre de morceaux de beurre :"
+        $ renpy.movie_cutscene(dico_cuis[n_beurre])
+        c"Je voudrais dans mon gateau cette quantité de lait (en L):"
+        $ renpy.movie_cutscene(dico_cuis[n_lait])
+        c"Je voudrais dans mon gateau ce nombre de morceaux de sucre (par paquets de cinq):"
+        $ renpy.movie_cutscene(dico_cuis[n_sucre])
+        #c"J'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
+        c"Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
 
         scene fond_minijeu_cuisine
         with dissolve
@@ -1215,20 +1279,20 @@ label start:
         $ n_beurre = gat.n_ingr[3] - 1
         $ n_lait = gat.n_ingr[4] - 1
         $ n_sucre = gat.n_ingr[5] -1
-        "Je voudrais dans mon gateau ce nombre d'oeufs (par paquets de cinq):"
+        c"Je voudrais dans mon gateau ce nombre d'oeufs (par paquets de cinq):"
         $ renpy.movie_cutscene(dico_cuis[n_oeuf])
-        "Je voudrais dans mon gateau ce nombre de sachets de farine :"
+        c"Je voudrais dans mon gateau ce nombre de sachets de farine :"
         $ renpy.movie_cutscene(dico_cuis[n_farine])
-        "Je voudrais dans mon gateau ce nombre de sachets de levure :"
+        c"Je voudrais dans mon gateau ce nombre de sachets de levure :"
         $ renpy.movie_cutscene(dico_cuis[n_levure])
-        "Je voudrais dans mon gateau ce nombre de morceaux de beurre :"
+        c"Je voudrais dans mon gateau ce nombre de morceaux de beurre :"
         $ renpy.movie_cutscene(dico_cuis[n_beurre])
-        "Je voudrais dans mon gateau cette quantité de lait (en L):"
+        c"Je voudrais dans mon gateau cette quantité de lait (en L):"
         $ renpy.movie_cutscene(dico_cuis[n_lait])
-        "Je voudrais dans mon gateau ce nombre de morceaux de sucre (par paquets de cinq):"
+        c"Je voudrais dans mon gateau ce nombre de morceaux de sucre (par paquets de cinq):"
         $ renpy.movie_cutscene(dico_cuis[n_sucre])
-        # "J'ai dis que j'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
-        "Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
+        # c"J'ai dis que j'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
+        c"Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
         
         scene fond_minijeu_cuisine with dissolve
         call screen ingred with dissolve
@@ -1239,8 +1303,8 @@ label start:
         scene décor_cuisine
         with dissolve
 
-        "Ce n'est pas ce que j'ai demandé!"
-        "Tu vas devoir recommencer!"
+        c"Ce n'est pas ce que j'ai demandé!"
+        c"Tu vas devoir recommencer!"
 
         jump kitch
 
@@ -1249,20 +1313,21 @@ label start:
         scene décor_cuisine with dissolve
         show gateau at right
         if choix_sirop == 1:
-            "Merci d'avoir mis du sirop du rose!"
-            "Tu gagne 2 points de gentillesse!"
+            c"Merci d'avoir mis du sirop du rose!"
+            c"Tu gagne 2 points de gentillesse!"
             $ gentillesse += 2
         elif choix_sirop == 2:
-            "Tu veux m'empoisonner avec l'arsenic!!"
-            "Je te retire 3 points de gentillesse!"
+            c"Tu veux m'empoisonner avec l'arsenic!!"
+            c"Je te retire 3 points de gentillesse!"
             $ gentillesse -= 3
+        jump Cuisine
 
-    "Merci beaucoup, tu peux continuer"
+    c"Merci beaucoup, tu peux continuer"
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
     #le joueur repart avec une part de gateau
     $ avancement[3]="PossibiliteApprendreGREX"
-    jump WaitingScreen
+    jump Cuisine
 #############################################################################################################################
     label Labyrinthe:
     $ PossibiliteKAME=0
