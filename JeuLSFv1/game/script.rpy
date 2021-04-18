@@ -9,11 +9,6 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    $ magie.append(KAME)
-    $ magie.append(DOY)
-    $ magie.append(PIF)
-    $ magie.append(JUNQ)
-    $ magie.append(GREX)
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     jump ArriveForetFees
     label Perdu1:
@@ -495,6 +490,7 @@ label start:
     label Falaise:
     #IntroLabel Sans lierre
     if falaiseLierre =0:
+        $ PossibiliteDOY=1
         $ minimap.append(Falaise)
         scene Falaise at sizeBackground with slowDissolve
         show screen FalaiseAvecLierreLink with slowDissolve
@@ -505,7 +501,6 @@ label start:
         show screen FalaiseAvecLierreLink with slowDissolve
         jump WaitingScreen
     #
-    #Utilisation de DOY pour faire pousser du lierre
     label DessusDeLaFalaise:
     scene DessusDeLaFalaise at sizeBackground with slowDissolve
     if avancement[2]=="null":
@@ -630,6 +625,7 @@ label start:
     b "Ce sort, comme tu le vois, permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
     #L'oiseau part
     $ magie.append(KAME)
+    $ PossibiliteKAME=1
     if achKAME==0:
         show achKAME at Tachievement onlayer overlay
         $ achievements.append(Sort_KAME)
@@ -703,7 +699,7 @@ label start:
     show screen GouffreLink with slowDissolve
     jump WaitingScreen
     #
-    #Possibilite d'utiliser KAME.
+    $ PossibiliteKAME=2
     "On est dans un gouffre"
     "Vous avez traversé le gouffre en volant"
     jump WaitingScreen
@@ -763,15 +759,18 @@ label start:
 ############################################################################################################################
     label FondDuGouffre:
     #IntroLabel
+    $ PossibiliteGREX=1
+    if porteGouffre==0:
+        $ PossibilitePIF=1
     $ minimap.append(FondDuGouffre)
     scene FondDuGouffre at sizeBackground with slowDissolve
     show screen FondDuGouffreLink with slowDissolve
     jump WaitingScreen
     #
-    #Utilisation du sort PIF, porte se découvre
 ############################################################################################################################
     label Bibliotheque:
     #IntroLabel
+    $ PossibiliteKAME=0
     $ minimap.append(Bibliotheque)
     scene Bibliotheque at sizeBackground with slowDissolve
     show screen BibliothequeLink with slowDissolve
@@ -947,16 +946,17 @@ label start:
 #############################################################################################################################
     label SurLac:
     #IntroLabel
+    $ PossibiliteJUNQ=1
     $ minimap.append(SurLac)
     scene SurLac at sizeBackground with slowDissolve
     show screen SurLacLink with slowDissolve
     jump WaitingScreen
     #
-    #Utilisation JUNQ
     jump FondDuLac
 #############################################################################################################################
     label FondDuLac:
     #IntroLabel
+    $ PossibiliteKAME=0
     scene FondDuLac at sizeBackground with slowDissolve
     show screen FondDuLacLink with slowDissolve
     jump WaitingScreen
@@ -966,6 +966,7 @@ label start:
 #############################################################################################################################
     label Cuisine:
     #IntroLabel
+    $ PossibliteKAME=0
     $ minimap.append(Cuisine)
     scene Cuisine at sizeBackground with slowDissolve
     show screen CuisineLink with slowDissolve
@@ -986,21 +987,15 @@ label start:
     #Cuisinière: O-L-I-V-E-A-U
     #Si le joueur réussit le tout: on lance le mini-jeu
     $ avancement[0]="BesoinApprendreCompter"
-    jump ClairiereDOliveau
-#############################################################################################################################
-    label PlanDeTravail:
-    #IntroLabel
-    scene PlanDeTravail at sizeBackground with slowDissolve
-    show screen PlanDeTravailLink with slowDissolve
-    jump WaitingScreen
-    #
+
     #mini-jeu
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
     #le joueur repart avec une part de gateau
-    $ avancement[3]="PossibiliteApprendreGREX"
+    $ avancement[3]="PossibiliteApprendreGREX"    
 #############################################################################################################################
     label Labyrinthe:
+    $ PossibiliteKAME=0
     $ taille_labyrinthe= renpy.random.randint(5,10)    # nombre de salles du labyrinthe
     $ position_laby = 0                               # a quelle salle on en est
     $ cod_laby = Code_laby()

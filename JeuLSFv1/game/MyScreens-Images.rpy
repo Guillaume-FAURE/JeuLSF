@@ -306,8 +306,6 @@ image Cuisine:
     "images/Background/Cuisine.png"
 image NidDeLOiseau:
     "images/Background/NidDeLOiseau.jpg"
-image Cuisine:
-    "images/Background/Cuisine.png"
 image PorteDuRoyaumeDesFees:
     "images/Background/PorteDuRoyaumeDesFees.png"
 image LieuDuVol:
@@ -389,35 +387,37 @@ screen ArriveForetFeesLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",0),Jump("ClairiereDOliveau")], false=[Show("KAMEPasPossible")])
+                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
+                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
+                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.16
                     yalign 0.01
-                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),Jump("ClairiereDOliveau")], false=[Show("DOYPasPossible")])
+                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),SetVariable("falaiseLierre",1),Jump("Falaise")], false=[Show("DOYPasPossible")])
             elif i.name=="PIF":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.24
                     yalign 0.01
-                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),Jump("ClairiereDOliveau")], false=[Show("PIFPasPossible")])
+                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),SetVariable("porteGouffre",1),Jump("FondDuGouffre")], false=[Show("PIFPasPossible")])
             elif i.name=="JUNQ":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.32
                     yalign 0.01
-                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("ClairiereDOliveau")], false=[Show("JUNQPasPossible")])
+                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
             elif i.name=="GREX":
                 imagebutton:
                     idle i.image
                     at sizeButton
                     xalign 0.40
                     yalign 0.01
-                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("ClairiereDOliveau")], false=[Show("GREXPasPossible")])
+                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
         
 screen magie:
     if achMagie>=1:
@@ -524,21 +524,15 @@ screen FondDuGouffreLink:
         at sizeButton
         xalign 0.8
         yalign 0.8
-        action [Hide ("FondDuGouffreLink"), Jump ("Gouffre")]    
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.04
-        yalign 0.4
-        action [Hide ("FondDuGouffreLink"), Jump ("Bibliotheque")]
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.3
-        yalign 0.1
-        action [Hide ("FondDuGouffreLink"), Jump ("Labyrinthe")]
+        action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Gouffre")]
+    if porteGouffre==1: 
+        imagebutton:
+            idle "LinkIdleE.png"
+            hover "LinkHoverE.png"
+            at sizeButton
+            xalign 0.04
+            yalign 0.4
+            action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Bibliotheque")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -582,7 +576,7 @@ screen BibliothequeLink:
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("BibliothequeLink"), Jump ("FondDuGouffre")]
+        action [Hide ("BibliothequeLink"), Jump (SetVariable("PossibiliteKAME",1),"FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -627,7 +621,7 @@ screen LabyrintheLink:
         at sizeButton
         xalign 0.5
         yalign 0.1
-        action [Hide ("LabyrintheLink"), Jump ("FondDuGouffre")]
+        action [SetVariable("PossibiliteKAME",1),Hide ("LabyrintheLink"), Jump ("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -679,14 +673,7 @@ screen LacLink:
         at sizeButton
         xalign 0.2
         yalign 0.8
-        action [Hide ("LacLink"), Jump ("Cuisine")]
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.9
-        yalign 0.5
-        action [Hide ("LacLink"), Jump ("NidDeLOiseau")]
+        action [Hide ("LacLink"), Jump ("SurLac")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -722,6 +709,23 @@ screen LacLink:
                     xalign 0.32
                     yalign 0.01
                     action[Jump("ClairiereDOliveau")]
+
+###Link SurLac
+screen SurLacLink:
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.9
+        yalign 0.5
+        action [SetVariable("PossibiliteJUNQ",0),Hide ("SurLacLink"), Jump ("Lac")]
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.9
+        yalign 0.5
+        action [SetVariable("PossibiliteJUNQ",0),Hide ("SurLacLink"), Jump ("NidDeLOiseau")]
 
 ###Link Clairiere d'Oliveau
 screen ClairiereDOliveauLink:
@@ -924,7 +928,7 @@ screen LieuDuVolLink:
         at sizeButton
         xalign 0.2
         yalign 0.5
-        action [Hide ("LieuDuVolLink"), Jump ("FalaiseAvecLierre")]
+        action [Hide ("LieuDuVolLink"), Jump ("Falaise")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -1005,23 +1009,50 @@ screen PseudoLabyrintheLink:
                     xalign 0.32
                     yalign 0.01
                     action[Jump("ClairiereDOliveau")]
-
-###Link Falaise avec lierre
-screen FalaiseAvecLierreLink:
+###Link Cuisine
+screen CuisineLink:
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
         xalign 0.1
         yalign 0.1
-        action [Hide ("FalaiseAvecLierreLink"), Jump ("PiegeDeLAlchimiste")]
+        action [Hide ("CuisineLink"), Jump ("FondDuLac")]
+
+###Link FondDuLac
+screen FondDuLacLink:
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.1
+        yalign 0.1
+        action [SetVariable("PossibiliteKAME",1),Hide ("FondDuLacLink"), Jump ("Lac")]
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.1
+        yalign 0.1
+        action [Hide ("FondDuLacLink"), Jump ("Cuisine")]
+
+###Link Falaise
+screen FalaiseLink:
+    if falaiseLierre==1:
+        imagebutton:
+            idle "LinkIdleE.png"
+            hover "LinkHoverE.png"
+            at sizeButton
+            xalign 0.1
+            yalign 0.1
+            action [Hide ("FalaiseLink"), Jump ("PiegeDeLAlchimiste")]
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
         xalign 0.9
         yalign 0.8
-        action [Hide ("FalaiseAvecLierreLink"), Jump ("LieuDeVol")]
+        action [Hide ("FalaiseLink"), Jump ("LieuDeVol")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"

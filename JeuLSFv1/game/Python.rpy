@@ -72,6 +72,7 @@ init python:
 #Initialisation Entier
     gentillesse = 0
     falaiseLierre = 0
+    porteGouffre = 0
     achEnfantIgnorant = 0
     achV =0
     achD=0
