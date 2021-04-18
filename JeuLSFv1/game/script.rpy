@@ -7,10 +7,10 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    jump OliveauSeau
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
+    jump ClairiereDOliveau
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -49,8 +49,13 @@ label start:
     #
 #############################################################################################################################
     label ClairiereDOliveauIntro:
-    label OliveauLSF:
+    #IntroLabel
     scene ClairiereDOliveau at sizeBackground with slowDissolve
+    show screen OliveauIntroLink with slowDissolve
+    jump WaitingScreen
+    #
+
+    label OliveauIntro:
     $ renpy.movie_cutscene("oliveau_eau.webm")
     "Qu’a-t-il dit?"
     menu:
@@ -76,11 +81,11 @@ label start:
     "Qu’a-t-il dit?"
     menu:
         "Bonjour":
-            jump TransitionNiveau2
+            jump OliveauSeau
         "Aidez-moi":
             jump OliveauSeau
         "Eau":
-            jump OliveauSeau
+            jump TransitionNiveau2
         "Manger":
             jump OliveauSeau
 
@@ -93,8 +98,9 @@ label start:
             jump OliveauSeau
     
     label OliveauSeau:
-    $ inventaire.append(seau)
+    $ inventaire.append(Seau)
     show seau at Tinventaire onlayer overlay
+    pause 3.0
     "Vous allez chercher de l'eau pour l'arbre qui avait de toute évidence très soif"
     $ avancement[0]="niveau1"
     jump Niveau1
@@ -157,6 +163,7 @@ label start:
         show achOLIVEAU at Tachievement onlayer overlay
         $ achievements.append(Lettre_OLIVEAU)
         $ achOLIVEAU +=1
+    pause 3.5
     python:
         dico.append(O)
         dico.append(L)
@@ -215,8 +222,9 @@ label start:
     o "Il te faut demander l’aide de la Reine des fées pour rentrer dans ton monde. Tu la trouveras facilement."
     pp "Où est-elle?"
     o "Elle est dans le royaume des fées, prend ce chemin pour en atteindre la porte."
+    $ PorteRoyaumeAcces=1
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
-    show LinkHoverE at indication
+    show LinkHoverNE at indication1
     jump ClairiereDOliveau
    
     label R24:
@@ -345,6 +353,7 @@ label start:
                 show achCompter at Tachievement onlayer overlay
                 $ achievements.append(Histoire_Compter)
                 $ achCompter +=1
+            pause 3.5
             $ avancement[0]="SaitCompter"
             jump Oliveau
     
@@ -398,6 +407,7 @@ label start:
             show achV at Tachievement onlayer overlay
             $ achievements.append(Lettre_V)
             $ achV +=1
+        pause 3.5
         jump miniJeuPoursuite
         $ avancement[1]= "ObjetRecupere"
         jump LieuDuVol
@@ -413,6 +423,7 @@ label start:
             show achCHWYZ at Tachievement onlayer overlay
             $ achievements.append(Lettre_CHWYZ)
             $ achCHWYZ +=1
+        pause 3.5
         python:
             dico.append(C)
             dico.append(H)
@@ -514,9 +525,10 @@ label start:
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
-            show achD at Tachievement onlayer overlay
-            $ achievements.append(Lettre_D)
-            $ achD +=1
+        show achD at Tachievement onlayer overlay
+        $ achievements.append(Lettre_D)
+        $ achD +=1
+    pause 3.5
     python:
         dico.append(D)
         dico.append(Y)
@@ -525,6 +537,7 @@ label start:
         show achDOY at Tachievement onlayer overlay
         $ achievements.append(Sort_DOY)
         $ achDOY +=1
+    pause 3.5
     jump Sifflet
     label R33:
     menu:
@@ -533,9 +546,10 @@ label start:
             b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
-            show achD at Tachievement onlayer overlay
-            $ achievements.append(Lettre_D)
-            $ achD +=1
+        show achD at Tachievement onlayer overlay
+        $ achievements.append(Lettre_D)
+        $ achD +=1
+    pause 3.5
     python:
         dico.append(D)
         dico.append(Y)
@@ -544,6 +558,7 @@ label start:
         show achDOY at Tachievement onlayer overlay
         $ achievements.append(Sort_DOY)
         $ achDOY +=1
+    pause 3.5
     jump Sifflet
     label R34:
     
@@ -553,9 +568,10 @@ label start:
     b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
     $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
-            show achD at Tachievement onlayer overlay
-            $ achievements.append(Lettre_D)
-            $ achD +=1
+        show achD at Tachievement onlayer overlay
+        $ achievements.append(Lettre_D)
+        $ achD +=1
+    pause 3.5
     python:
         dico.append(D)
         dico.append(Y)
@@ -564,6 +580,7 @@ label start:
         show achDOY at Tachievement onlayer overlay
         $ achievements.append(Sort_DOY)
         $ achDOY +=1
+    pause 3.5
     jump Sifflet
 
     label Sifflet:
@@ -571,9 +588,10 @@ label start:
     b "Appelle-moi avec ce sifflet"
     $ renpy.movie_cutscene("oiseau_sifflet_LSF.webm")
     if achS==0:
-            show achS at Tachievement onlayer overlay
-            $ achievements.append(Lettre_S)
-            $ achS +=1
+        show achS at Tachievement onlayer overlay
+        $ achievements.append(Lettre_S)
+        $ achS +=1
+    pause 3.5
     python:
         dico.append(S)
         dico.append(I)
@@ -584,9 +602,10 @@ label start:
     python:
         inventaire.append(Sifflet)
     if achMagie==0:
-            show achMagie at Tachievement onlayer overlay
-            $ achievements.append(Histoire_Magie)
-            $ achMagie +=1
+        show achMagie at Tachievement onlayer overlay
+        $ achievements.append(Histoire_Magie)
+        $ achMagie +=1
+    pause 3.5
     $ avancement[0]="ApprisSort"
     jump NidDeLOiseau
 #############################################################################################################################
@@ -630,6 +649,7 @@ label start:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
                     $ achF +=1
+                pause 3.5
                 jump Falaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
@@ -639,6 +659,7 @@ label start:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
                     $ achF +=1
+                pause 3.5
                 jump Falaise
 
     label miniJeuFiole:
@@ -685,6 +706,7 @@ label start:
             show achMN at Tachievement onlayer overlay
             $ achievements.append(Lettre_MN)
             $ achMN +=1
+        pause 3.5
         python:
             dico.append(M)
             dico.append(N)
@@ -737,6 +759,7 @@ label start:
         show achK at Tachievement onlayer overlay
         $ achievements.append(Lettre_K)
         $ achK +=1
+    pause 3.5
     python:
         dico.append(K)
     b "Ce sort permet de voler. Il ne m’est évidemment d’aucune utilité, mais il me semble qu’une espèce comme la tienne en aurait plus que besoin. Bon courage, humain."
@@ -747,6 +770,7 @@ label start:
         show achKAME at Tachievement onlayer overlay
         $ achievements.append(Sort_KAME)
         $ achKAME +=1
+    pause 3.5
     "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
     $ avancement[0]="ApprisSort"
 
@@ -757,6 +781,7 @@ label start:
         show achP at Tachievement onlayer overlay
         $ achievements.append(Lettre_P)
         $ achP +=1
+    pause 3.5
     $ dico.append(P)
     b "Ce sort permet de casser ce que l’on souhaite. C’est de lui que la plupart des fées tirent leur force."
     b "Pas moi, évidemment.Tu devrais en avoir besoin bientôt. Bon courage, humain."
@@ -766,6 +791,7 @@ label start:
         show achPIF at Tachievement onlayer overlay
         $ achievements.append(Sort_PIF)
         $ achPIF +=1
+    pause 3.5
     $ avancement[0]= "ApprisSort"
     jump ClairiereDOliveau
 
@@ -776,6 +802,7 @@ label start:
         show achJ at Tachievement onlayer overlay
         $ achievements.append(Lettre_J)
         $ achJ +=1
+    pause 3.5
     $ dico.append(J)
     b " Ce sort permet de respirer dans l’eau." 
     b "Il te servira à traverser de longues étendues d’eau ou bien à aller chercher les trésors des fonds marins."
@@ -785,6 +812,7 @@ label start:
         show achJUNQ at Tachievement onlayer overlay
         $ achievements.append(Sort_JUNQ)
         $ achJUNQ +=1
+    pause 3.5
     $ avancement[0]= "ApprisSort"
     jump Lac
     
@@ -795,6 +823,7 @@ label start:
         show achX at Tachievement onlayer overlay
         $ achievements.append(Lettre_X)
         $ achX +=1
+    pause 3.5
     $ dico.append(X)
     b "Ce sort permet de creuser. Il te servira à retrouver des animaux de ton ordre comme les mulots et autres taupes." 
     b "Il y a sûrement des galeries que tu aimeras explorer là-bas. Bon courage, humain."
@@ -803,11 +832,13 @@ label start:
         show achGREX at Tachievement onlayer overlay
         $ achievements.append(Sort_GREX)
         $ achGREX +=1
+    pause 3.5
     $ avancement[0]= "ApprisSort"
     if achAlphabet==0:
         show achAlphabet at Tachievement onlayer overlay
         $ achievements.append(Histoire_Alphabet)
         $ achAlphabet +=1
+    pause 3.5
     jump Labyrinthe
 #############################################################################################################################
     label Gouffre:
@@ -855,6 +886,7 @@ label start:
         show achB at Tachievement onlayer overlay
         $ achievements.append(Lettre_B)
         $ achB +=1
+    pause 3.5
     $ dico.append(B)
     show sacFiole at Montrer
     jump MinijeuBonbons
@@ -1099,6 +1131,7 @@ label start:
         show achBIBLIOTHEQUE at Tachievement onlayer overlay
         $ achievements.append(Lettre_BIBLIOTHEQUE)
         $ achBIBLIOTHEQUE +=1
+    pause 3.5
     $ dico.append(T)
     $ dico.append(Q)
     $ avancement[0]="ObtenuBouleDeCristal"
@@ -1141,6 +1174,7 @@ label start:
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            $ avancement[0]="BesoinApprendreCompter"
             jump tomates
     
     label carottes:
@@ -1152,6 +1186,7 @@ label start:
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            $ avancement[0]="BesoinApprendreCompter"
             jump carottes
      
     label asperges:
@@ -1163,6 +1198,7 @@ label start:
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            $ avancement[0]="BesoinApprendreCompter"
             jump asperges
     
     label poivrons:
@@ -1175,22 +1211,9 @@ label start:
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
+            $ avancement[0]="BesoinApprendreCompter"
             jump poivrons
-        
-    #Cuisinière: 2 tomates
-    #Le joueur peut donner les tomates à la cuisinière (en choisissant le nombre)
-    #Cuisinière: 12 carottes
-    #Le joueur peut donner les carottes à la cuisinière (en choisissant le nombre)
-    #Cuisinière: 10 asperges
-    #Le joueur peut donner les asperges à la cuisinière (en choisissant le nombre)
-    #Cuisinière: 16 poivrons
-    #Le joueur peut donner les poivrons à la cuisinière (en choisissant le nombre)
 
-    #Si le joueur rate, à quelconque moment:
-     #   La fée fait non de la tête.
-    #Une photo d’Oliveau est affichée au fond de la cuisine, la fée le désigne 
-    #Cuisinière: O-L-I-V-E-A-U
-    #Si le joueur réussit le tout: on lance le mini-jeu
     $ avancement[0]="BesoinApprendreCompter"
 
     #mini-jeu
@@ -1323,9 +1346,8 @@ label start:
         jump Cuisine
 
     c"Merci beaucoup, tu peux continuer"
-    #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
+    $ renpy.movie_cutscene("cuisine_GATEAU_LSF.webm")
     $ dico.append(G)
-    #le joueur repart avec une part de gateau
     $ avancement[3]="PossibiliteApprendreGREX"
     jump Cuisine
 #############################################################################################################################
@@ -1422,6 +1444,8 @@ label start:
         show achNiveau1 at Tachievement onlayer overlay
         $ achievements.append(Histoire_Niveau1)
         $ achNiveau1 +=1
+    pause 3.5
     "Alors c'est ça le royaume des fées!!"
+    "Pour en apprendre plus sur la langue des signes vous pouvez aller voir {a=https://www.trefle.org} le site de l'association Trèfles spécialisé dans l'apprentissage de la langue des signes{/a}"
 
     return

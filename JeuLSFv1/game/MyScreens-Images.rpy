@@ -43,7 +43,7 @@ screen menu:
 screen minimap:
     $ s = -1
     imagebutton:
-        idle "map.png"
+        idle "carte.png"
         at sizeMapBackground
         xpos 0
         ypos 0
@@ -54,7 +54,7 @@ screen minimap:
             imagebutton:
                 idle i.image
                 at sizeRoom
-                action [Hide ("minimap"),Hide ("Blackscreen"),Hide ("minimapHide"),Show ("minimapShow"), Jump (i.label)]
+                action If ((PossibiliteKAME==1), true=[Hide ("minimap"),Jump (i.label)], false=[Show(KAMEPasPossible)])
         frame:
             xpos i.x*10-65
             ypos i.y*10+75
@@ -290,6 +290,8 @@ image sacFiole:
     "sac_fiole_alphabet.png"
 image indication:
     "indicationBibliotheque.png"
+image LinkHoverNE:
+    "LinkHoverNE.png"
 
 #####Background
 image BlackScreen:
@@ -803,6 +805,14 @@ screen LacLink:
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
 
+#Oliveau Intro
+screen OliveauIntroLink:
+    imagebutton:
+        idle "Oliveau.png"
+        xalign 0.5
+        yalign 0.2
+        action [Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")]
+
 ###Link Clairiere d'Oliveau
 screen ClairiereDOliveauLink:
     imagebutton:
@@ -831,7 +841,7 @@ screen ClairiereDOliveauLink:
         xalign 0.97
         yalign 0.5
         action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("Lac")]
-    if avancement[0] != "null" and avancement[0] != "Q2":
+    if PorteRoyaumeAcces==1:
         imagebutton:
             idle "LinkIdleE.png"
             hover "LinkHoverE.png"
