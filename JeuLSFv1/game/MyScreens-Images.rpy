@@ -1247,7 +1247,7 @@ screen FalaiseLink:
             at sizeButton
             xalign 0.1
             yalign 0.1
-            action [Hide ("FalaiseLink"), Jump ("PiegeDeLAlchimiste")]
+            action [Hide ("FalaiseLink"), Jump ("DessusDeLaFalaise")]
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
@@ -1299,7 +1299,67 @@ screen FalaiseLink:
                     xalign 0.40
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
-  
+
+###DessusDeLaFalaiseLink
+screen DessusDeLaFalaiseLink:
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.1
+        yalign 0.1
+        action [Hide ("DessusDeLaFalaiseLink"), Jump ("Falaise")]
+    if achMagie>=1:
+        imagebutton:
+            idle "iconeMagie.png"
+            at sizeButton
+            xalign 0.01
+            yalign 0.01
+        for i in magie:
+            if i.name=="KAME":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.08
+                    yalign 0.01
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
+            elif i.name=="DOY":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.16
+                    yalign 0.01
+                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),SetVariable("falaiseLierre",1),Jump("Falaise")], false=[Show("DOYPasPossible")])
+            elif i.name=="PIF":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.24
+                    yalign 0.01
+                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),SetVariable("porteGouffre",1),Jump("FondDuGouffre")], false=[Show("PIFPasPossible")])
+            elif i.name=="JUNQ":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.32
+                    yalign 0.01
+                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
+            elif i.name=="GREX":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.40
+                    yalign 0.01
+                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
+    imagebutton:
+        idle "alchimiste.png"
+        xalign 0.5
+        yalign 0.2
+        action[Hide(DessusDeLaFalaiseLink), Jump(alchimiste)]
+
+
 ###Link Piege de l'alchimiste
 screen PiegeDeLAlchimisteLink:
     imagebutton:
