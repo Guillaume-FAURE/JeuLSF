@@ -1148,6 +1148,7 @@ label start:
 
     #mini-jeu
     label PlanDeTravail:
+        $ dico_cuis = ["cuisine_1.webm","cuisine_2.webm","cuisine_3.webm","cuisine_4.webm","cuisine_5.webm","cuisine_6.webm","cuisine_7.webm","cuisine_8.webm","cuisine_9.webm","cuisine_10.webm","","","","","cuisine_15.webm","","","","","cuisine_20.webm"]
         scene décor_cuisine
         with dissolve
 
@@ -1208,8 +1209,27 @@ label start:
 
     label ingredients_gateau:
         scene décor_cuisine with dissolve
-        "J'ai dis que j'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
+        $ n_oeuf = gat.n_ingr[0] - 1
+        $ n_farine = gat.n_ingr[1] - 1
+        $ n_levure = gat.n_ingr[2] - 1
+        $ n_beurre = gat.n_ingr[3] - 1
+        $ n_lait = gat.n_ingr[4] - 1
+        $ n_sucre = gat.n_ingr[5] -1
+        "Je voudrais dans mon gateau ce nombre d'oeufs (par paquets de cinq):"
+        $ renpy.movie_cutscene(dico_cuis[n_oeuf])
+        "Je voudrais dans mon gateau ce nombre de sachets de farine :"
+        $ renpy.movie_cutscene(dico_cuis[n_farine])
+        "Je voudrais dans mon gateau ce nombre de sachets de levure :"
+        $ renpy.movie_cutscene(dico_cuis[n_levure])
+        "Je voudrais dans mon gateau ce nombre de morceaux de beurre :"
+        $ renpy.movie_cutscene(dico_cuis[n_beurre])
+        "Je voudrais dans mon gateau cette quantité de lait (en L):"
+        $ renpy.movie_cutscene(dico_cuis[n_lait])
+        "Je voudrais dans mon gateau ce nombre de morceaux de sucre (par paquets de cinq):"
+        $ renpy.movie_cutscene(dico_cuis[n_sucre])
+        # "J'ai dis que j'ai besoin de [gat.n_ingr[0]] oeufs (par paquets de 5), [gat.n_ingr[1]] sachets de farine, [gat.n_ingr[2]] sachets de levure, [gat.n_ingr[3]] mottes de beurre, [gat.n_ingr[4]] L de lait, [gat.n_ingr[5]] morceaux de sucre (par paquets de 5)."
         "Et n'oublie pas, un soupcon d'eau de rose par gentilesse, et méfie toi de l'arsenic."
+        
         scene fond_minijeu_cuisine with dissolve
         call screen ingred with dissolve
 
