@@ -161,6 +161,7 @@ init python:
     Huit = Mot("8")
     Neuf = Mot("9")
 #Initialisation inventaire
+    Seau = Objet("Seau", "Salle2.png")
     Sifflet = Objet("Sifflet", "Salle2.png")
     LettreDeRemerciement = Objet("LettreDeRemerciement", "Salle2.png")
     Sucette = Objet("Sucette", "Salle2.png")
@@ -178,27 +179,27 @@ init python:
 # ----- DEBUT PYTHON JEU BIBLIOTHEQUE -----
 
     def jeuBiblio_initVar():
-        mot1=["JeuBiblio_BoulesCristal1.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot2=["JeuBiblio_BoulesCristal2.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot3=["JeuBiblio_BoulesCristal3.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot4=["JeuBiblio_BoulesCristal4.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot5=["JeuBiblio_BoulesCristal5.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot6=["JeuBiblio_BoulesCristal6.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot7=["JeuBiblio_BoulesCristal7.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot8=["JeuBiblio_BoulesCristal8.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot9=["JeuBiblio_BoulesCristal9.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot10=["JeuBiblio_BoulesCristal10.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot11=["JeuBiblio_BoulesCristal11.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot12=["JeuBiblio_BoulesCristal12.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot13=["JeuBiblio_BoulesCristal13.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot14=["JeuBiblio_BoulesCristal14.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot15=["JeuBiblio_BoulesCristal15.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot16=["JeuBiblio_BoulesCristal16.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot17=["JeuBiblio_BoulesCristal17.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot18=["JeuBiblio_BoulesCristal18.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot19=["JeuBiblio_BoulesCristal19.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot20=["JeuBiblio_BoulesCristal20.png","AEI_mot.png","AEI","AEI_film.mpeg"]
-        mot21=["JeuBiblio_BoulesCristal21.png","AEI_mot.png","AEI","AEI_film.mpeg"]
+        mot1=["JeuBiblio_BoulesCristal1.png","JeuBiblio_mot_AOC.png","AOC","AEI_film.mpeg"]
+        mot2=["JeuBiblio_BoulesCristal2.png","JeuBiblio_mot_CFP.png","CFP","AEI_film.mpeg"]
+        mot3=["JeuBiblio_BoulesCristal3.png","JeuBiblio_mot_DZS.png","DZS","AEI_film.mpeg"]
+        mot4=["JeuBiblio_BoulesCristal4.png","JeuBiblio_mot_ELM.png","ELM","AEI_film.mpeg"]
+        mot5=["JeuBiblio_BoulesCristal5.png","JeuBiblio_mot_EPO.png","EPO","AEI_film.mpeg"]
+        mot6=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_EVA.png","EVA","AEI_film.mpeg"]
+        mot7=["JeuBiblio_BoulesCristal6.png","JeuBiblio_mot_FOM.png","FOM","AEI_film.mpeg"]
+        mot8=["JeuBiblio_BoulesCristal7.png","JeuBiblio_mot_FSP.png","FSP","AEI_film.mpeg"]
+        mot9=["JeuBiblio_BoulesCristal8.png","JeuBiblio_mot_ICP.png","ICP","AEI_film.mpeg"]
+        mot10=["JeuBiblio_BoulesCristal9.png","JeuBiblio_mot_IZA.png","IZA","AEI_film.mpeg"]
+        mot11=["JeuBiblio_BoulesCristal10.png","JeuBiblio_mot_LWV.png","LWV","AEI_film.mpeg"]
+        mot12=["JeuBiblio_BoulesCristal11.png","JeuBiblio_mot_MAV.png","MAV","AEI_film.mpeg"]
+        mot13=["JeuBiblio_BoulesCristal12.png","JeuBiblio_mot_OHA.png","OHA","AEI_film.mpeg"]
+        mot14=["JeuBiblio_BoulesCristal13.png","JeuBiblio_mot_OPB.png","OPB","AEI_film.mpeg"]
+        mot15=["JeuBiblio_BoulesCristal14.png","JeuBiblio_mot_PKO.png","PKO","AEI_film.mpeg"]
+        mot16=["JeuBiblio_BoulesCristal15.png","JeuBiblio_mot_PZK.png","PZK","AEI_film.mpeg"]
+        mot17=["JeuBiblio_BoulesCristal16.png","JeuBiblio_mot_SNK.png","SNK","AEI_film.mpeg"]
+        mot18=["JeuBiblio_BoulesCristal17.png","JeuBiblio_mot_SUB.png","SUB","AEI_film.mpeg"]
+        mot19=["JeuBiblio_BoulesCristal18.png","JeuBiblio_mot_VYE.png","VYE","AEI_film.mpeg"]
+        mot20=["JeuBiblio_BoulesCristal19.png","JeuBiblio_mot_WPC.png","WPC","AEI_film.mpeg"]
+        mot21=["JeuBiblio_BoulesCristal20.png","JeuBiblio_mot_ZFZ.png","ZFZ","AEI_film.mpeg"]
         tab = [mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8,mot9,mot10,mot11,mot12,mot13,mot14,mot15,mot16,mot17,mot18,mot19,mot20,mot21]
         rep=random.sample(tab,3)
         repV=[0,0,0]
@@ -271,10 +272,11 @@ init python:
 # --- FIN PYTHON JEU FIOLE ---
 
 #Labyrinthe python
-    dico_lab_vid ={"1":".avi","2":".avi","3":".avi","4":".avi","5":".avi","6":".avi","7":".avi","8":".avi","9":".avi","A":".avi","B":".avi",
-    "C":".avi","D":".avi","E":".avi","F":".avi","G":".avi","H":".avi","I":".avi",
-    "J":".avi","K":".avi","M":".avi","N":".avi","O":".avi","P":".avi","Q":".avi","R":".avi","S":".avi","T":".avi","U":".avi","V":".avi",
-    "W":".avi","X":".avi","Y":".avi","Z":".avi"}
+    dico_lab_vid ={"1":".avi","2":".avi","3":".avi","4":".avi","5":".avi","6":".avi","7":".avi","8":".avi","9":".avi","A":"fantome_A.webm","B":"fantome_B.webm",
+    "C":"fantome_C.webm","D":"fantome_D.webm","E":"fantome_E.webm","F":"fantome_F.webm","G":"fantome_G.webm","H":"fantome_H.webm","I":"fantome_I.webm",
+    "J":"fantome_J.webm","K":"fantome_K.webm","L":"fantome_L.webm","M":"fantome_M.webm","N":"fantome_N.webm","O":"fantome_O.webm","P":"fantome_P.webm",
+    "Q":"fantome_Q.webm","R":"fantome_R.webm","S":"fantome_S.webm","T":"fantome_T.webm","U":"fantome_U.webm","V":"fantome_V.webm",
+    "W":"fantome_W.webm","X":"fantome_X.webm","Y":"fantome_Y.webm","Z":"fantome_Z.webm"}
     Choix_laby = ["1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N",
     "O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
@@ -502,3 +504,27 @@ init python:
 
         def check(self, ing):
             return (ing in self.ingredients)
+
+#Fonction arbre à bonbons
+    bonbon1valeur = ""
+    bonbon2valeur = ""
+    bonbon3valeur = ""
+    bonbon4valeur = ""
+    bonbon5valeur = ""
+    bonbon6valeur = ""
+
+    def verif(a,b,c,d,e,f):
+        if a=="1" and b=="1" and c=="1" and d=="1" and e=="1" and f=="1":
+            return "jeuBonbonFin"
+        else:
+            return "jeuBonbon"
+
+#Fonction Poursuite
+    def dialog_beep(event, interact=True, **kwargs):
+        if not interact:
+            return
+
+        if event == "show_done":
+            renpy.sound.play("audio/sfx-bip.wav", loop=True)
+        elif event == "slow_done":
+            renpy.sound.stop()

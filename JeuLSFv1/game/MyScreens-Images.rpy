@@ -275,29 +275,29 @@ image achMagie:
 image BlackScreen:
     "images/Background/Black.png"
 image Perdu1:
-    "images/Background/Perdu1.jpg" 
+    "images/Background/Perdu1.png" 
 image Perdu2:
-    "images/Background/Perdu2.jpg" 
+    "images/Background/Perdu2.png" 
 image Perdu3:
-    "images/Background/Perdu3.jpg"
+    "images/Background/Perdu3.png"
 image Perdu4:
-    "images/Background/Perdu4.jpg"
+    "images/Background/Perdu4.png"
 image ArriveForetFees:
-    "images/Background/ArriveForetFees.jpg"
+    "images/Background/ArriveForetFees.png"
 image Gouffre:
-    "images/Background/Gouffre.jpg"
+    "images/Background/Gouffre.png"
 image ArbreABonbons:
-    "images/Background/ArbreABonbons.jpg"
+    "images/Background/ArbreABonbons.png"
 image FondDuGouffre:
-    "images/Background/FondDuGouffre.jpg"
+    "images/Background/FondDuGouffre.png"
 image Bibliotheque:
     "images/Background/Bibliotheque.png"
 image Labyrinthe:
     "images/Background/Labyrinthe.png"
 image ClairiereDOliveau:
-    "images/Background/ClairiereDOliveau.jpg"
+    "images/Background/ClairiereDOliveau.png"
 image Lac:
-    "images/Background/Lac.jpg"
+    "images/Background/Lac.png"
 image SurLac:
     "images/Background/SurLac.png"
 image FondDuLac:
@@ -305,7 +305,7 @@ image FondDuLac:
 image Cuisine:
     "images/Background/Cuisine.png"
 image NidDeLOiseau:
-    "images/Background/NidDeLOiseau.jpg"
+    "images/Background/NidDeLOiseau.png"
 image PorteDuRoyaumeDesFees:
     "images/Background/PorteDuRoyaumeDesFees.png"
 image LieuDuVol:
@@ -313,13 +313,17 @@ image LieuDuVol:
 image Cuisine:
     "images/Background/PseudoLabyrinthe.png"
 image Falaise:
-    "images/Background/Falaise.jpg"
+    "images/Background/Falaise.png"
 image FalaiseLierre:
     "images/Background/FalaiseLierre.png"
 image DessusDeLaFalaise:
-    "images/Background/DessusDeLaFalaise.jpg"
+    "images/Background/DessusDeLaFalaise.png"
 image PlanDeTravail:
     "images/Background/PlanDeTravail.png"
+image CulDeSac:
+    "Background/CulDeSac.png"
+image CabaneDuVoleur:
+    "Background/CabaneDuVoleur.png"
 
 
 ######Links
@@ -387,9 +391,9 @@ screen ArriveForetFeesLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -444,7 +448,7 @@ screen GouffreLink:
         xalign 0.5
         yalign 0.1
         action [Hide ("GouffreLink"), Jump ("FondDuGouffre")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -457,9 +461,9 @@ screen GouffreLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -489,6 +493,61 @@ screen GouffreLink:
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
 
+###Links ArbreABonbons
+screen ArbreABonbonsLink:
+    imagebutton:
+        idle "LinkIdleE.png"
+        hover "LinkHoverE.png"
+        at sizeButton
+        xalign 0.8
+        yalign 0.8
+        action [Hide ("ArbreABonbonsLink"), Jump ("Gouffre")]
+    if achMagie>=1:
+        imagebutton:
+            idle "iconeMagie.png"
+            at sizeButton
+            xalign 0.01
+            yalign 0.01
+        for i in magie:
+            if i.name=="KAME":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.08
+                    yalign 0.01
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
+            elif i.name=="DOY":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.16
+                    yalign 0.01
+                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),SetVariable("falaiseLierre",1),Jump("Falaise")], false=[Show("DOYPasPossible")])
+            elif i.name=="PIF":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.24
+                    yalign 0.01
+                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),SetVariable("porteGouffre",1),Jump("FondDuGouffre")], false=[Show("PIFPasPossible")])
+            elif i.name=="JUNQ":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.32
+                    yalign 0.01
+                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
+            elif i.name=="GREX":
+                imagebutton:
+                    idle i.image
+                    at sizeButton
+                    xalign 0.40
+                    yalign 0.01
+                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
+
+
 ###Links FondDuGouffre
 screen FondDuGouffreLink:
     imagebutton:
@@ -506,7 +565,7 @@ screen FondDuGouffreLink:
             xalign 0.04
             yalign 0.4
             action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Bibliotheque")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -519,9 +578,9 @@ screen FondDuGouffreLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -559,7 +618,7 @@ screen BibliothequeLink:
         xalign 0.5
         yalign 0.1
         action [Hide ("BibliothequeLink"), Jump (SetVariable("PossibiliteKAME",1),"FondDuGouffre")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -572,9 +631,9 @@ screen BibliothequeLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -613,7 +672,7 @@ screen LabyrintheLink:
         xalign 0.5
         yalign 0.1
         action [SetVariable("PossibiliteKAME",1),Hide ("LabyrintheLink"), Jump ("FondDuGouffre")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -626,9 +685,9 @@ screen LabyrintheLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -674,7 +733,7 @@ screen LacLink:
         xalign 0.2
         yalign 0.8
         action [Hide ("LacLink"), Jump ("SurLac")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -687,9 +746,9 @@ screen LacLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -735,7 +794,7 @@ screen SurLacLink:
         xalign 0.9
         yalign 0.5
         action [SetVariable("PossibiliteJUNQ",0),Hide ("SurLacLink"), Jump ("NidDeLOiseau")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -748,9 +807,9 @@ screen SurLacLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -816,7 +875,7 @@ screen ClairiereDOliveauLink:
             xalign 0.9
             yalign 0.1
             action [Hide ("ClairiereDOliveauLink"), Jump ("PorteDuRoyaumeDesFees")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -829,9 +888,9 @@ screen ClairiereDOliveauLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -881,7 +940,7 @@ screen NidDeLOiseauLink:
         xalign 0.9
         yalign 0.1
         action [Hide ("NidDeLOiseauLink"), Jump ("Lac")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -894,9 +953,9 @@ screen NidDeLOiseauLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -941,7 +1000,7 @@ screen LinkPorteDuRoyaumeDesFees:
         xalign 0.5
         yalign 0.1
         action [Hide ("LinkPorteDuRoyaumeDesFees"), Jump ("PorteDuRoyaumeDesFees")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -954,9 +1013,9 @@ screen LinkPorteDuRoyaumeDesFees:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1009,7 +1068,7 @@ screen LieuDuVolLink:
         xalign 0.2
         yalign 0.5
         action [Hide ("LieuDuVolLink"), Jump ("Falaise")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1022,9 +1081,9 @@ screen LieuDuVolLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1063,7 +1122,7 @@ screen PseudoLabyrintheLink:
         xalign 0.3
         yalign 0.8
         action [Hide ("PseudoLabyrintheLink"), Jump ("LieuDuVol")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1076,9 +1135,9 @@ screen PseudoLabyrintheLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1116,7 +1175,7 @@ screen CuisineLink:
         xalign 0.1
         yalign 0.1
         action [Hide ("CuisineLink"), Jump ("FondDuLac")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1129,9 +1188,9 @@ screen CuisineLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1177,7 +1236,7 @@ screen FondDuLacLink:
         xalign 0.1
         yalign 0.1
         action [Hide ("FondDuLacLink"), Jump ("Cuisine")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1190,9 +1249,9 @@ screen FondDuLacLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1239,7 +1298,7 @@ screen FalaiseLink:
         xalign 0.9
         yalign 0.8
         action [Hide ("FalaiseLink"), Jump ("LieuDeVol")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1252,9 +1311,9 @@ screen FalaiseLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1293,7 +1352,7 @@ screen PiegeDeLAlchimisteLink:
         xalign 0.9
         yalign 0.8
         action [Hide ("PiegeDeLAlchimisteLink"), Jump ("FalaiseAvecLierre")]
-     if achMagie>=1:
+    if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
             at sizeButton
@@ -1306,9 +1365,9 @@ screen PiegeDeLAlchimisteLink:
                     at sizeButton
                     xalign 0.08
                     yalign 0.01
-                    action If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")])
-                    action If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")])
-                    action If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])
+                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
+                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
                     idle i.image
@@ -1644,3 +1703,185 @@ image goutte_chaudron:
 
 screen ajout_ingr:
     add "goutte_chaudron"
+
+#Arbre A Bonbons
+screen tempon:
+    imagebutton:
+        xpos 935
+        ypos 380
+        idle "bonbon.jpg"
+        at custom_zoom
+
+image bgArbreFeuillage = "ArbreFeuillage.png"
+
+screen bonbonScreen:
+    if bonbon1valeur != "1":
+        imagebutton:
+            xpos 910
+            ypos 350
+            idle "Dessin_bonbon_barrechocolatlait.png"
+            at custom_zoom
+            action [SetVariable("bonbon1valeur", "1")]
+
+    if bonbon2valeur != "1":
+        imagebutton:
+            xpos 342
+            ypos 288
+            idle "Dessin_bonbon_barrechocolatnoire.png"
+            at custom_zoom
+            action [SetVariable("bonbon2valeur", "1")]
+
+    if bonbon3valeur != "1":
+        imagebutton:
+            xpos 1060
+            ypos 389
+            idle "Dessin_bonbon_Carambarbleu.png"
+            at custom_zoom
+            action [SetVariable("bonbon3valeur", "1")]
+
+    if bonbon4valeur != "1":
+        imagebutton:
+            xpos 20
+            ypos 393
+            idle "Dessin_bonbon_Carambarviolet.png"
+            at custom_zoom
+            action [SetVariable("bonbon4valeur", "1")]
+
+    if bonbon5valeur != "1":
+        imagebutton:
+            xpos 1084
+            ypos 30
+            idle "Dessin_bonbon_dentrose.png"
+            at custom_zoom
+            action [SetVariable("bonbon5valeur", "1")]
+
+    if bonbon6valeur != "1":
+        imagebutton:
+            xpos 80
+            ypos 30
+            idle "Dessin_bonbon_jellyjaune.png"
+            at custom_zoom
+            action [SetVariable("bonbon6valeur", "1")]
+
+#Poursuite
+screen papier:
+    imagebutton:
+        xpos 300
+        ypos 100
+        idle "boutDePapierFinal.png"
+        at custom_zoom3
+
+
+screen papierJeu:
+
+    imagebutton:
+        xpos 323
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 355
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 392
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 424
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 460
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 491
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 527
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 559
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("Arrivee")]
+
+    imagebutton:
+        xpos 597
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 627
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 668
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 700
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 737
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 769
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 806
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]
+
+    imagebutton:
+        xpos 838
+        ypos 570
+        idle "bouton.png"
+        at custom_zoom2
+        action [Hide("bouton"), Jump("CulDeSac")]

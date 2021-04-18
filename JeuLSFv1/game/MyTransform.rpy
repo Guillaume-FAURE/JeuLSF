@@ -72,3 +72,13 @@ transform goutte_chaudron_cuisson:
 transform pos_flamme:
     xalign 0.0
     yalign 0.06
+
+
+transform custom_zoom:
+    zoom 0.05
+
+transform custom_zoom3:
+    zoom 0.35
+
+transform custom_zoom2:
+    zoom 0.090
