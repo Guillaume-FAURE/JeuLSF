@@ -91,5 +91,8 @@ transform indication1:
     pause 1
     size (50,50)
     repeat 5
-
+transform Montrer:
+    zoom 1
+    pause 0.5
+    linear 0.5 zoom 0
     
