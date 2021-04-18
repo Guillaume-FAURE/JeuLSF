@@ -10,7 +10,10 @@ label start:
     $ magie.append(DOY)
     jump Falaise
     play music "<loop 0.0>/audio/Cuisine.mp3"
+    label LieuDeDepart:
+    show LieuDeDepart at sizeBackground with slowDissolve
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
+    
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
     "Pour passer les dialogues, cliquez sur l'écran ou appuyer sur entrée."
@@ -18,7 +21,7 @@ label start:
     "Pour le bon fonctionnement du jeu, lorsqu'une vidéo se met en route, ne cliquez pas."
     show screen Perdu1ToPerdu2 with slowDissolve
     jump WaitingScreen
-    
+
     label Perdu2:
     scene Perdu2 at sizeBackground with slowDissolve
     show screen Perdu2ToPerdu3 with slowDissolve
@@ -324,7 +327,7 @@ label start:
     scene PorteDuRoyaumeDesFees at sizeBackground with slowDissolve
     #
 
-    "(LSF) Garde: Qui es-tu ? Tu n’es pas une fée, vas-t’en!"
+    $ renpy.movie_cutscene("Videos/garde_tes.webm")
     $ avancement[0]= "RenvoyeParGarde"
     jump ClairiereDOliveau
 #############################################################################################################################
