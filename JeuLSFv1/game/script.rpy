@@ -141,7 +141,8 @@ label start:
         jump ObtenuBouleDeCristal
     elif avancement[0]== "BesoinApprendreCompter":
         jump BesoinApprendreCompter
-    elif avancement[0]== "SaitCompter"
+    elif avancement[0]== "SaitCompter":
+        jump SaitCompter
     
     label IntroOliveau:
     o "Quel est ton nom?"

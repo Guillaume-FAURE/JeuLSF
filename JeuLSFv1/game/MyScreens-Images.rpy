@@ -809,21 +809,21 @@ screen ClairiereDOliveauLink:
         at sizeButton
         xalign 0.2
         yalign 0.95
-        action [Hide ("ClairiereDOliveauLink"), Jump ("ArriveForetFees")]
+        action [Hide ("ClairiereDOliveauLink"), Hide("oliveauStatic"), Jump ("ArriveForetFees")]
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
         xalign 0.45
         yalign 0.05
-        action [Hide ("ClairiereDOliveauLink"), Jump ("LieuDuVol")]
+        action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("LieuDuVol")]
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
         xalign 0.97
         yalign 0.5
-        action [Hide ("ClairiereDOliveauLink"), Jump ("Lac")]
+        action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("Lac")]
     if avancement[0] != "null" and avancement[0] != "Q2":
         imagebutton:
             idle "LinkIdleE.png"
@@ -831,7 +831,7 @@ screen ClairiereDOliveauLink:
             at sizeButton
             xalign 0.9
             yalign 0.1
-            action [Hide ("ClairiereDOliveauLink"), Jump ("PorteDuRoyaumeDesFees")]
+            action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("PorteDuRoyaumeDesFees")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -886,7 +886,7 @@ screen oliveauStatic:
 ###Link Nid De L'Oiseau
 screen NidDeLOiseauLink:
     imagebutton:
-        idle "Oliveau.png"
+        idle "oiseau.png"
         xalign 0.5
         yalign 0.2
         action[Hide("NidDeLOiseauLink"), Show("birdStatic"), Jump("Bird")]
@@ -896,7 +896,7 @@ screen NidDeLOiseauLink:
         at sizeButton
         xalign 0.9
         yalign 0.1
-        action [Hide ("NidDeLOiseauLink"), Jump ("Lac")]
+        action [Hide ("NidDeLOiseauLink"),Hide("birdStatic"), Jump ("Lac")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -944,7 +944,7 @@ screen NidDeLOiseauLink:
 
 screen birdStatic:
     imagebutton:
-        idle "Oliveau.png"
+        idle "oiseau.png"
         xalign 0.5
         yalign 0.2
 
