@@ -608,7 +608,9 @@ label start:
     label DessusDeLaFalaise:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
-    scene DessusDeLaFalaise at sizeBackground with slowDissolve*
+    scene DessusDeLaFalaise at sizeBackground with slowDissolve
+    show screen DessusDeLaFalaiseLink with slowDissolve
+    jump WaitingScreen
 
     label alchimiste:
     if avancement[2]=="null":
