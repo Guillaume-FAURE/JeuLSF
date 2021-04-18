@@ -1124,6 +1124,7 @@ label start:
     #IntroLabel
     $ PossibliteKAME=0
     $ minimap.append(Cuisine)
+    scene 
     scene Cuisine at sizeBackground with slowDissolve
     show screen CuisineLink with slowDissolve
     stop music
@@ -1261,7 +1262,8 @@ label start:
     #Cuisinière: (pointe le joueur du doigt) G-A-T-E-A-U
     $ dico.append(G)
     #le joueur repart avec une part de gateau
-    $ avancement[3]="PossibiliteApprendreGREX"    
+    $ avancement[3]="PossibiliteApprendreGREX"
+    jump WaitingScreen
 #############################################################################################################################
     label Labyrinthe:
     $ PossibiliteKAME=0
