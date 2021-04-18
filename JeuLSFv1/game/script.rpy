@@ -10,7 +10,6 @@ label start:
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
-    jump ClairiereDOliveau
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
