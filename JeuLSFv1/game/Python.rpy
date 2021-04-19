@@ -114,21 +114,21 @@ init python:
     seauPlein=0
     RencontreOiseau=0
     jeucuisinefini=0
+    possibilitevol=0
 #Initialisation Variables de la minimap
-    ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.jpg", 55, 55)
-    Gouffre = Room("Gouffre","Gouffre","carte_gouffre.jpg", 30, 52)
-    ArbreABonbons = Room("Arbre a bonbons","ArbreABonbons","carte_arbre_a_bonbons.png", 5, 50)
-    Bibliotheque = Room("Bibliotheque","Bibliotheque","carte_bibliotheque.png", 6, 35)
-    Labyrinthe = Room("Labyrinthe","Labyrinthe","carte_labyrinthe.png", 12, 20)
-    ClairiereDOliveau = Room("Clairiere d Oliveau","ClairiereDOliveau","carte_clairiere.png", 55, 40)
-    Lac = Room("Lac","Lac","carte_lac.png", 80, 38)
-    Cuisine = Room("Cuisine","Cuisine","carte_cuisine.png", 83, 52)
-    NidDeLOiseau = Room("Nid de l oiseau","NidDeLOiseau","carte_nid.png", 105, 35)
-    PorteDuRoyaumeDesFees = Room("Porte du royaume","PorteDuRoyaumeDesFees","carte_porte.png", 107, 2)
-    LieuDuVol = Room("Lieu du vol","LieuDuVol","carte_lieu_du_vol.png", 57, 18)
-    PseudoLabyrinthe = Room("Pseudo labyrinthe","PseudoLabyrinthe","carte_pseudo_labyrinthe.png", 73, 3)
-    Falaise = Room("Falaise","Falaise","carte_falaise.png", 33, 13)
-    PiegeDeLAlchimiste = Room("Piege de l'alchimiste","PiegeDeLAlchimiste","carte_piege.png", 14, 2)
+    ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.png", 52, 50)
+    Gouffre = Room("Gouffre","Gouffre","carte_gouffre.png", 36, 34)
+    ArbreABonbons = Room("Arbre a bonbons","ArbreABonbons","carte_arbre_a_bonbons.png", 25, 43)
+    Bibliotheque = Room("Bibliotheque","Bibliotheque","carte_bibliotheque.png", 23, 29)
+    Labyrinthe = Room("Labyrinthe","Labyrinthe","carte_labyrinthe.png", 33, 19)
+    ClairiereDOliveau = Room("Clairiere d Oliveau","ClairiereDOliveau","carte_clairiere.png", 53, 35)
+    Lac = Room("Lac","Lac","carte_lac.png", 80, 34)
+    Cuisine = Room("Cuisine","Cuisine","carte_cuisine.png", 73, 47)
+    NidDeLOiseau = Room("Nid de l oiseau","NidDeLOiseau","carte_nid.png", 90, 33)
+    PorteDuRoyaumeDesFees = Room("Porte du royaume","PorteDuRoyaumeDesFees","carte_porte.png", 80, 13)
+    LieuDuVol = Room("Lieu du vol","LieuDuVol","carte_lieu_du_vol.png", 52, 19)
+    Falaise = Room("Falaise","Falaise","carte_falaise.png", 45, 10)
+    PiegeDeLAlchimiste = Room("Piege de l'alchimiste","PiegeDeLAlchimiste","carte_piege.png", 23, 4)
 #Initialisation Variables du dictionnaire
     A = Mot("A","lettre_A_LSF.webm")
     B = Mot("B","lettre_B_LSF.webm")
