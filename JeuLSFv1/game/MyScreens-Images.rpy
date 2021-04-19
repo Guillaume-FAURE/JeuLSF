@@ -274,6 +274,8 @@ image achMagie:
 #Objet
 image seau:
     "seau.png"
+image seauPlein:
+    "seauPlein.png"
 image sifflet:
     "sifflet.png"
 image LettreDeRemerciement:
@@ -313,9 +315,9 @@ image Gouffre:
 image ArbreABonbons:
     "images/Background/ArbreABonbons.jpg"
 image FondDuGouffre:
-    "images/Background/FondDuGouffre.png"
+    "images/Background/FondDuGouffre.jpg"
 image Bibliotheque:
-    "images/Background/Bibliotheque.png"
+    "images/Background/bibliotheque.jpg"
 image Labyrinthe:
     "images/Background/Labyrinthe.png"
 image ClairiereDOliveau:
@@ -339,7 +341,7 @@ image Falaise:
 image FalaiseLierre:
     "images/Background/FalaiseLierre.png"
 image DessusDeLaFalaise:
-    "images/Background/DessusDeLaFalaise.png"
+    "images/Background/DessusDeLaFalaise.jpg"
 image PlanDeTravail:
     "images/Background/PlanDeTravail.png"
 image CulDeSac:
@@ -357,48 +359,48 @@ screen Perdu1ToPerdu2:
         hover "LinkHoverN.png"
         at sizeButton
         xalign 0.45
-        yalign 0.39
+        yalign 0.44
         action [Hide ("Perdu1ToPerdu2"), Jump ("Perdu2")]
 screen Perdu2ToPerdu3:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleNE.png"
+        hover "LinkHoverNE.png"
         at sizeButton
         xalign 0.87
-        yalign 0.08
+        yalign 0.14
         action [Hide ("Perdu2ToPerdu3"), Jump ("Perdu3")]
 screen Perdu3ToPerdu4:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleNO.png"
+        hover "LinkHoverNO.png"
         at sizeButton
-        xalign 0.37
-        yalign 0.26
+        xalign 0.38
+        yalign 0.29
         action [Hide ("Perdu3ToPerdu4"), Jump ("Perdu4")]
 screen Perdu4ToArriveForetFees:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleNE.png"
+        hover "LinkHoverNE.png"
         at sizeButton
-        xalign 0.6
-        yalign 0.35
+        xalign 0.62
+        yalign 0.39
         action [Hide ("Perdu4ToArriveForetFees"), Jump ("ArriveForetFees")]
 
 ###Links ArriveForetFees
 screen ArriveForetFeesLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleO.png"
+        hover "LinkHoverO.png"
         at sizeButton
         xalign 0.04
-        yalign 0.4
+        yalign 0.45
         action [Hide("ArriveForetFeesLink"), Jump ("Gouffre")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleN.png"
+        hover "LinkHoverN.png"
         at sizeButton
         xalign 0.5
-        yalign 0.1
+        yalign 0.3
         action [Hide ("ArriveForetFeesLink"), Jump ("ClairiereDOliveau")]
     if achMagie>=1:
         imagebutton:
@@ -457,11 +459,11 @@ screen GouffreLink:
         yalign 0.6
         action [Hide ("GouffreLink"), Jump ("ArriveForetFees")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleS.png"
+        hover "LinkHoverS.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
+        xalign 0.46
+        yalign 0.4
         action [Hide ("GouffreLink"), Jump ("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
@@ -572,18 +574,18 @@ screen ArbreABonbonsLink:
 ###Links FondDuGouffre
 screen FondDuGouffreLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleN.png"
+        hover "LinkHoverN.png"
         at sizeButton
-        xalign 0.8
-        yalign 0.8
+        xalign 0.57
+        yalign 0.55
         action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Gouffre")]
     if porteGouffre==1: 
         imagebutton:
             idle "Porte_bibliotheque.png"
-            at sizeButton
-            xalign 0.04
-            yalign 0.4
+            at sizePorte
+            xalign 0.2
+            yalign 0.6
             action [SetVariable("PossibiliteGREX",0),Hide ("FondDuGouffreLink"), Jump ("Bibliotheque")]
     if achMagie>=1:
         imagebutton:
@@ -632,12 +634,12 @@ screen FondDuGouffreLink:
 ###Link Bibliotheque
 screen BibliothequeLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleS.png"
+        hover "LinkHoverS.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
-        action [Hide ("BibliothequeLink"), Jump (SetVariable("PossibiliteKAME",1),"FondDuGouffre")]
+        xalign 0.7
+        yalign 0.97
+        action [Hide ("BibliothequeLink"),(SetVariable("PossibiliteKAME",1)),Jump("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -746,13 +748,14 @@ screen LacLink:
         xalign 0.1
         yalign 0.5
         action [SetVariable("PossibiliteJUNQ",0),Hide ("LacLink"), Jump ("ClairiereDOliveau")]
-    imagebutton:
-        idle "LinkIdleNE.png"
-        hover "LinkHoverNE.png"
-        at sizeButton
-        xalign 0.1
-        yalign 0.9
-        action [SetVariable("PossibiliteJUNQ",0),Hide ("LacLink"), Jump ("NidDeLOiseau")]
+    if IleAcces==1:
+        imagebutton:
+            idle "LinkIdleNE.png"
+            hover "LinkHoverNE.png"
+            at sizeButton
+            xalign 0.1
+            yalign 0.9
+            action [SetVariable("PossibiliteJUNQ",0),Hide ("LacLink"), Jump ("NidDeLOiseau")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -814,33 +817,34 @@ screen ClairiereDOliveauLink:
         yalign 0.2
         action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleSO.png"
+        hover "LinkHoverSO.png"
         at sizeButton
         xalign 0.2
         yalign 0.95
         action [Hide ("ClairiereDOliveauLink"), Hide("oliveauStatic"), Jump ("ArriveForetFees")]
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.45
-        yalign 0.05
-        action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("LieuDuVol")]
+    if VoleurAcces==1:
+        imagebutton:
+            idle "LinkIdleNO.png"
+            hover "LinkHoverNO.png"
+            at sizeButton
+            xalign 0.25
+            yalign 0.48
+            action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("LieuDuVol")]
     imagebutton:
         idle "LinkIdleE.png"
         hover "LinkHoverE.png"
         at sizeButton
         xalign 0.97
-        yalign 0.5
+        yalign 0.8
         action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("Lac")]
     if PorteRoyaumeAcces==1:
         imagebutton:
-            idle "LinkIdleE.png"
-            hover "LinkHoverE.png"
+            idle "LinkIdleNE.png"
+            hover "LinkHoverNE.png"
             at sizeButton
-            xalign 0.9
-            yalign 0.1
+            xalign 0.95
+            yalign 0.5
             action [Hide ("ClairiereDOliveauLink"),Hide("oliveauStatic"), Jump ("PorteDuRoyaumeDesFees")]
     if achMagie>=1:
         imagebutton:

@@ -10,6 +10,7 @@ label start:
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
+    jump ClairiereDOliveau
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -119,6 +120,8 @@ label start:
     #
 
     label Oliveau:
+    if seauPlein==0:
+        jump AttenteEau
     stop music
     play music "<loop 0.0>/audio/Cuisine.mp3"
     $ achEnfantIgnorant += 1
@@ -126,7 +129,7 @@ label start:
         show achEnfantIgnorant at Tachievement onlayer overlay
         $ achievements.append(Secret_EnfantIgnorant)
         $ achEnfantIgnorant +=1
-    if avancement[0]=="niveau1":
+    if seauPlein==1:
         jump IntroOliveau
     elif avancement[0]=="Q2":
         jump Q2
@@ -149,7 +152,13 @@ label start:
     elif avancement[0]== "SaitCompter":
         jump SaitCompter
     
+    label AttenteEau:
+    "L'arbre a l'air d'avoir besoin d'eau je devrais pouvoir en trouver"
+    jump ClairiereDOliveau
+   
     label IntroOliveau:
+    o "Merci petit homme, j'avais grand soif" 
+    $ seauPlein=2
     o "Quel est ton nom?"
     python:
         nom = renpy.input("Quel est ton nom?")
@@ -228,13 +237,14 @@ label start:
    
     label R24:
     python:
-        lettre = renpy.input("Laquelle?")
+        lettre = renpy.input("Laquelle?  (merci d'écrire la lettre en majuscule)")
         lettre = lettre.strip() or "?"
     $ i=0
     while i < (len(dico)):
         if lettre == dico[i].name:
-            o "Tu connais cette lettre"
-            jump Q2
+            if lettre == dico[i].name:
+                $ renpy.movie_cutscene(i.video)
+                jump Q2
         $ i=i+1
     o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
     jump ClairiereDOliveau
@@ -385,6 +395,7 @@ label start:
 
     $ renpy.movie_cutscene("garde_tes.webm")
     $ avancement[0]= "RenvoyeParGarde"
+    $ VoleurAcces=1
     jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
@@ -431,6 +442,7 @@ label start:
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
         show screen LieuDuVolLink
+        $ IleAcces==1
         jump WaitingScreen
 
     label miniJeuPoursuite:
@@ -488,6 +500,11 @@ label start:
     $ minimap.append(Lac)
     scene Lac at sizeBackground with slowDissolve
     show screen LacLink with slowDissolve
+    if seauPlein==0:
+        $ seauPlein=1
+        $ inventaire[0]=SeauPlein
+        show seauPlein at Tinventaire
+        pause 3.0
     jump WaitingScreen
     #
 #############################################################################################################################
@@ -924,7 +941,6 @@ label start:
     $ PossibiliteGREX=1
     if porteGouffre==0:
         $ PossibilitePIF=1
-    $ minimap.append(FondDuGouffre)
     scene FondDuGouffre at sizeBackground with slowDissolve
     show screen FondDuGouffreLink with slowDissolve
     jump WaitingScreen
@@ -938,9 +954,9 @@ label start:
     show screen BibliothequeLink with slowDissolve
     stop music
     play music "<loop 0.0>/audio/Bibliotheque.mp3"
+    jump WaitingScreen
     #
     if avancement[5]=="null":
-        #Mettre bibliothecaire
         show indication at Montrer
         $ renpy.movie_cutscene("bibliothecaire_amene_LSF.webm")
         jump MinijeuBibliotheque

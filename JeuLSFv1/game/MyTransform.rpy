@@ -92,9 +92,12 @@ transform indication1:
     size (0,0)
     pause 1
     size (50,50)
-    repeat 5
+
 transform Montrer:
     zoom 1
     pause 0.5
     linear 0.5 zoom 0
+
+transform sizePorte:
+    size(500,500)
     
