@@ -6,7 +6,7 @@ label start:
 #############################################################################################################################    
     label Didacticiel:  
     label Blackscreen1:
-    show BlackScreen at sizeBackgroun
+    show BlackScreen at sizeBackground
     #$ magie.append(DOY)
     #$ magie.append(KAME)
     #$ magie.append(GREX)
