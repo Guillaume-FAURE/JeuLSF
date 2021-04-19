@@ -48,17 +48,13 @@ screen minimap:
         xpos 0
         ypos 0
     for i in minimap:
-        frame:
+        imagebutton:
             xpos i.x*10
             ypos i.y*10
-            imagebutton:
-                idle i.image
-                at sizeRoom
-                action If ((PossibiliteKAME==1), true=[Hide ("minimap"),Jump (i.label)], false=[Show(KAMEPasPossible)])
-        frame:
-            xpos i.x*10-65
-            ypos i.y*10+75
-            text i.name
+            idle i.image
+            at sizeRoom
+            action If ((PossibiliteKAME==1), true=[Hide ("minimap"),Jump (i.label)], false=[Show("KAMEPasPossible")])
+
 screen achievements:
     $ x=0
     $ y=0
@@ -103,7 +99,10 @@ screen KAMEPasPossible:
     frame:
         xalign 0.5
         yalign 0.5
-        text "{size=48}{color=#fd0a0a}Impossible de voler si on n'est pas en extérieur!{/color}{/size}"
+        if achDOY==0:
+            text"{size=48}{color=#fd0a0a}Je ne peux pas aller là-bas, je ne sais pas volet!{/color}{/size}"
+        elif achDOY>=1:
+            text "{size=48}{color=#fd0a0a}Impossible de voler si on n'est pas en extérieur!{/color}{/size}"
     imagebutton:
         xalign 0.97
         yalign 0.45
@@ -335,7 +334,7 @@ image PorteDuRoyaumeDesFees:
 image LieuDuVol:
     "images/Background/LieuDuVol.png"
 image Cuisine:
-    "images/Background/PseudoLabyrinthe.png"
+    "images/Background/Cuisine.png"
 image Falaise:
     "images/Background/Falaise.png"
 image FalaiseLierre:
@@ -639,7 +638,7 @@ screen BibliothequeLink:
         at sizeButton
         xalign 0.7
         yalign 0.97
-        action [Hide ("BibliothequeLink"),(SetVariable("PossibiliteKAME",1)),Jump("FondDuGouffre")]
+        action [Hide ("BibliothequeLink"),Hide("bibliothecairestatic"),(SetVariable("PossibiliteKAME",1)),Jump("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -684,6 +683,17 @@ screen BibliothequeLink:
                     xalign 0.40
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
+    imagebutton:
+        idle "bibliotheque.png"
+        xalign 0.5
+        yalign 0.2
+        action [Hide ("BibliothequeLink"), Show("bibliothecairestatic"),Jump("bibliothecaire")]
+    
+screen bibliothecairestatic:
+    imagebutton:
+        idle "bibliotheque.png"
+        xalign 0.5
+        yalign 0.2
 
 ###Link Labyrinthe
 screen LabyrintheLink:
@@ -742,11 +752,11 @@ screen LabyrintheLink:
 ###Link Lac
 screen LacLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleSO.png"
+        hover "LinkHoverSO.png"
         at sizeButton
-        xalign 0.1
-        yalign 0.5
+        xalign 0.05
+        yalign 0.85
         action [SetVariable("PossibiliteJUNQ",0),Hide ("LacLink"), Jump ("ClairiereDOliveau")]
     if IleAcces==1:
         imagebutton:
@@ -1019,25 +1029,18 @@ screen LinkPorteDuRoyaumeDesFees:
 ###Link Lieu du vol
 screen LieuDuVolLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleSE.png"
+        hover "LinkHoverSE.png"
         at sizeButton
-        xalign 0.3
-        yalign 0.8
+        xalign 0.85
+        yalign 0.95
         action [Hide ("LieuDuVolLink"), Jump ("ClairiereDOliveau")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleN.png"
+        hover "LinkHoverN.png"
         at sizeButton
-        xalign 0.7
-        yalign 0.1
-        action [Hide ("LieuDuVolLink"), Jump ("PseudoLabyrinthe")]
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.2
-        yalign 0.5
+        xalign 0.05
+        yalign 0.64
         action [Hide ("LieuDuVolLink"), Jump ("Falaise")]
     if achMagie>=1:
         imagebutton:
@@ -1084,59 +1087,6 @@ screen LieuDuVolLink:
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
      
-###Link PseudoLabyrinthe
-screen PseudoLabyrintheLink:
-    imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
-        at sizeButton
-        xalign 0.3
-        yalign 0.8
-        action [Hide ("PseudoLabyrintheLink"), Jump ("LieuDuVol")]
-    if achMagie>=1:
-        imagebutton:
-            idle "iconeMagie.png"
-            at sizeButton
-            xalign 0.01
-            yalign 0.01
-        for i in magie:
-            if i.name=="KAME":
-                imagebutton:
-                    idle i.image
-                    at sizeButton
-                    xalign 0.08
-                    yalign 0.01
-                    action [If ((PossibiliteKAME==0), true[Show("KAMEPasPossible")]),
-                    If ((PossibiliteKAME==2), true[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
-                    If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
-            elif i.name=="DOY":
-                imagebutton:
-                    idle i.image
-                    at sizeButton
-                    xalign 0.16
-                    yalign 0.01
-                    action If ((PossibiliteDOY==1), true=[SetVariable("PossibiliteDOY",0),SetVariable("falaiseLierre",1),Jump("Falaise")], false=[Show("DOYPasPossible")])
-            elif i.name=="PIF":
-                imagebutton:
-                    idle i.image
-                    at sizeButton
-                    xalign 0.24
-                    yalign 0.01
-                    action If ((PossibilitePIF==1), true=[SetVariable("PossibilitePIF",0),SetVariable("porteGouffre",1),Jump("FondDuGouffre")], false=[Show("PIFPasPossible")])
-            elif i.name=="JUNQ":
-                imagebutton:
-                    idle i.image
-                    at sizeButton
-                    xalign 0.32
-                    yalign 0.01
-                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
-            elif i.name=="GREX":
-                imagebutton:
-                    idle i.image
-                    at sizeButton
-                    xalign 0.40
-                    yalign 0.01
-                    action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
 ###Link Cuisine
 screen CuisineLink:
     imagebutton:
@@ -1145,7 +1095,7 @@ screen CuisineLink:
         at sizeButton
         xalign 0.1
         yalign 0.1
-        action [Hide ("CuisineLink"), Jump ("FondDuLac")]
+        action [Hide ("CuisineLink"),Hide("cuisinierestatic"), Jump ("FondDuLac")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -1190,6 +1140,17 @@ screen CuisineLink:
                     xalign 0.40
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
+    imagebutton:
+        idle "cuisiniere.png"
+        xalign 0.5
+        yalign 0.2
+        action [Hide ("CuisineLink"),Show("cuisinierestatic"), Jump ("cuisiniere")]
+
+screen cuisinierestatic:
+    imagebutton:
+        idle "cuisiniere.png"
+        xalign 0.5
+        yalign 0.2
 
 ###Link FondDuLac
 screen FondDuLacLink:
@@ -1255,19 +1216,19 @@ screen FondDuLacLink:
 screen FalaiseLink:
     if falaiseLierre==1:
         imagebutton:
-            idle "LinkIdleE.png"
-            hover "LinkHoverE.png"
+            idle "LinkIdleN.png"
+            hover "LinkHoverN.png"
             at sizeButton
-            xalign 0.1
+            xalign 0.5
             yalign 0.1
             action [Hide ("FalaiseLink"), Jump ("DessusDeLaFalaise")]
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleSO.png"
+        hover "LinkHoverSO.png"
         at sizeButton
-        xalign 0.3
-        yalign 0.4
-        action [Hide ("FalaiseLink"), Jump ("LieuDeVol")]
+        xalign 0.2
+        yalign 0.95
+        action [Hide ("FalaiseLink"), Jump ("LieuDuVol")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"

@@ -9,8 +9,8 @@ label start:
     show BlackScreen at sizeBackground
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
+    jump LieuDuVol
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
-    jump ClairiereDOliveau
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -152,6 +152,10 @@ label start:
     elif avancement[0]== "SaitCompter":
         jump SaitCompter
     
+    label Attente:
+    "Je ne pense pas que je pourrais avoir plus d'information d'Oliveau pour l'instant"
+    jump ClairiereDOliveau
+
     label AttenteEau:
     "L'arbre a l'air d'avoir besoin d'eau je devrais pouvoir en trouver"
     jump ClairiereDOliveau
@@ -190,12 +194,12 @@ label start:
             jump R13
 
     label R11:
-    o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. Tu devrais faire attention cela dit, ta gentillesse te sera rendue, qu’elle soit positive ou négative."
+    o "Eh bien non.. C’est un prénom plutôt commun dans le royaume des fées.. "
     $ avancement[0]="Q2"
     jump Q2
     
     label R12:
-    o "C’est un plaisir de parler à quelqu’un de si agréable! Sache que pour ta gentillesse, tu seras récompensé dans la forêt des fées!"
+    o "C’est un plaisir de parler à quelqu’un de si agréable!"
     $ avancement[0]="Q2"
     jump Q2
     
@@ -243,7 +247,7 @@ label start:
     while i < (len(dico)):
         if lettre == dico[i].name:
             if lettre == dico[i].name:
-                $ renpy.movie_cutscene(i.video)
+                $ renpy.movie_cutscene(dico[i].video)
                 jump Q2
         $ i=i+1
     o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
@@ -399,6 +403,8 @@ label start:
     jump ClairiereDOliveau
 #############################################################################################################################
     label LieuDuVol:
+    if avancement[1]=="null":
+        jump Fee
     stop music
     play music "<loop 0.0>/audio/Foret.mp3"
     #IntroLabel
@@ -409,6 +415,7 @@ label start:
 
     label Fee:
     if avancement[1]=="null":
+        $ renpy.movie_cutscene("fée_volée.webm")
         $ minimap.append(LieuDuVol)
         $ renpy.movie_cutscene("Lettre_V_LSF.webm")
         $ renpy.movie_cutscene("Lettre_O_LSF.webm")
@@ -956,6 +963,7 @@ label start:
     play music "<loop 0.0>/audio/Bibliotheque.mp3"
     jump WaitingScreen
     #
+    label bibliothecaire:
     if avancement[5]=="null":
         show indication at Montrer
         $ renpy.movie_cutscene("bibliothecaire_amene_LSF.webm")
