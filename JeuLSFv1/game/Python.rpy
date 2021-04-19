@@ -62,7 +62,7 @@ init python:
     Sort_JUNQ= Achievements("JUNQ","Achievements/Sort_JUNQ.png")
     Sort_KAME= Achievements("KAME","Achievements/Sort_KAME.png")
     Sort_PIF= Achievements("PIF","Achievements/Sort_PIF.png")
-    Sort_SOY= Achievements("SOY","Achievements/Sort_SOY.png")
+    Sort_DOY= Achievements("SOY","Achievements/Sort_DOY.png")
 #Initialisation Tableau
     dico = []
     avancement = ["null"]*50
@@ -92,7 +92,7 @@ init python:
     achCHWYZ=0
     achAlphabet=0
     achCompter=0
-    achMagie=0
+    achMagie=1
     achNiveau1=0
     achGrosseBosse=0
     achTueurdOiseau=0
@@ -100,7 +100,7 @@ init python:
     achJUNQ=0
     achKAME=0
     achPIF=0
-    achDOY=0
+    achDOY=1
     mapshow=0
     inventaireshow = 0
     PossibiliteKAME =0
@@ -112,6 +112,7 @@ init python:
     VoleurAcces=0
     IleAcces=0
     seauPlein=0
+    RencontreOiseau=0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","carte_gouffre.jpg", 30, 52)

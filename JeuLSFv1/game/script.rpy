@@ -6,10 +6,15 @@ label start:
 #############################################################################################################################    
     label Didacticiel:  
     label Blackscreen1:
-    show BlackScreen at sizeBackground
+    show BlackScreen at sizeBackgroun
+    #$ magie.append(DOY)
+    #$ magie.append(KAME)
+    #$ magie.append(GREX)
+    #$ magie.append(JUNQ)
+    #$ magie.append(PIF)
+    #jump Falaise
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
-    jump LieuDuVol
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
@@ -525,23 +530,27 @@ label start:
     jump WaitingScreen
     #
     label Bird:
+    if RencontreOiseau==0:
+        jump Oiseau1
+    elif RencontreOiseau==1:
+        jump Oiseau2
+    
+    
+    label Oiseau1:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     menu:
         "Caresser":
             jump R31
-        "...":
-            jump R32
         "Arracher une plume de l’oiseau":
             jump R33
-        "Faire chanter l'Oiseau":
-            jump R34
         "Bonjour":
             jump R35
 
     label R31:
     $ renpy.movie_cutscene("oiseau_qui.webm")
-    jump Bird
+    pp "..."
+    jump R32
     label R32:
     b "Oh tu n’es pas d’ici, je suis un oiseau. Mais pas un rouge-gorges ou un pigeon, non, un vrai oiseau."
     b "Et dans mon immense bonté je t’apprendrais à survivre, piètre mammifère, dans cette forêt."
@@ -567,6 +576,13 @@ label start:
         "Rendre la plume à l'oiseau":
             b "Pour ta bonté, je vais t’apprendre un sort." 
             b "Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes."
+            jump suiteR33
+        "Faire chanter l'Oiseau":
+            b "Bien, rends moi cette plume et je t’apprendrais.. des sorts"
+            pp "Rend la plume"
+            b "Je n’ai qu’une parole, je t'apprendrai donc ce sort.. Refait ces gestes après moi, ils signifient D-O-Y et t’aideront à faire pousser les plantes. "
+            jump suiteR33
+    label suiteR33:
     $ renpy.movie_cutscene("oiseau_DOY_LSF.webm")
     if achD==0:
         show achD at Tachievement onlayer overlay
@@ -583,7 +599,6 @@ label start:
         $ achDOY +=1
     pause 3.5
     jump Sifflet
-    label R34:
     
     jump Sifflet
     label R35:
@@ -630,6 +645,10 @@ label start:
         $ achMagie +=1
     pause 3.5
     $ avancement[0]="ApprisSort"
+    jump NidDeLOiseau
+
+    label Oiseau2:
+    "Laisse moi dormir, être inférieur, je suis ici chez moi contrairement à toi"
     jump NidDeLOiseau
 #############################################################################################################################
     label Falaise:
