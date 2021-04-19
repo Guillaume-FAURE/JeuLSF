@@ -92,7 +92,7 @@ init python:
     achCHWYZ=0
     achAlphabet=0
     achCompter=0
-    achMagie=1
+    achMagie=0
     achNiveau1=0
     achGrosseBosse=0
     achTueurdOiseau=0
@@ -100,10 +100,10 @@ init python:
     achJUNQ=0
     achKAME=0
     achPIF=0
-    achDOY=1
+    achDOY=0
     mapshow=0
     inventaireshow = 0
-    PossibiliteKAME =0
+    PossibiliteKAME =1
     PossibiliteDOY =0
     PossibilitePIF=0
     PossibiliteJUNQ=0
@@ -113,6 +113,7 @@ init python:
     IleAcces=0
     seauPlein=0
     RencontreOiseau=0
+    jeucuisinefini=0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","carte_gouffre.jpg", 30, 52)
@@ -273,10 +274,12 @@ init python:
         video = video [1:]
         if not order:
             order.append("fin")
-        return (tableau,order)
+        return (tableau,order,video)
 
-    def jeuFiole_fin(order):
-        if order[0]!="fin":
+    def jeuFiole_fin(order,coeur):
+        if coeur <= 0:
+            return "jeuFiole_finperdu"
+        elif order[0]!="fin":
             res = "jeuFiole_loop"
         else:
             res = "jeuFiole_fingagner"

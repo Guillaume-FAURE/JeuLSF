@@ -102,4 +102,7 @@ transform sizePorte:
     size(500,500)
 transform sizeAlchimiste:
     zoom 0.5
-    
+transform sizeEnfant:
+    zoom 0.35
+transform sizeBibliothecaire:
+    zoom 0.7

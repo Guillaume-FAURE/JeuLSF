@@ -7,12 +7,6 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    $ magie.append(DOY)
-    $ magie.append(KAME)
-    $ magie.append(GREX)
-    $ magie.append(JUNQ)
-    $ magie.append(PIF)
-    jump Falaise
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
@@ -277,7 +271,6 @@ label start:
     jump ClairiereDOliveau
 
     label FioleObtenu:
-    $ avancement[3]="PossibiliteApprendreKAME"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -298,7 +291,6 @@ label start:
     jump ClairiereDOliveau
 
     label EnfantBonbon:
-    $ avancement[3]="PossibiliteApprendrePIF"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -309,7 +301,6 @@ label start:
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
-    $ avancement[3]="PossibiliteApprendreJUNQ"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -433,7 +424,8 @@ label start:
         jump miniJeuPoursuite
         $ avancement[1]= "ObjetRecupere"
         jump LieuDuVol
-    elif avancement[1]=="ObjetRecupere":
+    label jeutermine:
+        scene LieuDuVol at sizeBackground with slowDissolve
         "Tiens une lettre de remerciement"
         $ inventaire.append(LettreDeRemerciement)
         $ renpy.movie_cutscene("Lettre_C_LSF.webm")
@@ -454,7 +446,7 @@ label start:
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
         show screen LieuDuVolLink
-        $ IleAcces==1
+        $ IleAcces=1
         jump WaitingScreen
 
     label miniJeuPoursuite:
@@ -488,6 +480,8 @@ label start:
         scene CabaneDuVoleur at sizeBackground with slowDissolve
 
         pp "Oui c'est ici !"
+        $ avancement[1]="ObjetRecupere"
+        jump jeutermine
 #############################################################################################################################
     label Lac:
     stop music
@@ -630,6 +624,7 @@ label start:
         $ achMagie +=1
     pause 3.5
     $ avancement[0]="ApprisSort"
+    $ RencontreOiseau=1
     jump NidDeLOiseau
 
     label Oiseau2:
@@ -670,14 +665,15 @@ label start:
         menu:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
-                $ renpy.movie_cutscene("achimiste_merci.webm")
+                $ renpy.movie_cutscene("alchimiste_merci.webm")
                 $ renpy.movie_cutscene("alchimiste_FIOLE_LSF.webm")
                 if achF==0:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                jump Falaise
+                $ avancement[3]="PossibiliteApprendrePIF"
+                jump DessusDeLaFalaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
                 $ renpy.movie_cutscene("alchimiste_NON.webm")
@@ -687,7 +683,8 @@ label start:
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                jump Falaise
+                $ avancement[3]="PossibiliteApprendrePIF"
+                jump DessusDeLaFalaise
 
     label miniJeuFiole:
     label jeuFiole_lancement:
@@ -705,9 +702,9 @@ label start:
         jump jeuFiole_loop
 
     label jeuFiole_valider:
-        $tab,ordre = jeuFiole_majtab(tab,ordre)
+        $tab,ordre,video = jeuFiole_majtab(tab,ordre,video)
         "Oui, bravo"
-        $renpy.jump(jeuFiole_fin(ordre))
+        $renpy.jump(jeuFiole_fin(ordre,coeur))
 
     label jeuFiole_echec:
         $coeur-=1
@@ -738,21 +735,47 @@ label start:
             dico.append(M)
             dico.append(N)
         $ avancement[2]="FioleObtenu"
-        jump DessusDeLaFalaise
+        jump alchimiste
    
 #############################################################################################################################
     label DansLesAirs:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
+    hide screen ArriveForetFeesLink
+    hide screen GouffreLink
+    hide screen ArbreABonbonsLink
+    hide screen FondDuGouffreLink
+    hide screen enfantstatic
+    hide screen BibliothequeLink
+    hide screen bibliothecairestatic
+    hide screen LabyrintheLink
+    hide screen LacLink
+    hide screen OliveauIntroLink
+    hide screen ClairiereDOliveauLink
+    hide screen oliveauStatic
+    hide screen NidDeLOiseauLink
+    hide screen birdStatic
+    hide screen LinkPorteDuRoyaumeDesFees
+    hide screen LieuDuVolLink
+    hide screen CuisineLink
+    hide screen cuisinierestatic
+    hide screen FondDuLacLink
+    hide screen FalaiseLink
+    hide screen DansLesAirsLink
+    hide screen oiseaustatic
+    hide screen DessusDeLaFalaiseLink
+    hide screen alchimistestatic
+    hide screen PiegeDeLAlchimisteLink
     scene DansLesAirs at sizeBackground with slowDissolve
     show screen DansLesAirsLink with slowDissolve
     jump WaitingScreen
     #
-    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    
+    label oiseauAirs:
     if avancement[3]=="null":
         b "Attends, tu oses m'appeler alors que ton ignorance est inchangée? Quel toupet!"
-        jump ClairiereDOliveau
+        jump DansLesAirs
     elif avancement[3]=="PossibiliteApprendreKAME":
         jump PossibiliteApprendreKAME
     elif avancement[3]=="PossibiliteApprendrePIF":
@@ -764,20 +787,21 @@ label start:
 
 
     label PossibiliteApprendreKAME:
-        menu:
-            "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":
-                $ gentillesse -= 2
-                b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
-                b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
-                jump ApprentissageKAME
-            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":
-                $ gentillesse -= 1
-                b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
-                b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
-                jump ApprentissageKAME
-            "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
-                b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
-                jump ApprentissageKAME
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    menu:
+        "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":
+            $ gentillesse -= 2
+            b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
+            b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
+            jump ApprentissageKAME
+        "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":
+            $ gentillesse -= 1
+            b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
+            b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
+            jump ApprentissageKAME
+        "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
+            b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
+            jump ApprentissageKAME
     
     label ApprentissageKAME:
     b "Le sort que je vais t’apprendre se dit KAME"
@@ -800,8 +824,10 @@ label start:
     pause 3.5
     "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
     $ avancement[0]="ApprisSort"
+    jump DansLesAirs
 
     label PossibiliteApprendrePIF:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t’apprendre se dit PIF"
     $ renpy.movie_cutscene("oiseau_PIF_LSF.webm")
     if achP==0:
@@ -820,9 +846,10 @@ label start:
         $ achPIF +=1
     pause 3.5
     $ avancement[0]= "ApprisSort"
-    jump ClairiereDOliveau
+    jump DansLesAirs
 
     label PossibiliteApprendreJUNQ:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t’apprendre se dit JUNQ"
     $ renpy.movie_cutscene("oiseau_JUNQ_LSF.webm")
     if achJ==0:
@@ -841,9 +868,10 @@ label start:
         $ achJUNQ +=1
     pause 3.5
     $ avancement[0]= "ApprisSort"
-    jump Lac
+    jump DansLesAirs
     
     label PossibiliteApprendreGREX:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t'apprendre se dit GREX"
     $ renpy.movie_cutscene("oiseau_GREX_LSF.webm")
     if achX==0:
@@ -866,7 +894,7 @@ label start:
         $ achievements.append(Histoire_Alphabet)
         $ achAlphabet +=1
     pause 3.5
-    jump Labyrinthe
+    jump DansLesAirs
 #############################################################################################################################
     label Gouffre:
     stop music
@@ -887,15 +915,17 @@ label start:
     $ minimap.append(ArbreABonbons)
     scene ArbreABonbons at sizeBackground with slowDissolve
     show screen ArbreABonbonsLink with slowDissolve
-    jump WaitingScreen
-    #
-    label enfant:
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
+        $ avancement[4]="bonbonperdu"
         jump ObtenuBonbons
+    jump WaitingScreen
+    #
+    
     
     label EnfantQuiPleure:
+    show screen enfantstatic
     menu:
         "Que se passe t-il jeune fée ?":
             $ gentillesse += 1
@@ -916,6 +946,8 @@ label start:
     pause 3.5
     $ dico.append(B)
     show sacFiole at Montrer
+    hide screen enfantstatic
+    hide screen ArbreABonbonsLink
     jump MinijeuBonbons
 
     label ObtenuBonbons:
@@ -1139,12 +1171,12 @@ label start:
     label jeuBiblio_fingagner:
         hide screen jeubiblio with slowDissolve
         "Bravo ! Tu as réussi"
-        jump Bibliotheque
+        jump ObtenuReference
 
     label jeuBiblio_finperdu:
         hide screen jeubiblio with slowDissolve
         "Raté. Essaye de réviser grâce a Oliveau avant de rejouer"
-        jump MinijeuBibliotheque
+        jump Bibliotheque
 
     # -fin des fins du jeu-
 
@@ -1161,14 +1193,17 @@ label start:
     pause 3.5
     $ dico.append(T)
     $ dico.append(Q)
+    $ avancement[3]="PossibiliteApprendreJUNQ"
     $ avancement[0]="ObtenuBouleDeCristal"
     menu:
         "Lui rendre ses livres": 
             $ gentillesse += 1
             $ inventaire.append(BouleDeCristal)
+            jump Bibliotheque
         "Partir avec ses livres": 
             $ gentillesse -= 1
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
+            jump Bibliotheque
     jump WaitingScreen
 #############################################################################################################################
     label FondDuLac:
@@ -1189,6 +1224,17 @@ label start:
     stop music
     play music "<loop 0.0>/audio/Cuisine.mp3"
     jump WaitingScreen
+
+    label cuisiniere:
+    if jeucuisinefini==0:
+        jump Intro_cuisine
+    else:
+        jump bongateau
+
+    label bongateau:
+    c "Profiter de votre gateau"
+    jump Cuisine
+
     label Intro_cuisine:
         "Vous appercevez une cuisinière. Elle semble vous demander quelque chose."
         jump tomates
@@ -1202,7 +1248,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump tomates
+            jump Cuisine
     
     label carottes:
         $ renpy.movie_cutscene("cuisine_12_carottes.webm")
@@ -1214,7 +1260,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump carottes
+            jump Cuisine
      
     label asperges:
         $ renpy.movie_cutscene("cuisine_10_asperges.webm")
@@ -1226,38 +1272,39 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump asperges
+            jump Cuisine
     
     label poivrons:
-        $ renpy.movie_cutscene("cuisine_16_poivrons.webm")
+        $ renpy.movie_cutscene("cuisine_12_poivrons.webm")
         $ n_poivrons= renpy.input("Combien de poivrons veut-elle?", length = 4)
-        if n_tomates == "16":
+        if n_poivrons == "16":
             c"Merci!"
             "La fée semble vouloir votre aide pour faire un gateau."
+            hide screen cuisinierestatic
             jump PlanDeTravail
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump poivrons
+            jump Cuisine
 
     $ avancement[0]="BesoinApprendreCompter"
 
     #mini-jeu
     label PlanDeTravail:
         $ dico_cuis = ["cuisine_1.webm","cuisine_2.webm","cuisine_3.webm","cuisine_4.webm","cuisine_5.webm","cuisine_6.webm","cuisine_7.webm","cuisine_8.webm","cuisine_9.webm","cuisine_10.webm","","","","","cuisine_15.webm","","","","","cuisine_20.webm"]
-        scene décor_cuisine
+        scene Cuisine
         with dissolve
 
         pause(1.0)
         # pour rouge:#711616
-        show cuisine with dissolve
+        show cuisine2 with dissolve
 
         pause(2.5)
 
-        hide cuisine with dissolve
+        hide cuisine2 with dissolve
 
-        scene décor_cuisine with dissolve
+        scene Cuisine with dissolve
 
         "Ce mini-jeu est en deux parties: la préparation et la cuisson du gateau."
         "La préparation consiste simplement à mettre les bon ingrédients au bon nombre dans le chaudron."
@@ -1297,7 +1344,6 @@ label start:
     label cuisson:
         scene fond_minijeu_cuisine with dissolve
         show barre_flamme at pos_flamme
-        show screen timeup_cuisson
         show screen le_feu_cuisson
         show screen marmite_cuisson
         python:
@@ -1362,6 +1408,7 @@ label start:
 
         scene décor_cuisine with dissolve
         show gateau at right
+        $ jeucuisinefini=1
         if choix_sirop == 1:
             c"Merci d'avoir mis du sirop du rose!"
             c"Tu gagne 2 points de gentillesse!"
@@ -1370,15 +1417,15 @@ label start:
             c"Tu veux m'empoisonner avec l'arsenic!!"
             c"Je te retire 3 points de gentillesse!"
             $ gentillesse -= 3
+        c"Merci beaucoup, tu peux continuer"
+        $ renpy.movie_cutscene("cuisine_GATEAU_LSF.webm")
+        $ dico.append(G)
+        $ avancement[3]="PossibiliteApprendreGREX"
         jump Cuisine
-
-    c"Merci beaucoup, tu peux continuer"
-    $ renpy.movie_cutscene("cuisine_GATEAU_LSF.webm")
-    $ dico.append(G)
-    $ avancement[3]="PossibiliteApprendreGREX"
-    jump Cuisine
+    
 #############################################################################################################################
     label Labyrinthe:
+    hide screen FondDuGouffreLink
     $ PossibiliteKAME=0
     $ taille_labyrinthe= renpy.random.randint(5,10)    # nombre de salles du labyrinthe
     $ position_laby = 0                               # a quelle salle on en est
@@ -1390,6 +1437,7 @@ label start:
     label labyrinthe_minijeu:
     scene gallerie porte at sizeBackground with slowDissolve
     "Vous arrivez au labyrinthe."
+    show screen LabyrintheLink with slowDissolve
     call screen porte_gallerie with slowDissolve
     stop music
     play music "<loop 0.0>/audio/Labyrinthe.mp3"
@@ -1460,11 +1508,11 @@ label start:
         call screen taupe_lab with dissolve
 
     label fin_laby:
-        scene carte with dissolve
         "Vous êtes enfin sorti!"
         jump RoyaumeDesFees
 #############################################################################################################################
     label RoyaumeDesFees:
+    scene Perdu4 at sizeBackground with slowDissolve
     stop music
     play music "<loop 0.0>/audio/Denouement.mp3"
     if achNiveau1==0:
