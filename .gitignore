@@ -65,3 +65,4 @@ Temporary Items
 *.mp3
 !Wiki_Projet/Logo_JeuLSF.png
 Ignored/**
+!JeuLSFv1/**
