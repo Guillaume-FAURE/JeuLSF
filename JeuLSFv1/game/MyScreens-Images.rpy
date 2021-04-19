@@ -340,7 +340,7 @@ image Falaise:
 image FalaiseLierre:
     "images/Background/FalaiseLierre.jpg"
 image DessusDeLaFalaise:
-    "images/Background/DessusDeLaFalaise.jpg"
+    "Background/DessusDeLaFalaise.png"
 image PlanDeTravail:
     "images/Background/PlanDeTravail.png"
 image CulDeSac:
@@ -1282,7 +1282,7 @@ screen DessusDeLaFalaiseLink:
         at sizeButton
         xalign 0.1
         yalign 0.1
-        action [Hide ("DessusDeLaFalaiseLink"), Jump ("Falaise")]
+        action [Hide ("DessusDeLaFalaiseLink"), Hide("alchimistestatic"), Jump ("Falaise")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -1329,9 +1329,17 @@ screen DessusDeLaFalaiseLink:
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
     imagebutton:
         idle "alchimiste.png"
+        at sizeAlchimiste
         xalign 0.5
         yalign 0.2
-        action[Hide(DessusDeLaFalaiseLink), Jump(alchimiste)]
+        action[Hide("DessusDeLaFalaiseLink"),Show("alchimistestatic"), Jump("alchimiste")]
+
+screen alchimistestatic:
+    imagebutton:
+        idle "alchimiste.png"
+        at sizeAlchimiste
+        xalign 0.5
+        yalign 0.2
 
 
 ###Link Piege de l'alchimiste

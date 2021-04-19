@@ -7,12 +7,12 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    #$ magie.append(DOY)
-    #$ magie.append(KAME)
-    #$ magie.append(GREX)
-    #$ magie.append(JUNQ)
-    #$ magie.append(PIF)
-    #jump Falaise
+    $ magie.append(DOY)
+    $ magie.append(KAME)
+    $ magie.append(GREX)
+    $ magie.append(JUNQ)
+    $ magie.append(PIF)
+    jump Falaise
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
@@ -1477,8 +1477,7 @@ label start:
 
     return
    
-   label CulDeSac:
-
+    label CulDeSac:
         hide screen papier
         hide screen papierJeu
 

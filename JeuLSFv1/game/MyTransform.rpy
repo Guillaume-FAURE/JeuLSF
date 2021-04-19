@@ -100,4 +100,6 @@ transform Montrer:
 
 transform sizePorte:
     size(500,500)
+transform sizeAlchimiste:
+    zoom 0.5
     
