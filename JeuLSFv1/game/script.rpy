@@ -488,7 +488,6 @@ label start:
         scene CabaneDuVoleur at sizeBackground with slowDissolve
 
         pp "Oui c'est ici !"
-        jump LieuDuVol
 #############################################################################################################################
     label Lac:
     stop music
