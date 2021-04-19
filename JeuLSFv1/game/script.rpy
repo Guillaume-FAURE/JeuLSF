@@ -10,7 +10,6 @@ label start:
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
-    jump Cuisine
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -1227,6 +1226,15 @@ label start:
     jump WaitingScreen
 
     label cuisiniere:
+    if jeucuisinefini==0:
+        jump Intro_cuisine
+    else:
+        jump bongateau
+
+    label bongateau:
+    c "Profiter de votre gateau"
+    jump Cuisine
+
     label Intro_cuisine:
         "Vous appercevez une cuisinière. Elle semble vous demander quelque chose."
         jump tomates
@@ -1272,6 +1280,7 @@ label start:
         if n_poivrons == "16":
             c"Merci!"
             "La fée semble vouloir votre aide pour faire un gateau."
+            hide screen cuisinierestatic
             jump PlanDeTravail
         else:
             c"Ce n'est pas ce que j'ai demandé!!"
@@ -1289,11 +1298,11 @@ label start:
 
         pause(1.0)
         # pour rouge:#711616
-        show cuisine with dissolve
+        show cuisine2 with dissolve
 
         pause(2.5)
 
-        hide cuisine with dissolve
+        hide cuisine2 with dissolve
 
         scene Cuisine with dissolve
 
@@ -1335,7 +1344,6 @@ label start:
     label cuisson:
         scene fond_minijeu_cuisine with dissolve
         show barre_flamme at pos_flamme
-        show screen timeup_cuisson
         show screen le_feu_cuisson
         show screen marmite_cuisson
         python:
@@ -1400,6 +1408,7 @@ label start:
 
         scene décor_cuisine with dissolve
         show gateau at right
+        $ jeucuisinefini=1
         if choix_sirop == 1:
             c"Merci d'avoir mis du sirop du rose!"
             c"Tu gagne 2 points de gentillesse!"
@@ -1408,13 +1417,12 @@ label start:
             c"Tu veux m'empoisonner avec l'arsenic!!"
             c"Je te retire 3 points de gentillesse!"
             $ gentillesse -= 3
+        c"Merci beaucoup, tu peux continuer"
+        $ renpy.movie_cutscene("cuisine_GATEAU_LSF.webm")
+        $ dico.append(G)
+        $ avancement[3]="PossibiliteApprendreGREX"
         jump Cuisine
-
-    c"Merci beaucoup, tu peux continuer"
-    $ renpy.movie_cutscene("cuisine_GATEAU_LSF.webm")
-    $ dico.append(G)
-    $ avancement[3]="PossibiliteApprendreGREX"
-    jump Cuisine
+    
 #############################################################################################################################
     label Labyrinthe:
     hide screen FondDuGouffreLink
@@ -1500,11 +1508,11 @@ label start:
         call screen taupe_lab with dissolve
 
     label fin_laby:
-        scene carte with dissolve
         "Vous êtes enfin sorti!"
         jump RoyaumeDesFees
 #############################################################################################################################
     label RoyaumeDesFees:
+    scene Perdu4 at sizeBackground with slowDissolve
     stop music
     play music "<loop 0.0>/audio/Denouement.mp3"
     if achNiveau1==0:
