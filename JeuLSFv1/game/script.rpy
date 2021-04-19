@@ -488,21 +488,7 @@ label start:
         scene CabaneDuVoleur at sizeBackground with slowDissolve
 
         pp "Oui c'est ici !"
-
-
-    label CulDeSac:
-
-        hide screen papier
-        hide screen papierJeu
-
-
-        pp 'Peut-être par là !'
-        
-        scene CulDeSac at sizeBackground with slowDissolve
-
-        pp "Non... Ce n'est pas le bon chemin."
-
-        jump JeuPapier
+        jump LieuDuVol
 #############################################################################################################################
     label Lac:
     stop music
@@ -1491,3 +1477,17 @@ label start:
     "Pour en apprendre plus sur la langue des signes vous pouvez aller voir {a=https://www.trefle.org} le site de l'association Trèfles spécialisé dans l'apprentissage de la langue des signes{/a}"
 
     return
+   
+   label CulDeSac:
+
+        hide screen papier
+        hide screen papierJeu
+
+
+        pp 'Peut-être par là !'
+        
+        scene CulDeSac at sizeBackground with slowDissolve
+
+        pp "Non... Ce n'est pas le bon chemin."
+
+        jump JeuPapier
