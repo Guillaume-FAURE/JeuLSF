@@ -55,14 +55,3 @@ Temporary Items
 **/game/saves/*
 **/errors.txt
 **/traceback.txt
-*-dists/*
-
-#Other
-
-*.docx
-*.jpg
-*.png
-*.mp3
-!Wiki_Projet/Logo_JeuLSF.png
-Ignored/**
-!JeuLSFv1/**
