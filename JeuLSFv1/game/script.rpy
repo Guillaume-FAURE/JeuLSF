@@ -12,7 +12,7 @@ label start:
     $ magie.append(GREX)
     $ magie.append(JUNQ)
     $ magie.append(PIF)
-    jump Falaise
+    jump FondDuLac
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
@@ -705,9 +705,9 @@ label start:
         jump jeuFiole_loop
 
     label jeuFiole_valider:
-        $tab,ordre = jeuFiole_majtab(tab,ordre)
+        $tab,ordre,video = jeuFiole_majtab(tab,ordre,video)
         "Oui, bravo"
-        $renpy.jump(jeuFiole_fin(ordre))
+        $renpy.jump(jeuFiole_fin(ordre,coeur))
 
     label jeuFiole_echec:
         $coeur-=1
@@ -749,10 +749,11 @@ label start:
     show screen DansLesAirsLink with slowDissolve
     jump WaitingScreen
     #
-    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    
+    label oiseauAirs:
     if avancement[3]=="null":
         b "Attends, tu oses m'appeler alors que ton ignorance est inchangée? Quel toupet!"
-        jump ClairiereDOliveau
+        jump DansLesAirs
     elif avancement[3]=="PossibiliteApprendreKAME":
         jump PossibiliteApprendreKAME
     elif avancement[3]=="PossibiliteApprendrePIF":
@@ -764,20 +765,21 @@ label start:
 
 
     label PossibiliteApprendreKAME:
-        menu:
-            "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":
-                $ gentillesse -= 2
-                b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
-                b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
-                jump ApprentissageKAME
-            "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":
-                $ gentillesse -= 1
-                b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
-                b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
-                jump ApprentissageKAME
-            "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
-                b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
-                jump ApprentissageKAME
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
+    menu:
+        "Ah bah c’est pas trop tôt! Dépêche toi de m’apprendre un nouveau sort! J’ai pas tout mon temps.":
+            $ gentillesse -= 2
+            b "Je ne saurais me rabaisser au niveau d’un être inférieur tel que toi. Il nous faut à chacun rester à sa place. Pour faire simple, je vaut mieux que toi." 
+            b "Cela dit je vais t’apprendre un sort. Il faut au lion protéger la souris, ainsi, noblesse oblige, je me dois de te protéger."
+            jump ApprentissageKAME
+        "Bien le bonjour grand Oiseau! J’ose me présenter devant vous dans l’espoir d’apprendre, peut-être, un nouveau sort":
+            $ gentillesse -= 1
+            b "Comme vous me flattez, vile créature. Il est facile pour toi d’admirer un être tel que moi, n’est-ce pas?"
+            b "Je vais t’apprendre un nouveau sort afin de t’éclairer de ma perfection."
+            jump ApprentissageKAME
+        "Bonjour Oiseau! Je t’appelle pour apprendre un nouveau sort!":
+            b "Bonjour, humain. Je te pense capable de comprendre une infime partie de mon intellect, je vais donc t’enseigner un nouveau sort."
+            jump ApprentissageKAME
     
     label ApprentissageKAME:
     b "Le sort que je vais t’apprendre se dit KAME"
@@ -800,8 +802,10 @@ label start:
     pause 3.5
     "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
     $ avancement[0]="ApprisSort"
+    jump DansLesAirs
 
     label PossibiliteApprendrePIF:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t’apprendre se dit PIF"
     $ renpy.movie_cutscene("oiseau_PIF_LSF.webm")
     if achP==0:
@@ -820,9 +824,10 @@ label start:
         $ achPIF +=1
     pause 3.5
     $ avancement[0]= "ApprisSort"
-    jump ClairiereDOliveau
+    jump DansLesAirs
 
     label PossibiliteApprendreJUNQ:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t’apprendre se dit JUNQ"
     $ renpy.movie_cutscene("oiseau_JUNQ_LSF.webm")
     if achJ==0:
@@ -841,9 +846,10 @@ label start:
         $ achJUNQ +=1
     pause 3.5
     $ avancement[0]= "ApprisSort"
-    jump Lac
+    jump DansLesAirs
     
     label PossibiliteApprendreGREX:
+    b "Vous avez appelé le phœnix des hôtes de ces bois? Me voilà, le magnifique, le superbe Oiseau! Que puis-je faire pour toi?"
     b "Le sort que je vais t'apprendre se dit GREX"
     $ renpy.movie_cutscene("oiseau_GREX_LSF.webm")
     if achX==0:
@@ -866,7 +872,7 @@ label start:
         $ achievements.append(Histoire_Alphabet)
         $ achAlphabet +=1
     pause 3.5
-    jump Labyrinthe
+    jump DansLesAirs
 #############################################################################################################################
     label Gouffre:
     stop music
@@ -887,15 +893,17 @@ label start:
     $ minimap.append(ArbreABonbons)
     scene ArbreABonbons at sizeBackground with slowDissolve
     show screen ArbreABonbonsLink with slowDissolve
-    jump WaitingScreen
-    #
-    label enfant:
     if avancement[4]=="null":
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
+        $ avancement[4]="bonbonperdu"
         jump ObtenuBonbons
+    jump WaitingScreen
+    #
+    
     
     label EnfantQuiPleure:
+    show screen enfantstatic
     menu:
         "Que se passe t-il jeune fée ?":
             $ gentillesse += 1
@@ -916,6 +924,8 @@ label start:
     pause 3.5
     $ dico.append(B)
     show sacFiole at Montrer
+    hide screen enfantstatic
+    hide screen ArbreABonbonsLink
     jump MinijeuBonbons
 
     label ObtenuBonbons:
@@ -1189,6 +1199,8 @@ label start:
     stop music
     play music "<loop 0.0>/audio/Cuisine.mp3"
     jump WaitingScreen
+
+    label cuisiniere:
     label Intro_cuisine:
         "Vous appercevez une cuisinière. Elle semble vous demander quelque chose."
         jump tomates
@@ -1202,7 +1214,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump tomates
+            jump Cuisine
     
     label carottes:
         $ renpy.movie_cutscene("cuisine_12_carottes.webm")
@@ -1214,7 +1226,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump carottes
+            jump Cuisine
      
     label asperges:
         $ renpy.movie_cutscene("cuisine_10_asperges.webm")
@@ -1226,7 +1238,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump asperges
+            jump Cuisine
     
     label poivrons:
         $ renpy.movie_cutscene("cuisine_16_poivrons.webm")
@@ -1239,7 +1251,7 @@ label start:
             c"Ce n'est pas ce que j'ai demandé!!"
             $ renpy.movie_cutscene("cuisine_OLIVEAU_LSF.webm")
             $ avancement[0]="BesoinApprendreCompter"
-            jump poivrons
+            jump Cuisine
 
     $ avancement[0]="BesoinApprendreCompter"
 

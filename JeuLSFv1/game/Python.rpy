@@ -273,10 +273,12 @@ init python:
         video = video [1:]
         if not order:
             order.append("fin")
-        return (tableau,order)
+        return (tableau,order,video)
 
-    def jeuFiole_fin(order):
-        if order[0]!="fin":
+    def jeuFiole_fin(order,coeur):
+        if coeur <= 0:
+            return "jeuFiole_finperdu"
+        elif order[0]!="fin":
             res = "jeuFiole_loop"
         else:
             res = "jeuFiole_fingagner"
