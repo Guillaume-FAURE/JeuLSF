@@ -1,5 +1,5 @@
 transform sizeRoom:
-    size(108,72)
+    size(72,72)
 transform sizeButton:
     size(72,72)
 transform sizeBackground:
@@ -86,12 +86,12 @@ transform custom_zoom2:
     zoom 0.090
 
 transform indication1:
-    xalign 0.9
-    yalign 0.1
-    pause 1
-    size (0,0)
-    pause 1
-    size (50,50)
+    size(50,50)
+    xalign 0.1
+    yalign 0.5
+    zoom 0.0
+    linear 1.0 zoom 1.0
+    linear 1.0 zoom 0.0
 
 transform Montrer:
     zoom 1
