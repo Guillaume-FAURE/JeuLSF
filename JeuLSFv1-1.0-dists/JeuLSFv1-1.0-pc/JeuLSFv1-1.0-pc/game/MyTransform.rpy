@@ -1,5 +1,5 @@
 transform sizeRoom:
-    size(72,72)
+    size(120,120)
 transform sizeButton:
     size(72,72)
 transform sizeBackground:
@@ -9,7 +9,7 @@ transform sizeMenuBackground:
 transform sizeMapBackground:
     size(1150,720)
 transform sizeAchievement:
-    size(278,100)
+    size(139,50)
 transform sizeObjet:
     size(200,200)
 transform sizeFermer:
@@ -106,3 +106,6 @@ transform sizeEnfant:
     zoom 0.35
 transform sizeBibliothecaire:
     zoom 0.7
+
+transform sizeOliveau:
+    zoom 0.8

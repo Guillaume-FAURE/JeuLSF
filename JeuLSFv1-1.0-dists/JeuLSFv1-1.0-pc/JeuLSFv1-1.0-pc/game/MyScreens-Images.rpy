@@ -53,7 +53,7 @@ screen minimap:
             ypos i.y*10
             idle i.image
             at sizeRoom
-            action If ((PossibiliteKAME==1), true=[Hide ("minimap"),Jump (i.label)], false=[Show("KAMEPasPossible")])
+            action If ((possibilitevol==2), true=[SetVariable("possibilitevol",0),Hide("DansLesAirsLink"),Hide ("minimap"),Jump (i.label)])
 
 screen achievements:
     $ x=0
@@ -69,11 +69,11 @@ screen achievements:
             ypos y
             idle i.image
             at sizeAchievement
-        if x<=590:
-            $ x+=300
+        if x<=650:
+            $ x+=160
         else:
             $ x=0
-            $ y+=200
+            $ y+=100
 screen inventaire:
     $ x=0
     $ y=0
@@ -89,7 +89,7 @@ screen inventaire:
                 ypos y
                 idle i.image
                 at sizeObjet
-                action[Hide("inventaire"), Jump("DansLesAirs")]
+                action If ((PossibiliteKAME==1), true=[Hide("inventaire"),Jump("DansLesAirs")], false=[Show("KAMEPasPossible")])
         else:
             imagebutton:   
                 xpos x  
@@ -106,13 +106,22 @@ screen inventaire:
 
 ###Sorts
 screen KAMEPasPossible:
-    frame:
-        xalign 0.5
-        yalign 0.5
-        if achDOY==0:
-            text"{size=48}{color=#fd0a0a}Je ne peux pas aller là-bas, je ne sais pas voler!{/color}{/size}"
-        elif achDOY>=1:
+    if achDOY==0:
+        frame:
+            xalign 0.5
+            yalign 0.5
+            text"{size=48}{color=#fd0a0a}Sa magnificence, l’Oiseau, ne peut atterrir ici. Sors de sous cet horrible plafond.{/color}{/size}"
+        if achTueurdOiseau==0:
+            $ achievements.append(Secret_TueurdOiseau)
+            $ achTueurdOiseau +=1
+    elif achDOY>=1:
+        frame:
+            xalign 0.5
+            yalign 0.5
             text "{size=48}{color=#fd0a0a}Impossible de voler si on n'est pas en extérieur!{/color}{/size}"
+        if achGrosseBosse==0:
+            $ achievements.append(Secret_GrosseBosse)
+            $ achGrosseBosse +=1
     imagebutton:
         xalign 0.97
         yalign 0.45
@@ -470,14 +479,14 @@ screen GouffreLink:
         at sizeButton
         xalign 0.96
         yalign 0.6
-        action [Hide ("GouffreLink"), Jump ("ArriveForetFees")]
+        action [Hide ("GouffreLink"),SetVariable("PossibiliteKAME",1), Jump ("ArriveForetFees")]
     imagebutton:
         idle "LinkIdleS.png"
         hover "LinkHoverS.png"
         at sizeButton
         xalign 0.46
         yalign 0.4
-        action [Hide ("GouffreLink"), Jump ("FondDuGouffre")]
+        action [Hide ("GouffreLink"),SetVariable("PossibiliteKAME",1), Jump ("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
@@ -492,7 +501,7 @@ screen GouffreLink:
                     xalign 0.08
                     yalign 0.01
                     action [If ((PossibiliteKAME==0), true=[Show("KAMEPasPossible")]),
-                    If ((PossibiliteKAME==2), true=[SetVariable("PossibiliteKAME",1), Jump("ArbreABonbons")]),
+                    If ((PossibiliteKAME==2), true=[SetVariable("PossibiliteKAME",1),Hide("GouffreLink"), Jump("ArbreABonbons")]),
                     If ((PossibiliteKAME==1), true=[SetVariable("PossibiliteKAME",1),Jump("DansLesAirs")])]
             elif i.name=="DOY":
                 imagebutton:
@@ -831,16 +840,18 @@ screen LacLink:
 screen OliveauIntroLink:
     imagebutton:
         idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
+        at sizeOliveau
+        xalign 0.4
+        yalign 0.02
         action [Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")]
 
 ###Link Clairiere d'Oliveau
 screen ClairiereDOliveauLink:
     imagebutton:
         idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
+        at sizeOliveau
+        xalign 0.4
+        yalign 0.02
         action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
     imagebutton:
         idle "LinkIdleSO.png"
@@ -920,8 +931,9 @@ screen ClairiereDOliveauLink:
 screen oliveauStatic:
     imagebutton:
         idle "Oliveau.png"
-        xalign 0.5
-        yalign 0.2
+        at sizeOliveau
+        xalign 0.4
+        yalign 0.02
 
 ###Link Nid De L'Oiseau
 screen NidDeLOiseauLink:
@@ -1295,7 +1307,7 @@ screen DansLesAirsLink:
             idle "LinkIdleS.png"
             hover "LinkHoverS.png"
             at sizeButton
-            xalign 0.5
+            xalign 0.2
             yalign 0.9
             action [Hide ("DansLesAirsLink"),Hide("oiseaustatic"), Jump ("NidDeLOiseau")]
     if achMagie>=1:

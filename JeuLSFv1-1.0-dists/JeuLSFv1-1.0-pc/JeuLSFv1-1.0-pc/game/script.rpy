@@ -100,7 +100,7 @@ label start:
     $ inventaire.append(Seau)
     show seau at Tinventaire onlayer overlay
     pause 3.0
-    "Vous allez chercher de l'eau pour l'arbre qui avait de toute évidence très soif"
+    "Vous allez chercher de l'eau pour l'arbre qui a de toute évidence très soif"
     $ avancement[0]="niveau1"
     jump Niveau1
 #############################################################################################################################
@@ -650,6 +650,7 @@ label start:
     label DessusDeLaFalaise:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
+    $ minimap.append(PiegeDeLAlchimiste)
     scene DessusDeLaFalaise at sizeBackground with slowDissolve
     show screen DessusDeLaFalaiseLink with slowDissolve
     jump WaitingScreen
@@ -672,7 +673,7 @@ label start:
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                $ avancement[3]="PossibiliteApprendrePIF"
+                $ avancement[3]="PossibiliteApprendreKAME"
                 jump DessusDeLaFalaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
@@ -683,7 +684,7 @@ label start:
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                $ avancement[3]="PossibiliteApprendrePIF"
+                $ avancement[3]="PossibiliteApprendreKAME"
                 jump DessusDeLaFalaise
 
     label miniJeuFiole:
@@ -722,9 +723,7 @@ label start:
         jump jeuFiole_lancement
 
     label jeuFiole_fini:
-        show FioleM at Montrer
         $ renpy.movie_cutscene("lettre_M_LSF.webm")
-        show FioleN at Montrer
         $ renpy.movie_cutscene("lettre_N_LSF.webm")
         if achMN==0:
             show achMN at Tachievement onlayer overlay
@@ -767,6 +766,10 @@ label start:
     hide screen DessusDeLaFalaiseLink
     hide screen alchimistestatic
     hide screen PiegeDeLAlchimisteLink
+    if achKAME==0:
+        $ possibilitevol=1
+    if achKAME==1:
+        $ possibilitevol=2
     scene DansLesAirs at sizeBackground with slowDissolve
     show screen DansLesAirsLink with slowDissolve
     jump WaitingScreen
@@ -822,7 +825,7 @@ label start:
         $ achievements.append(Sort_KAME)
         $ achKAME +=1
     pause 3.5
-    "Tu peux désormais voler dans la forêt, cela te permettra de te déplacer plus facilement sur la carte."
+    "Tu peux désormais voler, cela te permettra de te déplacer plus facilement sur la carte une fois dans les airs."
     $ avancement[0]="ApprisSort"
     jump DansLesAirs
 
@@ -900,15 +903,14 @@ label start:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
+    $ PossibiliteKAME=2
     $ minimap.append(Gouffre)
     scene Gouffre at sizeBackground with slowDissolve
     show screen GouffreLink with slowDissolve
+    if achKAME==1:
+        "Le gouffre semble franchissable en volant."
     jump WaitingScreen
     #
-    $ PossibiliteKAME=2
-    "On est dans un gouffre"
-    "Vous avez traversé le gouffre en volant"
-    jump WaitingScreen
 #############################################################################################################################
     label ArbreABonbons:
     #IntroLabel
@@ -951,6 +953,7 @@ label start:
     jump MinijeuBonbons
 
     label ObtenuBonbons:
+    $ avancement[3]="PossibiliteApprendrePIF"
     menu:
         "Rendre les bonbons":
             $ gentillesse += 3
@@ -982,10 +985,11 @@ label start:
     label FondDuGouffre:
     #IntroLabel
     $ PossibiliteGREX=1
-    if porteGouffre==0:
-        $ PossibilitePIF=1
     scene FondDuGouffre at sizeBackground with slowDissolve
     show screen FondDuGouffreLink with slowDissolve
+    if porteGouffre==0:
+        $ PossibilitePIF=1
+        "Ce rocher a l'air de pouvoir être casser"
     jump WaitingScreen
     #
 ############################################################################################################################
@@ -1521,6 +1525,11 @@ label start:
         $ achNiveau1 +=1
     pause 3.5
     "Alors c'est ça le royaume des fées!!"
+    "Merci d'avoir joué à notre jeux"
+    "Nous remercions les créateurs de modèle: Jorn-K-Nightmane, amiamy111, vickymichaelis,  Mellowdonna, Jennifer42, Solenus1, SnowEmbrace, K-Manoc1,"
+    "CelestCroweSilvari, @anecoco, TDA, ColorsOfOrion, ayanemimi, deedee524, VoiceFromFuture, Promptus, UnluckyCandyFox, Beijing Perfect World, asterose,"
+    "Zekal231, AliMMD, MLBB, DeidaraChanHeart et KittyNekkyo."
+    "Nous remercions aussi notre école l'IMT Lille-Douai ainsi que l'association Trefles pour nous avoir soutenu lors de ce projet."
     "Pour en apprendre plus sur la langue des signes vous pouvez aller voir {a=https://www.trefle.org} le site de l'association Trèfles spécialisé dans l'apprentissage de la langue des signes{/a}"
 
     return
