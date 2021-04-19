@@ -83,16 +83,26 @@ screen inventaire:
         xpos 0
         ypos 0
     for i in inventaire:
-        imagebutton:   
-            xpos x
-            ypos y
-            idle i.image
-            at sizeObjet
+        if i.name=="Sifflet":
+            imagebutton:
+                xpos x
+                ypos y
+                idle i.image
+                at sizeObjet
+                action[Hide("inventaire"), Jump("DansLesAirs")]
+        else:
+            imagebutton:   
+                xpos x  
+                ypos y
+                idle i.image
+                at sizeObjet
         if x<=590:
             $ x+=200
         else:
             $ x=0
             $ y+=300
+        
+
 
 ###Sorts
 screen KAMEPasPossible:
@@ -259,7 +269,7 @@ image achMN:
     "Achievements/Lettre_MN.png"
 image achP:
     "Achievements/Lettre_P.png"
-image achBILBIOTHEQUE:
+image achBIBLIOTHEQUE:
     "Achievements/Lettre_BIBLIOTHEQUE.png"
 image achX:
     "Achievements/Lettre_X.png"
@@ -704,11 +714,11 @@ screen bibliothecairestatic:
 ###Link Labyrinthe
 screen LabyrintheLink:
     imagebutton:
-        idle "LinkIdleE.png"
-        hover "LinkHoverE.png"
+        idle "LinkIdleSE.png"
+        hover "LinkHoverSE.png"
         at sizeButton
-        xalign 0.5
-        yalign 0.1
+        xalign 0.9
+        yalign 0.9
         action [SetVariable("PossibiliteKAME",1),Hide ("LabyrintheLink"), Jump ("FondDuGouffre")]
     if achMagie>=1:
         imagebutton:
@@ -808,7 +818,7 @@ screen LacLink:
                     at sizeButton
                     xalign 0.32
                     yalign 0.01
-                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
+                    action If ((PossibiliteJUNQ==1), true=[SetVariable("PossibiliteJUNQ",0),Hide("LacLink"),Jump("FondDuLac")], false=[Show("JUNQPasPossible")])
             elif i.name=="GREX":
                 imagebutton:
                     idle i.image
@@ -1398,15 +1408,24 @@ screen DessusDeLaFalaiseLink:
                     yalign 0.01
                     action If ((PossibiliteGREX==1), true=[SetVariable("PossibiliteGREX",0),Jump("Labyrinthe")], false=[Show("GREXPasPossible")])
     imagebutton:
-        idle "alchimiste.png"
-        at sizeAlchimiste
-        xalign 0.42
-        yalign 0.55
-        action[Hide("DessusDeLaFalaiseLink"),Show("alchimistestatic"), Jump("alchimiste")]
+        if avancement[2]=="FioleObtenu":
+            idle "alchimiste_pose.png"
+            at sizeAlchimiste
+            xalign 0.42
+            yalign 0.55
+        else:
+            idle "alchimiste.png"
+            at sizeAlchimiste
+            xalign 0.42
+            yalign 0.55
+            action[Hide("DessusDeLaFalaiseLink"),Show("alchimistestatic"), Jump("alchimiste")]
 
 screen alchimistestatic:
     imagebutton:
-        idle "alchimiste.png"
+        if avancement[2]=="FioleObtenu":
+            idle "alchimiste_pose.png"
+        else:
+            idle "alchimiste.png"
         at sizeAlchimiste
         xalign 0.42
         yalign 0.55

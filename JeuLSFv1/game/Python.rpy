@@ -92,7 +92,7 @@ init python:
     achCHWYZ=0
     achAlphabet=0
     achCompter=0
-    achMagie=1
+    achMagie=0
     achNiveau1=0
     achGrosseBosse=0
     achTueurdOiseau=0
@@ -100,10 +100,10 @@ init python:
     achJUNQ=0
     achKAME=0
     achPIF=0
-    achDOY=1
+    achDOY=0
     mapshow=0
     inventaireshow = 0
-    PossibiliteKAME =0
+    PossibiliteKAME =1
     PossibiliteDOY =0
     PossibilitePIF=0
     PossibiliteJUNQ=0

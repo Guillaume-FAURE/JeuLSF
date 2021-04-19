@@ -7,15 +7,10 @@ label start:
     label Didacticiel:  
     label Blackscreen1:
     show BlackScreen at sizeBackground
-    $ magie.append(DOY)
-    $ magie.append(KAME)
-    $ magie.append(GREX)
-    $ magie.append(JUNQ)
-    $ magie.append(PIF)
-    jump FondDuLac
     label LieuDeDepart:
     show LieuDeDepart at sizeBackground with slowDissolve
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
+    jump Cuisine
     "Comme à votre habitude, vous vous baladez dans la forêt. Le soleil brille comme toujours, mais cette fois-ci, vous sentez une légère brise tout à fait différente..."
     label Perdu1:
     show Perdu1 at sizeBackground with slowDissolve
@@ -277,7 +272,6 @@ label start:
     jump ClairiereDOliveau
 
     label FioleObtenu:
-    $ avancement[3]="PossibiliteApprendreKAME"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -298,7 +292,6 @@ label start:
     jump ClairiereDOliveau
 
     label EnfantBonbon:
-    $ avancement[3]="PossibiliteApprendrePIF"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -309,7 +302,6 @@ label start:
     jump ClairiereDOliveau
 
     label ObtenuBouleDeCristal:
-    $ avancement[3]="PossibiliteApprendreJUNQ"
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
     menu:
         "Parmis les lettres que l’on m’a signées, il y en a une que j’ai mal comprise":
@@ -433,7 +425,8 @@ label start:
         jump miniJeuPoursuite
         $ avancement[1]= "ObjetRecupere"
         jump LieuDuVol
-    elif avancement[1]=="ObjetRecupere":
+    label jeutermine:
+        scene LieuDuVol at sizeBackground with slowDissolve
         "Tiens une lettre de remerciement"
         $ inventaire.append(LettreDeRemerciement)
         $ renpy.movie_cutscene("Lettre_C_LSF.webm")
@@ -454,7 +447,7 @@ label start:
             dico.append(Z)
             avancement[0]= "LieuDuVolComplete"
         show screen LieuDuVolLink
-        $ IleAcces==1
+        $ IleAcces=1
         jump WaitingScreen
 
     label miniJeuPoursuite:
@@ -488,6 +481,8 @@ label start:
         scene CabaneDuVoleur at sizeBackground with slowDissolve
 
         pp "Oui c'est ici !"
+        $ avancement[1]="ObjetRecupere"
+        jump jeutermine
 #############################################################################################################################
     label Lac:
     stop music
@@ -630,6 +625,7 @@ label start:
         $ achMagie +=1
     pause 3.5
     $ avancement[0]="ApprisSort"
+    $ RencontreOiseau=1
     jump NidDeLOiseau
 
     label Oiseau2:
@@ -670,14 +666,15 @@ label start:
         menu:
             "Donner la fiole à la fée":
                 $ gentillesse += 2
-                $ renpy.movie_cutscene("achimiste_merci.webm")
+                $ renpy.movie_cutscene("alchimiste_merci.webm")
                 $ renpy.movie_cutscene("alchimiste_FIOLE_LSF.webm")
                 if achF==0:
                     show achF at Tachievement onlayer overlay
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                jump Falaise
+                $ avancement[3]="PossibiliteApprendrePIF"
+                jump DessusDeLaFalaise
             "Partir avec la fiole":
                 $ gentillesse -= 3
                 $ renpy.movie_cutscene("alchimiste_NON.webm")
@@ -687,7 +684,8 @@ label start:
                     $ achievements.append(Lettre_F)
                     $ achF +=1
                 pause 3.5
-                jump Falaise
+                $ avancement[3]="PossibiliteApprendrePIF"
+                jump DessusDeLaFalaise
 
     label miniJeuFiole:
     label jeuFiole_lancement:
@@ -738,13 +736,38 @@ label start:
             dico.append(M)
             dico.append(N)
         $ avancement[2]="FioleObtenu"
-        jump DessusDeLaFalaise
+        jump alchimiste
    
 #############################################################################################################################
     label DansLesAirs:
     stop music
     play music "<loop 0.0>/audio/ForetBruitOiseau.mp3"
     #IntroLabel
+    hide screen ArriveForetFeesLink
+    hide screen GouffreLink
+    hide screen ArbreABonbonsLink
+    hide screen FondDuGouffreLink
+    hide screen enfantstatic
+    hide screen BibliothequeLink
+    hide screen bibliothecairestatic
+    hide screen LabyrintheLink
+    hide screen LacLink
+    hide screen OliveauIntroLink
+    hide screen ClairiereDOliveauLink
+    hide screen oliveauStatic
+    hide screen NidDeLOiseauLink
+    hide screen birdStatic
+    hide screen LinkPorteDuRoyaumeDesFees
+    hide screen LieuDuVolLink
+    hide screen CuisineLink
+    hide screen cuisinierestatic
+    hide screen FondDuLacLink
+    hide screen FalaiseLink
+    hide screen DansLesAirsLink
+    hide screen oiseaustatic
+    hide screen DessusDeLaFalaiseLink
+    hide screen alchimistestatic
+    hide screen PiegeDeLAlchimisteLink
     scene DansLesAirs at sizeBackground with slowDissolve
     show screen DansLesAirsLink with slowDissolve
     jump WaitingScreen
@@ -1149,12 +1172,12 @@ label start:
     label jeuBiblio_fingagner:
         hide screen jeubiblio with slowDissolve
         "Bravo ! Tu as réussi"
-        jump Bibliotheque
+        jump ObtenuReference
 
     label jeuBiblio_finperdu:
         hide screen jeubiblio with slowDissolve
         "Raté. Essaye de réviser grâce a Oliveau avant de rejouer"
-        jump MinijeuBibliotheque
+        jump Bibliotheque
 
     # -fin des fins du jeu-
 
@@ -1171,14 +1194,17 @@ label start:
     pause 3.5
     $ dico.append(T)
     $ dico.append(Q)
+    $ avancement[3]="PossibiliteApprendreJUNQ"
     $ avancement[0]="ObtenuBouleDeCristal"
     menu:
         "Lui rendre ses livres": 
             $ gentillesse += 1
             $ inventaire.append(BouleDeCristal)
+            jump Bibliotheque
         "Partir avec ses livres": 
             $ gentillesse -= 1
             "Vous avez fait tomber 2 boules de cristal dans la précipitation"
+            jump Bibliotheque
     jump WaitingScreen
 #############################################################################################################################
     label FondDuLac:
@@ -1241,9 +1267,9 @@ label start:
             jump Cuisine
     
     label poivrons:
-        $ renpy.movie_cutscene("cuisine_16_poivrons.webm")
+        $ renpy.movie_cutscene("cuisine_12_poivrons.webm")
         $ n_poivrons= renpy.input("Combien de poivrons veut-elle?", length = 4)
-        if n_tomates == "16":
+        if n_poivrons == "16":
             c"Merci!"
             "La fée semble vouloir votre aide pour faire un gateau."
             jump PlanDeTravail
@@ -1258,7 +1284,7 @@ label start:
     #mini-jeu
     label PlanDeTravail:
         $ dico_cuis = ["cuisine_1.webm","cuisine_2.webm","cuisine_3.webm","cuisine_4.webm","cuisine_5.webm","cuisine_6.webm","cuisine_7.webm","cuisine_8.webm","cuisine_9.webm","cuisine_10.webm","","","","","cuisine_15.webm","","","","","cuisine_20.webm"]
-        scene décor_cuisine
+        scene Cuisine
         with dissolve
 
         pause(1.0)
@@ -1269,7 +1295,7 @@ label start:
 
         hide cuisine with dissolve
 
-        scene décor_cuisine with dissolve
+        scene Cuisine with dissolve
 
         "Ce mini-jeu est en deux parties: la préparation et la cuisson du gateau."
         "La préparation consiste simplement à mettre les bon ingrédients au bon nombre dans le chaudron."
@@ -1391,6 +1417,7 @@ label start:
     jump Cuisine
 #############################################################################################################################
     label Labyrinthe:
+    hide screen FondDuGouffreLink
     $ PossibiliteKAME=0
     $ taille_labyrinthe= renpy.random.randint(5,10)    # nombre de salles du labyrinthe
     $ position_laby = 0                               # a quelle salle on en est
@@ -1402,6 +1429,7 @@ label start:
     label labyrinthe_minijeu:
     scene gallerie porte at sizeBackground with slowDissolve
     "Vous arrivez au labyrinthe."
+    show screen LabyrintheLink with slowDissolve
     call screen porte_gallerie with slowDissolve
     stop music
     play music "<loop 0.0>/audio/Labyrinthe.mp3"
