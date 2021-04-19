@@ -109,6 +109,9 @@ init python:
     PossibiliteJUNQ=0
     PossibiliteGREX=0
     PorteRoyaumeAcces=0
+    VoleurAcces=0
+    IleAcces=0
+    seauPlein=0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.jpg", 55, 55)
     Gouffre = Room("Gouffre","Gouffre","carte_gouffre.jpg", 30, 52)
@@ -173,6 +176,7 @@ init python:
     Vingt = Mot("20", "oliveau_20_LSF.webm")
 #Initialisation inventaire
     Seau = Objet("Seau", "seau.png")
+    SeauPlein = Objet("SeauPlein", "seauPlein.png")
     Sifflet = Objet("Sifflet", "sifflet.png")
     LettreDeRemerciement = Objet("LettreDeRemerciement", "LettreDeRemerciement.png")
     Sucette = Objet("Sucette", "sucette.png")
