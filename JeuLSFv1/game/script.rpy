@@ -1499,7 +1499,7 @@ label start:
         call screen porte_gallerie with dissolve
 
     label echec_lab:
-        scene gallerie croisement 3 with dissolve
+        scene gallerie croisement 3 at sizeBackground with dissolve
         "Il semble que c'était le mauvais chemin"
         "Cela fait des heures que vous errez dans des galeries toutes semblables."
         "Prenez la taupe pour retourner au début."
