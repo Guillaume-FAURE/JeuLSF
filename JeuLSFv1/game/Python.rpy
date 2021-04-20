@@ -351,8 +351,8 @@ init python:
                 self.b_laby = renpy.random.randint(0,len(Choix_laby)-1)
                 self.c_laby = renpy.random.randint(0,len(Choix_laby)-1)
                 while ((self.a_laby == self.b_laby) or (self.a_laby == self.c_laby) or (self.b_laby == self.c_laby)):
-                        self.b_laby = renpy.random.randint(0,len(Choix_laby)-1)
-                        self.c_laby = renpy.random.randint(0,len(Choix_laby)-1)
+                    self.b_laby = renpy.random.randint(0,len(Choix_laby)-1)
+                    self.c_laby = renpy.random.randint(0,len(Choix_laby)-1)
 
     dico_panneau ={"1":"panneau_1.png","2":"panneau_2.png","3":"panneau_3.png","4":"panneau_4.png",
     "5":"panneau_5.png","6":"panneau_6.png","7":"panneau_7.png","8":"panneau_8.png",
