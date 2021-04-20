@@ -852,7 +852,7 @@ screen ClairiereDOliveauLink:
         at sizeOliveau
         xalign 0.4
         yalign 0.02
-        action If ((show==0), true=[Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")])
+        action If ((show==0), true=[Hide("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")])
     imagebutton:
         idle "LinkIdleSO.png"
         hover "LinkHoverSO.png"
