@@ -87,7 +87,7 @@ transform custom_zoom2:
 
 transform indication1:
     size(50,50)
-    xalign 0.1
+    xalign 0.95 
     yalign 0.5
     zoom 0.0
     linear 1.0 zoom 1.0

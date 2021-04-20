@@ -242,7 +242,7 @@ label start:
                 jump Q2
         $ i=i+1
     o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
-    jump Q2
+    jump ClairiereDOliveau
 
     label RenvoyeParGarde:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
