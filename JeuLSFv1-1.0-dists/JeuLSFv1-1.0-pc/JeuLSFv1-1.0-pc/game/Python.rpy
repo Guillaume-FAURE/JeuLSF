@@ -115,6 +115,7 @@ init python:
     RencontreOiseau=0
     jeucuisinefini=0
     possibilitevol=0
+    show=0
 #Initialisation Variables de la minimap
     ArriveForetFees = Room("Arrive foret fees","ArriveForetFees","carte_foret.png", 52, 50)
     Gouffre = Room("Gouffre","Gouffre","carte_gouffre.png", 36, 34)

@@ -26,19 +26,19 @@ screen menu:
         at sizeButton
         xalign 0.98
         yalign 0.15
-        action If ((mapshow == 0), true = [SetVariable("mapshow", mapshow + 1), Show ("minimap")], false =[Hide ("minimap"), SetVariable("mapshow", 0)])
+        action If ((mapshow == 0), true = [SetVariable("mapshow", mapshow + 1), SetVariable("show",1), Show ("minimap")], false =[Hide ("minimap"),SetVariable("show",0), SetVariable("mapshow", 0)])
     imagebutton:
         idle "achievementShow.png"
         at sizeButton
         xalign 0.98
         yalign 0.85
-        action If ((achievementshow == 0), true = [SetVariable("achievementshow", achievementshow + 1), Show ("achievements")], false =[Hide ("achievements"), SetVariable("achievementshow", 0)])
+        action If ((achievementshow == 0), true = [SetVariable("achievementshow", achievementshow + 1),SetVariable("show",1), Show ("achievements")], false =[Hide ("achievements"),SetVariable("show",0), SetVariable("achievementshow", 0)])
     imagebutton:
         idle "inventaireShow.png"
         at sizeButton
         xalign 0.98
         yalign 0.30
-        action If ((inventaireshow == 0), true = [SetVariable("inventaireshow", inventaireshow + 1), Show ("inventaire")], false =[Hide ("inventaire"), SetVariable("inventaireshow", 0)])
+        action If ((inventaireshow == 0), true = [SetVariable("inventaireshow", 1),SetVariable("show",1), Show ("inventaire")], false =[Hide ("inventaire"),SetVariable("show",0), SetVariable("inventaireshow", 0)])
 
 screen minimap:
     $ s = -1
@@ -843,7 +843,7 @@ screen OliveauIntroLink:
         at sizeOliveau
         xalign 0.4
         yalign 0.02
-        action [Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")]
+        action If ((show==0), true=[Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")])
 
 ###Link Clairiere d'Oliveau
 screen ClairiereDOliveauLink:
@@ -852,7 +852,7 @@ screen ClairiereDOliveauLink:
         at sizeOliveau
         xalign 0.4
         yalign 0.02
-        action [Hide ("ClairiereDOliveauLink"), Show("oliveauStatic"), Jump("Oliveau")]
+        action If ((show==0), true=[Hide("OliveauIntroLink"), Show("oliveauStatic"), Jump("OliveauIntro")])
     imagebutton:
         idle "LinkIdleSO.png"
         hover "LinkHoverSO.png"
@@ -941,7 +941,7 @@ screen NidDeLOiseauLink:
         idle "oiseau.png"
         xalign 0.5
         yalign 0.2
-        action[Hide("NidDeLOiseauLink"), Show("birdStatic"), Jump("Bird")]
+        action If ((show==0), true=[Hide("NidDeLOiseauLink"), Show("birdStatic"), Jump("Bird")])
     imagebutton:
         idle "LinkIdleSO.png"
         hover "LinkHoverSO.png"
@@ -1172,7 +1172,7 @@ screen CuisineLink:
         idle "cuisiniere.png"
         xalign 0.5
         yalign 0.2
-        action [Hide ("CuisineLink"),Show("cuisinierestatic"), Jump ("cuisiniere")]
+        action If ((show==0), true=[Hide ("CuisineLink"),Show("cuisinierestatic"), Jump ("cuisiniere")])
 
 screen cuisinierestatic:
     imagebutton:
@@ -1358,7 +1358,7 @@ screen DansLesAirsLink:
         idle "oiseau.png"
         xalign 0.5
         yalign 0.2
-        action[Hide("DansLesAirsLink"),Show("oiseaustatic"), Jump("oiseauAirs")]
+        action If ((show==0), true=[Hide("DansLesAirsLink"),Show("oiseaustatic"), Jump("oiseauAirs")])
 
 screen oiseaustatic:
     imagebutton:
@@ -1430,7 +1430,7 @@ screen DessusDeLaFalaiseLink:
             at sizeAlchimiste
             xalign 0.42
             yalign 0.55
-            action[Hide("DessusDeLaFalaiseLink"),Show("alchimistestatic"), Jump("alchimiste")]
+            action If((show==0),true=[Hide("DessusDeLaFalaiseLink"),Show("alchimistestatic"), Jump("alchimiste")])
 
 screen alchimistestatic:
     imagebutton:

@@ -68,12 +68,8 @@ label start:
             jump OliveauLSFL
     
     label TransitionNiveau3:
-    "Vous avez passé la première épreuve de compréhension de la langue des signes, le jeu va donc s’adapter à votre niveau."
-    menu:
-        "Continuer":
-            jump Niveau3
-        "Annuler":
-            jump OliveauLSFL
+    "Vous avez passé la première épreuve de compréhension de la langue des signes, je vois que vous savez déjà bien parler!"
+    jump OliveauLSFL
 
     label OliveauLSFL:
     $ renpy.movie_cutscene("oliveau_eau_LSF.webm")
@@ -89,12 +85,8 @@ label start:
             jump OliveauSeau
 
     label TransitionNiveau2:
-    "Vous avez passé la première épreuve de compréhension de la langue des signes, le jeu va donc s’adapter à votre niveau."
-    menu:
-        "Continuer":
-            jump Niveau2
-        "Annuler":
-            jump OliveauSeau
+    "Vous avez passé la première épreuve de compréhension de la langue des signes, vous connaissez donc déjà une partie des lettres, bravo!"
+    jump OliveauSeau
     
     label OliveauSeau:
     $ inventaire.append(Seau)
@@ -223,11 +215,11 @@ label start:
     
     label R21:
     o "Oui, et elles sont aussi jolies que dans ton imagination. En revanche, elles ne parlent pas ta langue. Elles ne communiquent qu’en langue des signes française. Pour mieux les connaître, il te faut donc apprendre les bases de cette langue. Les arbres t’aideront."
-    jump ClairiereDOliveau
+    jump Q2
 
     label R22:
     o "Je suis un serviteur de sa majesté la Reine des fées."
-    jump ClairiereDOliveau
+    jump Q2
 
     label R23:
     o "Il te faut demander l’aide de la Reine des fées pour rentrer dans ton monde. Tu la trouveras facilement."
@@ -236,7 +228,7 @@ label start:
     $ PorteRoyaumeAcces=1
     $ avancement[0] = "ConnaisDirectionRoyaumeFees"
     show LinkHoverNE at indication1
-    jump ClairiereDOliveau
+    jump Q2
    
     label R24:
     python:
@@ -250,7 +242,7 @@ label start:
                 jump Q2
         $ i=i+1
     o "Tu ne connais pas encore cette lettre, les fées t’en donneront d'autres en échange de ton aide."
-    jump ClairiereDOliveau
+    jump Q2
 
     label RenvoyeParGarde:
     o "Est-ce qu’il y a quelque chose que tu souhaites savoir?"
@@ -337,7 +329,6 @@ label start:
             $ renpy.movie_cutscene("oliveau_19_LSF.webm")
             $ renpy.movie_cutscene("oliveau_20_LSF.webm")
             python:
-                dico.append(Zero)
                 dico.append(Un)
                 dico.append(Deux)
                 dico.append(Trois)
@@ -921,6 +912,7 @@ label start:
         jump EnfantQuiPleure
     elif avancement[4]=="ObtenuBonbons":
         $ avancement[4]="bonbonperdu"
+        $ avancement[0]="EnfantBonbon"
         jump ObtenuBonbons
     jump WaitingScreen
     #
@@ -990,6 +982,8 @@ label start:
     if porteGouffre==0:
         $ PossibilitePIF=1
         "Ce rocher a l'air de pouvoir être casser"
+    if achGREX==1:
+        "On a l'air de pouvoir creuser ici!"
     jump WaitingScreen
     #
 ############################################################################################################################
