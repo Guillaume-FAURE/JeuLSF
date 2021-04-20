@@ -757,6 +757,10 @@ label start:
     hide screen DessusDeLaFalaiseLink
     hide screen alchimistestatic
     hide screen PiegeDeLAlchimisteLink
+    $ PossibiliteDOY =0
+    $ PossibilitePIF =0
+    $ PossibiliteJUNQ =0
+    $ PossibiliteGREX =0
     if achKAME==0:
         $ possibilitevol=1
     if achKAME==1:

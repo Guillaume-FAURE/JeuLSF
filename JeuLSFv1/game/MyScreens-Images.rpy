@@ -53,7 +53,7 @@ screen minimap:
             ypos i.y*10
             idle i.image
             at sizeRoom
-            action If ((possibilitevol==2), true=[SetVariable("possibilitevol",0),Hide("DansLesAirsLink"),Hide ("minimap"),Jump (i.label)])
+            action If ((possibilitevol==2), true=[SetVariable("possibilitevol",0),Hide("DansLesAirsLink"),Hide("oiseaustatic"),Hide ("minimap"),Jump (i.label)])
 
 screen achievements:
     $ x=0
@@ -89,7 +89,7 @@ screen inventaire:
                 ypos y
                 idle i.image
                 at sizeObjet
-                action If ((PossibiliteKAME==1), true=[Hide("inventaire"),Jump("DansLesAirs")], false=[Show("KAMEPasPossible")])
+                action If ((PossibiliteKAME==1), true=[Hide("inventaire"),SetVariable("show",0),Jump("DansLesAirs")], false=[Show("KAMEPasPossible")])
         else:
             imagebutton:   
                 xpos x  
@@ -1249,14 +1249,14 @@ screen FalaiseLink:
             at sizeButton
             xalign 0.5
             yalign 0.1
-            action [Hide ("FalaiseLink"), Jump ("DessusDeLaFalaise")]
+            action [Hide ("FalaiseLink"),SetVariable("PossibiliteDOY",0),  Jump ("DessusDeLaFalaise")]
     imagebutton:
         idle "LinkIdleSO.png"
         hover "LinkHoverSO.png"
         at sizeButton
         xalign 0.2
         yalign 0.95
-        action [Hide ("FalaiseLink"), Jump ("LieuDuVol")]
+        action [Hide ("FalaiseLink"),SetVariable("PossibiliteDOY",0), Jump ("LieuDuVol")]
     if achMagie>=1:
         imagebutton:
             idle "iconeMagie.png"
