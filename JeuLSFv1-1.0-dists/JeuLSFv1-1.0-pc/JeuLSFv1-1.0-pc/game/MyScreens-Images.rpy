@@ -53,7 +53,7 @@ screen minimap:
             ypos i.y*10
             idle i.image
             at sizeRoom
-            action If ((possibilitevol==2), true=[SetVariable("possibilitevol",0),Hide("DansLesAirsLink"),Hide("oiseaustatic"),Hide ("minimap"),Jump (i.label)])
+            action If ((possibilitevol==2), true=[SetVariable("possibilitevol",0),SetVariable("show",0),Hide("DansLesAirsLink"),Hide("oiseaustatic"),Hide ("minimap"),Jump (i.label)])
 
 screen achievements:
     $ x=0
@@ -111,17 +111,11 @@ screen KAMEPasPossible:
             xalign 0.5
             yalign 0.5
             text"{size=48}{color=#fd0a0a}Sa magnificence, l’Oiseau, ne peut atterrir ici. Sors de sous cet horrible plafond.{/color}{/size}"
-        if achTueurdOiseau==0:
-            $ achievements.append(Secret_TueurdOiseau)
-            $ achTueurdOiseau +=1
     elif achDOY>=1:
         frame:
             xalign 0.5
             yalign 0.5
             text "{size=48}{color=#fd0a0a}Impossible de voler si on n'est pas en extérieur!{/color}{/size}"
-        if achGrosseBosse==0:
-            $ achievements.append(Secret_GrosseBosse)
-            $ achGrosseBosse +=1
     imagebutton:
         xalign 0.97
         yalign 0.45
